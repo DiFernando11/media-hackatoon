@@ -1,0 +1,32 @@
+{
+  "name": "media-hackaton",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^3.1.7",
+    "@astrojs/react": "^3.6.2",
+    "@astrojs/rss": "^4.0.7",
+    "@astrojs/sitemap": "^3.2.0",
+    "@astrojs/tailwind": "^5.1.1",
+    "@heroicons/react": "^2.1.5",
+    "@react-three/drei": "^9.114.3",
+    "@react-three/fiber": "^8.17.10",
+    "astro": "^4.15.12",
+    "astro-cloudinary": "^1.1.0",
+    "axios": "^1.7.7",
+    "react-compare-image": "^3.4.0",
+    "react-compare-slider": "^3.1.0",
+    "tailwindcss": "^3.4.13",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "two-up-element": "^1.0.1"
+  }
+}

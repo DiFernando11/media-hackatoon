@@ -1,0 +1,49 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ClouWidgetReact from "../components/reactUi/ClouWidgetReact";
+import SideBar from "../components/reactUi/SideBar";
+import ContainerMedia from "../components/reactUi/ContinarMedia";
+import GhostScene from "../components/reactUi/GhostScene";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { CldUploadWidget } from "astro-cloudinary";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <!-- <Header /> -->
+    <main>
+      <!-- <GhostScene client:load /> -->
+      <SideBar client:only />
+      <CldUploadWidget
+        id="upload-widget"
+        uploadPreset="upload-hackatoon-image"
+        options={{
+          croppingShowBackButton: true,
+          cropping: true,
+          croppingAspectRatio: 1.0, // Relación de aspecto 1:1 (cuadrado)
+          croppingShowDimensions: true,
+          sources: ["local"],
+          multiple: false,
+          language: "es",
+          text: {
+            es: {
+              local: {
+                dd_title_single: "Arrastra un nueva imagen",
+              },
+            },
+          },
+        }}
+      >
+        <ContainerMedia client:load />
+      </CldUploadWidget>
+      <ClouWidgetReact client:load />
+      <!-- <Footer /> -->
+    </main>
+  </body>
+</html>
