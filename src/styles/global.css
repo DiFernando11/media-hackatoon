@@ -29,9 +29,9 @@
 	padding: 0;
 }
 body {
-	padding: 1rem 0;
 	background-color: black;
 	height: 100vh;
+	overflow-x: hidden
 }
 
 h1,
@@ -68,12 +68,7 @@ a {
 a:hover {
 	color: var(--accent);
 }
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
+
 textarea {
 	width: 100%;
 	font-size: 16px;

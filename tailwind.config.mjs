@@ -4,9 +4,18 @@ export default {
 	theme: {
 		extend: {
 			screens: {
-			  'sm': '480px',  // Agrega un nuevo breakpoint personalizado
+			  'sm': '480px',
 			},
-		  },
+			animation: {
+				spin: 'spin 5s linear infinite',
+			  },
+			  keyframes: {
+				spin: {
+				  '0%': { transform: 'rotate(0deg)' },
+				  '100%': { transform: 'rotate(360deg)' },
+				},
+			  },
+	},
 	},
 	plugins: [],
 }
