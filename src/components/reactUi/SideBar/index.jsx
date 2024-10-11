@@ -1,7 +1,7 @@
 // Sidebar.jsx
 import { useEffect, useState } from "react";
 import useMediaQuery from "../hooks/useMediaQuery";
-import { isSmMQ } from "../utils/constants";
+import { isSmMQ } from "../../../utils/constants";
 import { BeakerIcon, XCircleIcon } from "@heroicons/react/24/solid";
 
 const Sidebar = () => {
@@ -11,7 +11,7 @@ const Sidebar = () => {
     setIsOpen(!isSmMQ(width));
   }, [width]);
   return (
-    <div className="relative">
+    <aside className="relative">
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
@@ -21,9 +21,9 @@ const Sidebar = () => {
         </button>
       )}
       <div
-        className={`fixed top-0 right-0 h-full w-40 bg-gray-800 text-white p-4 transition-transform duration-300 transform ${
+        className={`fixed top-0 right-0 h-full w-6/12 bg-gray-800 text-white p-4 transition-transform duration-300 transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        } sm:w-3/12`}
       >
         <XCircleIcon
           onClick={() => setIsOpen(!isOpen)}
@@ -34,7 +34,7 @@ const Sidebar = () => {
           <li className="mb-2">Enlace 1</li>
         </ul>
       </div>
-    </div>
+    </aside>
   );
 };
 

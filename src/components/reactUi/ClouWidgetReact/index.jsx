@@ -6,62 +6,43 @@ import {
   ReactCompareSliderImage,
 } from "react-compare-slider";
 import ImageCompare from "../ImageCompare";
+import useDownloadImage from "../UseDownloadImage";
 
 const ClouWidgetReact = () => {
   const imageLoading = "/public/bg-ph-image.jpeg";
   const classDimension = "w-80 h-80";
   const [image, setImage] = useState(null);
   const [imageEdit, setImageEdit] = useState(null);
+  const downloadImage = useDownloadImage();
+
+  const handleGetCdlImage = ({ isUpdateImage = true, ...props }) => {
+    const crop = image?.crop ? { crop: image?.crop } : {};
+    const body = {
+      ...crop,
+      ...props,
+    };
+    const url = getCldImageUrl({
+      src: image?.id,
+      ...body,
+    });
+    isUpdateImage && setImageEdit({ url, body });
+    return url;
+  };
 
   const handleClick = () => {
-    const url = getCldImageUrl({
-      src: image?.id,
+    const body = {
       replaceBackground: "Add zombies to the background",
-      crop: {
-        width: 500,
-        height: 500,
-        type: "thumb",
-        source: true,
-      },
-    });
-    setImageEdit({ id: image?.id, url });
+    };
+    handleGetCdlImage(body);
   };
-  const handleClickGhost = () => {
-    const url = getCldImageUrl({
-      src: image?.id,
 
-      //   replaceBackground: "Add ghosts to the background",
-      overlays: [
-        {
-          position: {
-            y: 40,
-            x: -10,
-            gravity: "south",
-          },
-          text: {
-            color: "magenta",
-            fontFamily: "Source Sans Pro",
-            fontSize: 160,
-            fontWeight: "black",
-            text: "OUT OF THIS WORLD",
-          },
-        },
-        {
-          position: {
-            y: 50,
-            gravity: "south",
-          },
-          text: {
-            color: "white",
-            fontFamily: "Source Sans Pro",
-            fontSize: 160,
-            fontWeight: "black",
-            text: "OUT OF THIS WORLD",
-          },
-        },
-      ],
+  const handleDownloadImage = (format) => {
+    const url = handleGetCdlImage({
+      isUpdateImage: false,
+      format,
+      ...imageEdit?.body,
     });
-    setImageEdit({ id: image?.id, url });
+    downloadImage(url, image?.name, format);
   };
 
   useEffect(() => {
@@ -69,26 +50,23 @@ const ClouWidgetReact = () => {
     if (widget) {
       widget.addEventListener("clduploadwidget:success", ({ detail }) => {
         const { info } = detail || {};
+        console.log({ detail });
         const coordinates = info?.coordinates?.custom?.[0];
         console.log("clduploadwidget:success hola dsads", detail);
-
         const detailCropX = coordinates?.[0];
         const detailCropY = coordinates?.[1];
         const detailCropWidth = coordinates?.[2];
         const detailCropHeight = coordinates?.[3];
         const publicId = info.public_id ?? "";
-        const cropImage = info?.coordinates
-          ? {
-              crop: {
-                width: detailCropWidth,
-                x: detailCropX,
-                y: detailCropY,
-                height: detailCropHeight,
-                type: "crop",
-                source: true,
-              },
-            }
-          : {};
+        const crop = {
+          width: detailCropWidth,
+          x: detailCropX,
+          y: detailCropY,
+          height: detailCropHeight,
+          type: "crop",
+          source: true,
+        };
+        const cropImage = info?.coordinates ? { crop } : {};
 
         console.log({ cropImage });
 
@@ -96,7 +74,7 @@ const ClouWidgetReact = () => {
           src: publicId,
           ...cropImage,
         });
-        setImage({ url, id: publicId });
+        setImage({ url, id: publicId, crop, name: info?.original_filename });
       });
     }
   }, []);
@@ -105,22 +83,22 @@ const ClouWidgetReact = () => {
 
   return (
     <div>
-      {/* <ReactCompareSlider
-        position={5}
-        className={classDimension}
-        itemOne={
-          <ReactCompareSliderImage src={imageLoading} alt={"Image one"} />
-        }
-        itemTwo={
-          <ReactCompareSliderImage src={imageLoading} alt={"Image Two"} />
-        }
-      /> */}
       {image && (
         <div>
           <p className="text-3xl font-bold underline">Tu imagen</p>
           <div className="flex gap-5">
             <button onClick={handleClick}>CAMBIAR ZOMBIES</button>
-            <button onClick={handleClickGhost}>CAMBIAR Fantasmas</button>
+          </div>
+          <div className="flex gap-5">
+            <button onClick={() => handleDownloadImage("png")}>
+              Descargar Imagen PNG
+            </button>
+            <button onClick={() => handleDownloadImage("jpg")}>
+              Descargar Imagen JPG
+            </button>
+            <button onClick={() => handleDownloadImage("webp")}>
+              Descargar Imagen WEBP
+            </button>
           </div>
           <>
             {!imageEdit ? (
