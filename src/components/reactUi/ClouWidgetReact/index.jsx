@@ -50,9 +50,7 @@ const ClouWidgetReact = () => {
     if (widget) {
       widget.addEventListener("clduploadwidget:success", ({ detail }) => {
         const { info } = detail || {};
-        console.log({ detail });
         const coordinates = info?.coordinates?.custom?.[0];
-        console.log("clduploadwidget:success hola dsads", detail);
         const detailCropX = coordinates?.[0];
         const detailCropY = coordinates?.[1];
         const detailCropWidth = coordinates?.[2];
@@ -67,9 +65,6 @@ const ClouWidgetReact = () => {
           source: true,
         };
         const cropImage = info?.coordinates ? { crop } : {};
-
-        console.log({ cropImage });
-
         const url = getCldImageUrl({
           src: publicId,
           ...cropImage,
@@ -78,8 +73,6 @@ const ClouWidgetReact = () => {
       });
     }
   }, []);
-
-  console.log({ image });
 
   return (
     <div>

@@ -1,0 +1,11 @@
+Model Information:
+* title:	PC Computer Bungee Zombie
+* source:	https://sketchfab.com/3d-models/pc-computer-bungee-zombie-28cabcbc04e54cfca0b7a5bc2412eb05
+* author:	evilg150 (https://sketchfab.com/evilg150)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "PC Computer Bungee Zombie" (https://sketchfab.com/3d-models/pc-computer-bungee-zombie-28cabcbc04e54cfca0b7a5bc2412eb05) by evilg150 (https://sketchfab.com/evilg150) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Squeak Ghost Win
+* source:	https://sketchfab.com/3d-models/squeak-ghost-win-910d136ea33e4646ad7f10f1dd3c767b
+* author:	xxcoobloyxx (https://sketchfab.com/xxcoobloyxx)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Squeak Ghost Win" (https://sketchfab.com/3d-models/squeak-ghost-win-910d136ea33e4646ad7f10f1dd3c767b) by xxcoobloyxx (https://sketchfab.com/xxcoobloyxx) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

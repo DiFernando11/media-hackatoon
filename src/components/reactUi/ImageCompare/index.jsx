@@ -3,7 +3,6 @@ import { ReactCompareSliderImage } from "react-compare-slider";
 
 function ImageCompare({ src, alt, className, srcImageLoading }) {
   const [loading, setLoading] = useState(true);
-  console.log({ loading });
   const handleImageLoad = () => {
     setLoading(false);
   };

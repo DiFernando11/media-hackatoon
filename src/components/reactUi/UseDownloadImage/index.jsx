@@ -14,10 +14,8 @@ const useDownloadImage = () => {
     }
   };
   const handleDownload = useCallback(async (imageUrl, name, format) => {
-    console.log({ imageUrl });
     const a = document.createElement("a");
     const imageDataUrl = await toDataURL(imageUrl);
-    console.log({ imageDataUrl });
 
     if (imageDataUrl) {
       const nameDefault = "my-image";

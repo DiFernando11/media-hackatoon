@@ -1,0 +1,427 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 8144,
+      "max": [
+        0.5859379768371582,
+        2.095702886581421,
+        0.3464359939098358
+      ],
+      "min": [
+        -0.5859379768371582,
+        0.15515099465847015,
+        -0.22595199942588806
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 97728,
+      "componentType": 5126,
+      "count": 8144,
+      "max": [
+        0.9999729990959167,
+        0.9999768733978271,
+        0.9999274611473083
+      ],
+      "min": [
+        -0.999972939491272,
+        -0.9999828338623047,
+        -0.9994390606880188
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 8144,
+      "max": [
+        0.9902340173721313,
+        0.99794602394104
+      ],
+      "min": [
+        0.012512000277638435,
+        0.02099600061774254
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 40494,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 195456,
+      "componentType": 5126,
+      "count": 699,
+      "max": [
+        0.238769993185997,
+        1.8730469942092896,
+        0.3308109939098358
+      ],
+      "min": [
+        -0.21777300536632538,
+        1.675781011581421,
+        0.1319579929113388
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 203844,
+      "componentType": 5126,
+      "count": 699,
+      "max": [
+        0.9997668862342834,
+        0.9953649640083313,
+        0.9999094009399414
+      ],
+      "min": [
+        -0.9977847337722778,
+        -0.9953644275665283,
+        -0.998590886592865
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 65152,
+      "componentType": 5126,
+      "count": 699,
+      "max": [
+        0.9941409826278687,
+        0.9992499947547913
+      ],
+      "min": [
+        0.005828999914228916,
+        0.0004879999905824661
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 161976,
+      "componentType": 5125,
+      "count": 3996,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 212232,
+      "componentType": 5126,
+      "count": 9964,
+      "max": [
+        0.5561519861221313,
+        1.5253909826278687,
+        0.3642579913139343
+      ],
+      "min": [
+        -0.5424799919128418,
+        0.0006500000017695129,
+        -1.1171879768371582
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 331800,
+      "componentType": 5126,
+      "count": 9964,
+      "max": [
+        0.9999593496322632,
+        0.9999987483024597,
+        1.0
+      ],
+      "min": [
+        -0.9999786019325256,
+        -1.0,
+        -0.9998496174812317
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 70744,
+      "componentType": 5126,
+      "count": 9964,
+      "max": [
+        0.9946290254592896,
+        0.995934009552002
+      ],
+      "min": [
+        0.0018599999602884054,
+        0.0039059999398887157
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 177960,
+      "componentType": 5125,
+      "count": 49332,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "evilg150 (https://sketchfab.com/evilg150)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/pc-computer-bungee-zombie-28cabcbc04e54cfca0b7a5bc2412eb05",
+      "title": "PC Computer Bungee Zombie"
+    },
+    "generator": "Sketchfab-15.16.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 375288,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 150456,
+      "byteOffset": 375288,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 451368,
+      "byteOffset": 525744,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 977112,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/BungeeZombie_Skin_D_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/EYES_D_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/BungeeZombie_Clothes_D_baseColor.jpeg"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "BungeeZombie_Skin_D",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.8211145618000169
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "EYES_D",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.8211145618000169
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "BungeeZombie_Clothes_D",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.8211145618000169
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "BungeeZombie_BungeeZombie_Skin_D_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "BungeeZombie_EYES_D_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 5,
+            "POSITION": 4,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "BungeeZombie_BungeeZombie_Clothes_D_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 9,
+            "POSITION": 8,
+            "TEXCOORD_0": 10
+          },
+          "indices": 11,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.0,
+        0.0,
+        -0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "BungeeZombie.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4,
+        5,
+        6
+      ],
+      "matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        99.99999999999972,
+        -7.5497901264043296e-06,
+        0.0,
+        0.0,
+        7.5497901264043296e-06,
+        99.99999999999972,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "BungeeZombie"
+    },
+    {
+      "mesh": 0,
+      "name": "BungeeZombie_BungeeZombie_Skin_D_0"
+    },
+    {
+      "mesh": 1,
+      "name": "BungeeZombie_EYES_D_0"
+    },
+    {
+      "mesh": 2,
+      "name": "BungeeZombie_BungeeZombie_Clothes_D_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}

@@ -18,30 +18,42 @@ import LayoutApp from "../components/reactUi/LayoutApp";
     <LayoutApp client:only="react">
       <HeaderPresentation client:only="react" />
       <main class="flex-grow">
-        <CldUploadWidget
-          class="flex justify-center items-center h-full"
-          id="upload-widget"
-          uploadPreset="upload-hackatoon-image"
-          options={{
-            cropping: true,
-            croppingAspectRatio: 1.0, // Relación de aspecto 1:1 (cuadrado)
-            croppingShowDimensions: true,
-            sources: ["local"],
-            multiple: false,
-            language: "es",
-            text: {
-              es: {
-                local: {
-                  dd_title_single: "Arrastra un nueva imagen",
+        <div class="flex justify-center items-center h-full">
+          <CldUploadWidget
+            class="border w-[100%] h-full max-h-[480px] p-8 relative"
+            id="upload-widget"
+            uploadPreset="upload-hackatoon-image"
+            options={{
+              cropping: true,
+              croppingAspectRatio: 1.0, // Relación de aspecto 1:1 (cuadrado)
+              croppingShowDimensions: true,
+              sources: ["local"],
+              multiple: false,
+              language: "es",
+              text: {
+                es: {
+                  local: {
+                    dd_title_single: "Arrastra un nueva imagen",
+                  },
                 },
               },
-            },
-          }}
-        >
-          <ContainerMedia client:load />
-        </CldUploadWidget>
+            }}
+          >
+            <ContainerMedia client:load />
+          </CldUploadWidget>
+        </div>
         <ClouWidgetReact client:load />
       </main>
     </LayoutApp>
+    <!-- Scripts externos -->
+    <!-- <script src="https://unpkg.com/three@0.97.0/build/three.min.js" defer
+    ></script>
+    <script
+      src="https://unpkg.com/three@0.97.0/examples/js/loaders/GLTFLoader.js"
+      defer></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      defer></script>
+    <script type="module" src="/src/scripts/model3D.js" defer></script> -->
   </body>
 </html>

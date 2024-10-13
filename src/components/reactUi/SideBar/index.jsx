@@ -7,10 +7,16 @@ import classNames from "classnames";
 import DropDownActions from "../DropDownActions";
 import ResizeBar from "./ResizeBar"; // Barra de redimensionamiento
 import { initResize } from "../../../utils/resizeSideBar";
+import ToggleList from "../ToogleTopic";
 
 const Sidebar = () => {
   const width = useMediaQuery();
-  const { openActionMedia, setOpenActionMedia } = useStoreApp();
+  const {
+    openActionMedia,
+    setOpenActionMedia,
+    setModeMoveModel,
+    getModeMoveModel,
+  } = useStoreApp();
   const idiomas = ["Español", "Ingles"].map((lng, index) => (
     <DropDownActions name={lng} key={index} />
   ));
@@ -29,6 +35,20 @@ const Sidebar = () => {
     },
     {
       name: "Otra cosa",
+    },
+    {
+      name: "Intesection",
+      options: (
+        <div>
+          <button
+            id="toggle-rotation"
+            onClick={() => setModeMoveModel(!getModeMoveModel)}
+            className="text-white"
+          >
+            Toggle Mouse Rotation
+          </button>
+        </div>
+      ),
     },
   ];
 
@@ -55,7 +75,7 @@ const Sidebar = () => {
       <div
         id={SIDE_BAR_APP}
         className={classNames(
-          "bg-gray-300 h-full z-20 w-[80%] sm:w-[20%]",
+          "bg-black h-full z-20 w-[80%] sm:w-[20%]",
           "fixed top-0 right-0 transform transition-transform duration-1000 ease-in-out sm:static",
           {
             "translate-x-0": openActionMedia,
@@ -73,8 +93,11 @@ const Sidebar = () => {
               onClick={() => setOpenActionMedia(false)}
               className="absolute top-2 right-2 cursor-pointer block sm:hidden ml-auto size-6 text-blue-500"
             />
-            <h2 className="text-xl font-bold mb-4">Sidebar</h2>
+            <h2 className="text-xl font-bold mb-4 text-white">Sidebar</h2>
             <ul className="flex flex-col gap-3">
+              <li>
+                <ToggleList />
+              </li>
               {actions.map((act, index) => (
                 <DropDownActions
                   name={act.name}

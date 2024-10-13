@@ -12,15 +12,14 @@ function DropDownActions({ name, options, handleAction }) {
   return (
     <li>
       <button
-        onClick={handleAction}
+        onClick={options ? handleClick : handleAction}
         className={classNames(
-          "w-full border-t mb-2 flex justify-between items-center px-1"
+          "w-full text-white border-t mb-2 flex justify-between items-center px-1"
         )}
       >
         <p>{name}</p>
         {options && (
           <ChevronDownIcon
-            onClick={handleClick}
             className={classNames(
               "size-4 mt-1",
               "transform transition-transform duration-300 ease-in-out",
