@@ -50,7 +50,7 @@ console.log('UPDATE', width, height)
 
     // Iluminación
     const pointLight = new THREE.PointLight(0xffffff, 10);
-    pointLight.position.set(0, 1, 2);
+    pointLight.position.set(0, 0.2, 2);
     instance.scene.add(pointLight);
 
     // Modelo base

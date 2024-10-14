@@ -106,9 +106,68 @@ hr {
 	border: none;
 	border-top: 1px solid rgb(var(--gray-light));
 }
-.main{
-	position: relative;
+
+  .leg {
+	@apply absolute h-[12px] w-[20px] border-t-2 border-white rounded-[60%_0_0_60%] z-[-1];
+  }
+
+@font-face {
+	font-family: 'Halloween zombie';
+	src: url('/fonts/zombie.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
-/* .webgl {
- 
-} */
+
+@font-face {
+	font-family: 'Halloween Werewolf';
+	src: url('/fonts/werewolf.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Halloween Mummy';
+	src: url('/fonts/mummy.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Halloween skeleton';
+	src: url('/fonts/skeleton.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Halloween ghost';
+	src: url('/fonts/ghost.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Halloween spider';
+	src: url('/fonts/spider.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Halloween vampire';
+	src: url('/fonts/vampire.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Halloween pumpkin';
+	src: url('/fonts/pumpkin.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Halloween witch';
+	src: url('/fonts/witch.otf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}

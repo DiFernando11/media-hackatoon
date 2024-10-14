@@ -1,0 +1,27 @@
+.text-title {
+    font-size: 7vw;
+    color: #111111;
+    animation: flicker 4s 0s infinite;
+}
+
+@keyframes flicker {
+    0%, 6%, 12% {
+        text-shadow: none;
+        color: #3b3b3b; /* Gris oscuro */
+    }
+    3%, 9% {
+        text-shadow: 0 0 10px rgba(101, 67, 33, 0.8), /* Aumentar la intensidad */
+                    0 0 15px rgba(255, 255, 255, 0.3); /* Añadir un brillo fantasmal más fuerte */
+        color: #271b16; /* Marrón más brillante */
+    }
+    60% {
+        text-shadow: 0 0 10px rgba(101, 67, 33, 0.6), /* Intensidad moderada */
+                     0 0 15px rgba(255, 255, 255, 0.4); /* Brillo fantasmal más marcado */
+        color: #9e6f4d; /* Marrón más claro */
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(101, 67, 33, 0.4), /* Menos intensidad pero aún presente */
+                     0 0 15px rgba(255, 255, 255, 0.2); /* Brillo fantasmal suave */
+        color: #493a31; /* Marrón muy claro (más luminoso) */
+    }
+}

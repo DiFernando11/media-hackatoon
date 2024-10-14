@@ -20,7 +20,7 @@ const Toggle = ({ name, isActive, onToggle }) => {
 
 const ToggleList = () => {
   const names = [
-    { text: "Leto", value: MODEL_TOPIC.esqueleto },
+    { text: "Leto", value: MODEL_TOPIC.skeleton },
     { text: "Zombie", value: MODEL_TOPIC.zombies },
     { text: "Ghost", value: MODEL_TOPIC.ghost },
     { text: "Vampiro", value: MODEL_TOPIC.vampire },
