@@ -3,112 +3,229 @@
     {
       "bufferView": 2,
       "componentType": 5126,
-      "count": 30907,
+      "count": 1077,
       "max": [
-        0.8127400279045105,
-        0.7714599967002869,
-        0.9897149801254272
+        5.738743782043457,
+        7.103855133056641,
+        10.048772811889648
       ],
       "min": [
-        -0.8147569894790649,
-        -0.7772840261459351,
-        -0.9018319845199585
+        -5.755908012390137,
+        -4.391264915466309,
+        0.022701000794768333
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 2,
-      "byteOffset": 370884,
+      "byteOffset": 12924,
       "componentType": 5126,
-      "count": 30907,
+      "count": 1077,
       "max": [
-        0.9999754428863525,
-        0.9999889135360718,
-        0.9997795224189758
+        0.9992173910140991,
+        0.9998893737792969,
+        0.9999001026153564
       ],
       "min": [
-        -0.9999747276306152,
-        -0.999987006187439,
-        -0.9999315738677979
+        -0.9971969127655029,
+        -0.999875009059906,
+        -0.9999908208847046
       ],
       "type": "VEC3"
     },
     {
-      "bufferView": 1,
+      "bufferView": 3,
       "componentType": 5126,
-      "count": 30907,
+      "count": 1077,
       "max": [
-        0.9716796875,
-        0.99951171875
+        0.9995715618133545,
+        0.9982060194015503,
+        0.9999781250953674,
+        1.0
       ],
       "min": [
-        0.0006899833679199219,
-        0.0006899833679199219
+        -0.9985371232032776,
+        -0.9997313022613525,
+        -0.991356611251831,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 1077,
+      "max": [
+        0.7733830213546753,
+        0.998104989528656
+      ],
+      "min": [
+        0.0018949999939650297,
+        0.0018949999939650297
       ],
       "type": "VEC2"
     },
     {
       "bufferView": 0,
       "componentType": 5125,
-      "count": 156864,
+      "count": 4812,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 25848,
+      "componentType": 5126,
+      "count": 93,
+      "max": [
+        3.145503044128418,
+        -2.7508559226989746,
+        5.801935195922852
+      ],
+      "min": [
+        -3.174868106842041,
+        -3.7848479747772217,
+        1.2692760229110718
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 26964,
+      "componentType": 5126,
+      "count": 93,
+      "max": [
+        0.5810464024543762,
+        -0.7190793752670288,
+        0.5152184367179871
+      ],
+      "min": [
+        -0.5854976177215576,
+        -0.9998272061347961,
+        -0.5221290588378906
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 8616,
+      "componentType": 5126,
+      "count": 93,
+      "max": [
+        0.5176669955253601,
+        0.9080410003662109
+      ],
+      "min": [
+        0.08182500302791595,
+        0.07694000005722046
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 19248,
+      "componentType": 5125,
+      "count": 336,
       "type": "SCALAR"
     }
   ],
   "asset": {
     "extras": {
-      "author": "Dominic Baker (https://sketchfab.com/Domuk)",
+      "author": "Wordofcurse (https://sketchfab.com/Wordofcurse)",
       "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/3d-models/halloween-pumpkin-0555c3a0722f433ab5bbc7059df5f271",
-      "title": "Halloween Pumpkin"
+      "source": "https://sketchfab.com/3d-models/lp-carved-pumpkin-4c7cb707b3da40019ce4125c21645339",
+      "title": "LP Carved Pumpkin!"
     },
-    "generator": "Sketchfab-16.43.0",
+    "generator": "Sketchfab-12.65.0",
     "version": "2.0"
   },
   "bufferViews": [
     {
       "buffer": 0,
-      "byteLength": 627456,
+      "byteLength": 20592,
       "name": "floatBufferViews",
       "target": 34963
     },
     {
       "buffer": 0,
-      "byteLength": 247256,
-      "byteOffset": 627456,
+      "byteLength": 9360,
+      "byteOffset": 20592,
       "byteStride": 8,
       "name": "floatBufferViews",
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 741768,
-      "byteOffset": 874712,
+      "byteLength": 28080,
+      "byteOffset": 29952,
       "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 17232,
+      "byteOffset": 58032,
+      "byteStride": 16,
       "name": "floatBufferViews",
       "target": 34962
     }
   ],
   "buffers": [
     {
-      "byteLength": 1616480,
+      "byteLength": 75264,
       "uri": "scene.bin"
     }
   ],
   "images": [
     {
-      "uri": "textures/Material_0_baseColor.jpeg"
+      "uri": "textures/Pumpkin.LP_baseColor.png"
+    },
+    {
+      "uri": "textures/Pumpkin.LP_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/Pumpkin.LP_normal.png"
     }
   ],
   "materials": [
     {
       "doubleSided": true,
-      "name": "Material_0",
+      "emissiveFactor": [
+        0.11106511231140416,
+        0.06027774188883138,
+        0.01091837538053099
+      ],
+      "name": "Pumpkin.LP",
+      "normalTexture": {
+        "index": 2
+      },
       "pbrMetallicRoughness": {
         "baseColorTexture": {
           "index": 0
         },
-        "metallicFactor": 0.49828723287537635,
-        "roughnessFactor": 0.12647657592861233
+        "metallicFactor": 0.0,
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        1.0,
+        0.9041840048312165,
+        0.10136839826235694
+      ],
+      "name": "Windows",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.31034588596650325,
+          0.17086722821084852,
+          0.008427789221270379,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.6
       }
     }
   ],
@@ -120,10 +237,26 @@
           "attributes": {
             "NORMAL": 1,
             "POSITION": 0,
-            "TEXCOORD_0": 2
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
           },
-          "indices": 3,
+          "indices": 4,
           "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_1",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TEXCOORD_0": 7
+          },
+          "indices": 8,
+          "material": 1,
           "mode": 4
         }
       ]
@@ -156,61 +289,18 @@
     },
     {
       "children": [
-        2
-      ],
-      "name": "root"
-    },
-    {
-      "children": [
+        2,
         3
       ],
-      "matrix": [
-        1.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        2.220446049250313e-16,
-        1.0,
-        0.0,
-        0.0,
-        -1.0,
-        2.220446049250313e-16,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        1.0
-      ],
-      "name": "GLTF_SceneRootNode"
-    },
-    {
-      "children": [
-        4
-      ],
-      "matrix": [
-        1.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        1.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        1.0,
-        0.0,
-        0.0,
-        0.8009144067764282,
-        0.0,
-        1.0
-      ],
-      "name": "halloween Pumpkin_0"
+      "name": "529ab92bf4ab4b6ca966ad55345da172.obj.cleaner.materialmerger.gles"
     },
     {
       "mesh": 0,
-      "name": "Object_4"
+      "name": "Object_2"
+    },
+    {
+      "mesh": 1,
+      "name": "Object_3"
     }
   ],
   "samplers": [
@@ -234,6 +324,14 @@
     {
       "sampler": 0,
       "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
     }
   ]
 }

@@ -1,12 +1,9 @@
 import React from "react";
 import useCreateModelMove from "../hooks/useCreateModelMove";
-import { MODEL_TOPIC } from "../../../utils/constants";
 import useStoreApp from "../hooks/useStoreApp";
-import BackgroundByTopic from "../BackgroundByTopic";
 
 const ContainerMedia = () => {
   const { getTopicHalloween } = useStoreApp();
-  console.log({ getTopicHalloween });
   const { canvasRef } = useCreateModelMove(getTopicHalloween);
   const { canvasRef: canvasRef2 } = useCreateModelMove(getTopicHalloween);
   return (
@@ -14,7 +11,6 @@ const ContainerMedia = () => {
       id="upload-button"
       className="block w-full border-cyan-500 p-8 h-full text-white border"
     >
-      <BackgroundByTopic />
       <canvas
         id="webgl"
         className="w-32 h-32 absolute sm:left-0 -top-8 

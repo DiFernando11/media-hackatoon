@@ -1,52 +1,39 @@
 import React, { useState } from "react";
 import useStoreApp from "../hooks/useStoreApp";
 import { MODEL_TOPIC } from "../../../utils/constants";
-
-const Toggle = ({ name, isActive, onToggle }) => {
-  return (
-    <div
-      onClick={onToggle}
-      className={`w-12 text-xs h-6 flex items-center justify-center m-1 cursor-pointer rounded-md transition-colors 
-                        ${
-                          isActive
-                            ? "bg-green-500 text-white"
-                            : "bg-gray-400 text-gray-200"
-                        }`}
-    >
-      {name}
-    </div>
-  );
-};
+import ToggleAction from "../ToogleAction";
 
 const ToggleList = () => {
   const names = [
-    { text: "Leto", value: MODEL_TOPIC.skeleton },
-    { text: "Zombie", value: MODEL_TOPIC.zombies },
-    { text: "Ghost", value: MODEL_TOPIC.ghost },
-    { text: "Vampiro", value: MODEL_TOPIC.vampire },
-    { text: "Brujas", value: MODEL_TOPIC.witch },
-    { text: "Lobo", value: MODEL_TOPIC.werewolf },
-    { text: "Momia", value: MODEL_TOPIC.mummy },
-    { text: "Calabaza", value: MODEL_TOPIC.pumpkin },
-    { text: "Spider", value: MODEL_TOPIC.spider },
+    { value: MODEL_TOPIC.skeleton },
+    { value: MODEL_TOPIC.zombies },
+    { value: MODEL_TOPIC.ghost },
+    { value: MODEL_TOPIC.vampire },
+    { value: MODEL_TOPIC.witch },
+    { value: MODEL_TOPIC.werewolf },
+    { value: MODEL_TOPIC.mummy },
+    { value: MODEL_TOPIC.pumpkin },
+    { value: MODEL_TOPIC.spider },
   ];
-  const { setTopicHalloween, getTopicHalloween } = useStoreApp();
+  const { setTopicHalloween, setOpenInitTopic, setDurationAnimation } =
+    useStoreApp();
 
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleToggle = (index, value) => {
+  const handleToggle = (value, index) => {
     setActiveIndex(index);
-    setTopicHalloween(value);
+    setTimeout(() => setTopicHalloween(value), 800);
+    setOpenInitTopic(true);
+    setDurationAnimation("duration-[500ms]");
   };
 
   return (
     <div className="flex flex-wrap justify-center items-center max-w-xs mx-auto">
       {names.map((topic, index) => (
-        <Toggle
+        <ToggleAction
           key={index}
-          name={topic.text}
-          isActive={index === activeIndex}
-          onToggle={() => handleToggle(index, topic.value)}
+          isActive={activeIndex === index}
+          onToggle={() => handleToggle(topic.value, index)}
         />
       ))}
     </div>

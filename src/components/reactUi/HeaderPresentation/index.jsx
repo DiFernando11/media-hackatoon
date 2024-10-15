@@ -3,10 +3,14 @@ import { Cog8ToothIcon } from "@heroicons/react/24/solid";
 import useStoreApp from "../hooks/useStoreApp";
 import classNames from "classnames";
 import { modelByTopic } from "../../../utils";
-import "./index.css";
+import useAutoFontSize from "../hooks/useAutoFontSize";
 
 function HeaderPresentation() {
   const { setOpenActionMedia, getTopicHalloween } = useStoreApp();
+  const containerRef = useAutoFontSize({
+    text: "Miduhallowcloud",
+    minFontSizeRem: 1,
+  });
   const currentTopic = modelByTopic(getTopicHalloween);
   console.log({ currentTopic });
   return (
@@ -14,15 +18,17 @@ function HeaderPresentation() {
       className={classNames(
         "h-[100px] relative",
         "flex flex-col justify-center",
-        "text-center",
+        "text-center"
       )}
     >
-      <h1
-        className={`${currentTopic.animationTitle} ${currentTopic.fontFamily}`}
-        style={{ fontSize: "4vw" }}
-      >
-        Miduhallowcloud
-      </h1>
+      <div ref={containerRef}>
+        <h1
+          className={`${currentTopic.animationTitle} ${currentTopic.fontFamily} break-words`}
+          // style={{ fontSize: "4vw" }}
+        >
+          Miduhallowcloud
+        </h1>
+      </div>
       <Cog8ToothIcon
         onClick={() => setOpenActionMedia(true)}
         className={classNames(

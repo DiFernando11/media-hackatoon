@@ -34,6 +34,11 @@ body {
 	overflow-x: hidden;
 }
 
+.disable-interactions {
+	pointer-events: none; /* Desactiva interacciones */
+	user-select: none;    /* Desactiva selección de texto */
+  }
+
 h1,
 h2,
 h3,

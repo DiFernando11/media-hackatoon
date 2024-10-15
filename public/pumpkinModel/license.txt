@@ -1,11 +1,11 @@
 Model Information:
-* title:	Halloween Pumpkin
-* source:	https://sketchfab.com/3d-models/halloween-pumpkin-0555c3a0722f433ab5bbc7059df5f271
-* author:	Dominic Baker (https://sketchfab.com/Domuk)
+* title:	LP Carved Pumpkin!
+* source:	https://sketchfab.com/3d-models/lp-carved-pumpkin-4c7cb707b3da40019ce4125c21645339
+* author:	Wordofcurse (https://sketchfab.com/Wordofcurse)
 
 Model License:
 * license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 * requirements:	Author must be credited. Commercial use is allowed.
 
 If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
-This work is based on "Halloween Pumpkin" (https://sketchfab.com/3d-models/halloween-pumpkin-0555c3a0722f433ab5bbc7059df5f271) by Dominic Baker (https://sketchfab.com/Domuk) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+This work is based on "LP Carved Pumpkin!" (https://sketchfab.com/3d-models/lp-carved-pumpkin-4c7cb707b3da40019ce4125c21645339) by Wordofcurse (https://sketchfab.com/Wordofcurse) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

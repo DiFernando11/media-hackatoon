@@ -1,4 +1,5 @@
-import { animations, keyframes } from './src/styles/animation';
+
+import { animation, keyframes } from './src/styles/animation';
 import { fontFamily } from './src/styles/fonts';
 
 /** @type {import('tailwindcss').Config} */
@@ -9,7 +10,7 @@ export default {
 			screens: {
 				'sm': '480px',
 			},
-			animation: animations,
+			animation,
 			keyframes,
 		},
 		fontFamily

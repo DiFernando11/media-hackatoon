@@ -1,10 +1,17 @@
 import React from "react";
 import Sidebar from "../SideBar";
+import CurtainChangeTopic from "../CurtainChangeTopic";
+import SmokeBackground from "../SmokeBackround";
 
 const LayoutApp = ({ children }) => {
   return (
     <>
-      <div className="flex py-5 px-10 sm:px-16 flex-col flex-grow">{children}</div>
+      <CurtainChangeTopic />
+      {/* <BackgroundByTopic /> */}
+      <SmokeBackground />
+      <div className="w-[200px] h-full flex py-5 px-10 sm:px-16 flex-col flex-grow">
+        {children}
+      </div>
       <Sidebar />
     </>
   );

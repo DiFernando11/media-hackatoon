@@ -49,7 +49,7 @@ console.log('UPDATE', width, height)
     instance.renderer.setPixelRatio(window.devicePixelRatio);
 
     // Iluminación
-    const pointLight = new THREE.PointLight(0xffffff, 10);
+    const pointLight = new THREE.PointLight(0xffffff, 7);
     pointLight.position.set(0, 0.2, 2);
     instance.scene.add(pointLight);
 

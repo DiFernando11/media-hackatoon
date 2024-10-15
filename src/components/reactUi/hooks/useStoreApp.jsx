@@ -3,9 +3,12 @@ import {
   openActionStore,
   topicHalloweenStore,
   isMouseFollowEnabledStore,
+  initTopicConfigStore,
 } from "../../../stores";
+import { bgColorWitch } from "../../../utils/constants";
 
 function useStoreApp() {
+  const getInitTopicConfig = useStore(initTopicConfigStore);
   const openActionMedia = useStore(openActionStore);
   const getTopicHalloween = useStore(topicHalloweenStore);
   const getModeMoveModel = useStore(isMouseFollowEnabledStore);
@@ -22,13 +25,33 @@ function useStoreApp() {
     isMouseFollowEnabledStore.set(typeModel);
   };
 
+  const setOpenInitTopic = (isOpen) => {
+    initTopicConfigStore.setKey("isOpen", isOpen);
+  };
+
+  const setTextInitTopic = (text) => {
+    initTopicConfigStore.setKey("text", text);
+  };
+
+  const setDurationAnimation = (duration) => {
+    initTopicConfigStore.setKey("durationAnimation", duration);
+  };
+  const setBackgroundCurtain = (bg) => {
+    initTopicConfigStore.setKey("backgroundCurtain", bgColorWitch);
+  };
+
   return {
     openActionMedia,
     setOpenActionMedia,
     getTopicHalloween,
     setTopicHalloween,
     getModeMoveModel,
-    setModeMoveModel
+    setModeMoveModel,
+    getInitTopicConfig,
+    setOpenInitTopic,
+    setTextInitTopic,
+    setDurationAnimation,
+    setBackgroundCurtain
   };
 }
 
