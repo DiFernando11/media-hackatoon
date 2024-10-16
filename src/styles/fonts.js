@@ -8,4 +8,5 @@ export const fontFamily = {
     vampire: ['Halloween vampire', 'sans-serif'],
     witch: ['Halloween witch', 'sans-serif'],
     zombie: ['Halloween zombie', 'sans-serif'],
+    general: ["Halloween general", 'sans-serif']
 }

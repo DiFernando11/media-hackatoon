@@ -7,6 +7,7 @@ export const hasTouchSupport = () => {
 export const modelByTopic = (topic) => {
     const configTopic = {
         [MODEL_TOPIC.skeleton]: {
+            name: "Calavera",
             modelPath: '/public/skullModel/scene.gltf',
             scale: 1.4,
             width: 150,
@@ -21,6 +22,7 @@ export const modelByTopic = (topic) => {
             },
         },
         [MODEL_TOPIC.zombies]: {
+            name: "Zombie",
             modelPath:'../../public/zombieVerdeModel/scene.gltf',
             scale: 0.8,
             width: 300,
@@ -35,6 +37,7 @@ export const modelByTopic = (topic) => {
             },
         },
         [MODEL_TOPIC.ghost]: {
+            name: "Fantasma",
             modelPath:'/public/ghostModel/scene.gltf',
             scale: 0.2,
             width: 250,
@@ -49,6 +52,7 @@ export const modelByTopic = (topic) => {
             },
         },
         [MODEL_TOPIC.vampire]: {
+            name: "Vampiro",
             modelPath:'../../public/vampireModel/scene.gltf',
             scale: 1.6,
             width: 150,
@@ -63,6 +67,7 @@ export const modelByTopic = (topic) => {
             },
         },
         [MODEL_TOPIC.witch]: {
+            name: "Bruja",
             modelPath:'../../public/witchModel/scene.gltf',
             scale: 0.4,
             width: 200,
@@ -77,6 +82,7 @@ export const modelByTopic = (topic) => {
             },
         },
         [MODEL_TOPIC.werewolf]: {
+            name: "Lobo",
             modelPath:'../../public/werewolfModel/scene.gltf',
             scale: 1.6,
             width: 180,
@@ -91,6 +97,7 @@ export const modelByTopic = (topic) => {
             },
         },
         [MODEL_TOPIC.mummy]: {
+            name: "Momia",
             modelPath:'../../public/mummyModel/scene.gltf',
             scale: 3,
             width: 200,
@@ -105,6 +112,7 @@ export const modelByTopic = (topic) => {
             },
         },
         [MODEL_TOPIC.pumpkin]: {
+            name: "Calabaza",
             modelPath:'../../public/pumpkinModel/scene.gltf',
             scale: 0.2,
             width: 200,
@@ -119,6 +127,7 @@ export const modelByTopic = (topic) => {
             },
         },
         [MODEL_TOPIC.spider]: {
+            name: "Araña",
             modelPath:'../../public/spiderModel/scene.gltf',
             scale: 0.6,
             width: 150,

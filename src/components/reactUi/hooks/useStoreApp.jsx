@@ -36,6 +36,11 @@ function useStoreApp() {
   const setDurationAnimation = (duration) => {
     initTopicConfigStore.setKey("durationAnimation", duration);
   };
+
+  const setDurationAnimationClose = (duration) => {
+    initTopicConfigStore.setKey("durationCloseAnimation", duration);
+  };
+
   const setBackgroundCurtain = (bg) => {
     initTopicConfigStore.setKey("backgroundCurtain", bgColorWitch);
   };
@@ -51,7 +56,8 @@ function useStoreApp() {
     setOpenInitTopic,
     setTextInitTopic,
     setDurationAnimation,
-    setBackgroundCurtain
+    setBackgroundCurtain,
+    setDurationAnimationClose
   };
 }
 

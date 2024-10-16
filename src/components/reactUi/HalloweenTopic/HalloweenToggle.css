@@ -3,23 +3,7 @@
     --ttf: ease-in-out;
     --bone: #888;
   }	
-  
-  *, *:before, *:after {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle at 50% 50%, #444, #000);
-  }
-  
+
   .toggle {
     position: relative;
     width: calc(var(--sz) * 5);

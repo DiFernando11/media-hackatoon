@@ -10,35 +10,14 @@ function DropDownActions({ name, options, handleAction }) {
   };
 
   return (
-    <li>
-      <button
-        onClick={options ? handleClick : handleAction}
-        className={classNames(
-          "w-full text-white border-t mb-2 flex justify-between items-center px-1"
-        )}
-      >
-        <p>{name}</p>
-        {options && (
-          <ChevronDownIcon
-            className={classNames(
-              "size-4 mt-1",
-              "transform transition-transform duration-300 ease-in-out",
-              { "rotate-180": isOpen, "rotate-0": !isOpen }
-            )}
-          />
-        )}
-      </button>
-      <ul
-        className={classNames(
-          "transition-all duration-500 ease-in-out overflow-hidden",
-          {
-            "max-h-0 opacity-0": !isOpen,
-            "max-h-[200px] opacity-100": isOpen,
-          }
-        )}
-      >
-        {options}
-      </ul>
+    <li
+      onClick={options ? handleClick : handleAction}
+      className={classNames(
+        "w-full font-general text-white border-t pt-1 mb-2 flex justify-between items-center px-1"
+      )}
+    >
+      <p>{name}</p>
+      <span className="w-5 h-5 rounded-full border border-white bg-green-400" />
     </li>
   );
 }

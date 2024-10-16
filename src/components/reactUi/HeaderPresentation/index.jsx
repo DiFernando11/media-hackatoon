@@ -24,7 +24,6 @@ function HeaderPresentation() {
       <div ref={containerRef}>
         <h1
           className={`${currentTopic.animationTitle} ${currentTopic.fontFamily} break-words`}
-          // style={{ fontSize: "4vw" }}
         >
           Miduhallowcloud
         </h1>

@@ -11,6 +11,7 @@ export const initTopicConfigStore = map({
     isOpen: true,
     text: "Miduhallowcloud",
     durationAnimation: "duration-[2000ms]",
-    backgroundCurtain: "bg-red-500"
+    backgroundCurtain: "bg-red-500",
+    durationCloseAnimation: 2000
   });
   

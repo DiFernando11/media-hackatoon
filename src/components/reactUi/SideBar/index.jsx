@@ -5,9 +5,9 @@ import { XCircleIcon } from "@heroicons/react/24/solid";
 import useStoreApp from "../hooks/useStoreApp";
 import classNames from "classnames";
 import DropDownActions from "../DropDownActions";
-import ResizeBar from "./ResizeBar"; // Barra de redimensionamiento
 import { initResize } from "../../../utils/resizeSideBar";
 import ToggleList from "../ToogleTopic";
+import Breadcrumb from "./Breadcrumb";
 
 const Sidebar = () => {
   const width = useMediaQuery();
@@ -23,18 +23,10 @@ const Sidebar = () => {
 
   const actions = [
     {
-      name: "Fantasma",
+      name: "Renueva tu fondo",
     },
     {
       name: "Zombie",
-    },
-    {
-      name: "Idioma",
-      options: <div>{idiomas}</div>,
-      handleAction: () => console.log("IDIOMA"),
-    },
-    {
-      name: "Otra cosa",
     },
     {
       name: "Intesection",
@@ -58,7 +50,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     initResize();
-  }, []); // Dependencias vacías para ejecutar una sola vez al montar
+  }, []);
 
   return (
     <>
@@ -75,27 +67,24 @@ const Sidebar = () => {
       <div
         id={SIDE_BAR_APP}
         className={classNames(
-          "bg-black h-full z-20 w-[80%] sm:w-[20%]",
+          "bg-sidebar h-full z-20 min-w-[210px] w-[80%] sm:w-[25%]",
           "fixed top-0 right-0 transform transition-transform duration-1000 ease-in-out sm:static",
           {
             "translate-x-0": openActionMedia,
             "translate-x-full": !openActionMedia,
           }
         )}
-        // style={{ width: "20%" }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Barra que permite arrastrar para redimensionar */}
-        <ResizeBar />
         <aside className="p-5 h-full">
           <div>
             <XCircleIcon
               onClick={() => setOpenActionMedia(false)}
               className="absolute top-2 right-2 cursor-pointer block sm:hidden ml-auto size-6 text-blue-500"
             />
-            <h2 className="text-xl font-bold mb-4 text-white">Sidebar</h2>
             <ul className="flex flex-col gap-3">
-              <li>
+              <Breadcrumb />
+              <li className="my-2">
                 <ToggleList />
               </li>
               {actions.map((act, index) => (

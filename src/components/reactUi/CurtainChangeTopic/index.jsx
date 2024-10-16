@@ -8,7 +8,10 @@ const CurtainChangeTopic = () => {
   // Cierra la cortina automáticamente después de 2 segundos cuando está abierta
   useEffect(() => {
     if (getInitTopicConfig.isOpen) {
-      const timer = setTimeout(() => setOpenInitTopic(false), 1000); // Cierra la cortina después de 2 segundos
+      const timer = setTimeout(
+        () => setOpenInitTopic(false),
+        getInitTopicConfig.durationCloseAnimation
+      ); // Cierra la cortina después de 2 segundos
       return () => clearTimeout(timer);
     }
   }, [getInitTopicConfig.isOpen, setOpenInitTopic]);

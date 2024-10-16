@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../SideBar";
 import CurtainChangeTopic from "../CurtainChangeTopic";
 import SmokeBackground from "../SmokeBackround";
+import BackgroundByTopic from "../BackgroundByTopic";
 
 const LayoutApp = ({ children }) => {
   return (

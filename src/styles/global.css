@@ -172,7 +172,33 @@ hr {
 
 @font-face {
 	font-family: 'Halloween witch';
-	src: url('/fonts/witch.otf') format('truetype');
+	src: url('/fonts/witch.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
+
+@font-face {
+	font-family: 'Halloween general';
+	src: url('/fonts/general.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.bg-sidebar{
+ background: linear-gradient(135deg, black, purple, orange);
+ -webkit-box-shadow: -13px -6px 11px 0px rgba(0,0,0,0.75);
+ -moz-box-shadow: -13px -6px 11px 0px rgba(0,0,0,0.75);
+ box-shadow: -6px -6px 11px 0px rgba(0,0,0,0.75);
+ border-radius: 4px;
+ background: rgba( 255, 255, 255, 0.05 );
+ backdrop-filter: blur( 0px );
+ -webkit-backdrop-filter: blur( 0px );
+}
+
+.text-outline {
+	text-shadow: 
+	  1px 1px 0 #8B5CF6, /* sombra superior izquierda morado */
+	  -1px 1px 0 #8B5CF6, /* sombra superior derecha morado */
+	  1px -1px 0 #8B5CF6, /* sombra inferior izquierda morado */
+	  -1px -1px 0 #8B5CF6; /* sombra inferior derecha morado */
+  }
