@@ -8,7 +8,7 @@ export const topicHalloweenStore = atom(MODEL_TOPIC.skeleton);
 export const isMouseFollowEnabledStore = atom(true);
 
 export const initTopicConfigStore = map({
-    isOpen: true,
+    isOpen: false,
     text: "Miduhallowcloud",
     durationAnimation: "duration-[2000ms]",
     backgroundCurtain: "bg-red-500",

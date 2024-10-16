@@ -2,11 +2,11 @@
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import ClouWidgetReact from "../components/reactUi/ClouWidgetReact";
-import SideBar from "../components/reactUi/SideBar";
 import ContainerMedia from "../components/reactUi/ContinarMedia";
 import { CldUploadWidget } from "astro-cloudinary";
 import HeaderPresentation from "../components/reactUi/HeaderPresentation";
 import LayoutApp from "../components/reactUi/LayoutApp";
+import MainAction from "../components/reactUi/MainAction";
 ---
 
 <!doctype html>
@@ -15,35 +15,33 @@ import LayoutApp from "../components/reactUi/LayoutApp";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body class="flex h-screen">
-    <LayoutApp client:only="react">
+    <LayoutApp client:load>
       <HeaderPresentation client:only="react" />
-      <main class="flex-grow">
-        <div class="flex justify-center items-center h-full">
-          <CldUploadWidget
-            class="border w-[100%] h-full max-h-[480px] p-8 relative"
-            id="upload-widget"
-            uploadPreset="upload-hackatoon-image"
-            options={{
-              cropping: true,
-              croppingAspectRatio: 1.0, // Relación de aspecto 1:1 (cuadrado)
-              croppingShowDimensions: true,
-              sources: ["local"],
-              multiple: false,
-              language: "es",
-              text: {
-                es: {
-                  local: {
-                    dd_title_single: "Arrastra un nueva imagen",
-                  },
+      <MainAction client:load>
+        <CldUploadWidget
+          class="w-full h-full"
+          id="upload-widget"
+          uploadPreset="upload-hackatoon-image"
+          options={{
+            cropping: true,
+            croppingAspectRatio: 1.0,
+            croppingShowDimensions: true,
+            sources: ["local"],
+            multiple: false,
+            language: "es",
+            text: {
+              es: {
+                local: {
+                  dd_title_single: "Arrastra un nueva imagen",
                 },
               },
-            }}
-          >
-            <ContainerMedia client:load />
-          </CldUploadWidget>
-        </div>
+            },
+          }}
+        >
+          <ContainerMedia client:load />
+        </CldUploadWidget>
         <ClouWidgetReact client:load />
-      </main>
+      </MainAction>
     </LayoutApp>
     <!-- Scripts externos -->
     <!-- <script src="https://unpkg.com/three@0.97.0/build/three.min.js" defer

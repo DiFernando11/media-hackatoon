@@ -6,6 +6,7 @@ import {
   initTopicConfigStore,
 } from "../../../stores";
 import { bgColorWitch } from "../../../utils/constants";
+import { modelByTopic } from "../../../utils";
 
 function useStoreApp() {
   const getInitTopicConfig = useStore(initTopicConfigStore);
@@ -19,6 +20,11 @@ function useStoreApp() {
 
   const setTopicHalloween = (topic) => {
     topicHalloweenStore.set(topic);
+  };
+
+  const getSelectedTopic = () => {
+    const currenTopic = modelByTopic(getTopicHalloween);
+    return currenTopic;
   };
 
   const setModeMoveModel = (typeModel) => {
@@ -47,6 +53,7 @@ function useStoreApp() {
 
   return {
     openActionMedia,
+    getSelectedTopic,
     setOpenActionMedia,
     getTopicHalloween,
     setTopicHalloween,
@@ -57,7 +64,7 @@ function useStoreApp() {
     setTextInitTopic,
     setDurationAnimation,
     setBackgroundCurtain,
-    setDurationAnimationClose
+    setDurationAnimationClose,
   };
 }
 

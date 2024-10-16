@@ -2,21 +2,20 @@ import React from "react";
 import { Cog8ToothIcon } from "@heroicons/react/24/solid";
 import useStoreApp from "../hooks/useStoreApp";
 import classNames from "classnames";
-import { modelByTopic } from "../../../utils";
 import useAutoFontSize from "../hooks/useAutoFontSize";
 
 function HeaderPresentation() {
-  const { setOpenActionMedia, getTopicHalloween } = useStoreApp();
+  const { setOpenActionMedia, getSelectedTopic } = useStoreApp();
   const containerRef = useAutoFontSize({
     text: "Miduhallowcloud",
     minFontSizeRem: 1,
   });
-  const currentTopic = modelByTopic(getTopicHalloween);
+  const currentTopic = getSelectedTopic();
   console.log({ currentTopic });
   return (
     <div
       className={classNames(
-        "h-[100px] relative",
+        "relative mb-5",
         "flex flex-col justify-center",
         "text-center"
       )}

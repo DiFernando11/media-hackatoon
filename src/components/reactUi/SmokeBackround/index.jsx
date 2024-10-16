@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import useStoreApp from "../hooks/useStoreApp";
-import { modelByTopic } from "../../../utils";
 
 function SmokeBackground({ backgroundColor }) {
   const mountRef = useRef(null);
@@ -12,11 +11,11 @@ function SmokeBackground({ backgroundColor }) {
   const cameraRef = useRef(null);
   const isMounted = useRef(false);
 
-  const { getTopicHalloween } = useStoreApp();
+  const { getSelectedTopic } = useStoreApp();
 
   useEffect(() => {
     let clock = new THREE.Clock();
-    const currentTopic = modelByTopic(getTopicHalloween);
+    const currentTopic = getSelectedTopic();
     function init() {
       const renderer = new THREE.WebGLRenderer({ alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -123,7 +122,7 @@ function SmokeBackground({ backgroundColor }) {
       });
       smokeParticles.current = [];
     };
-  }, [getTopicHalloween]);
+  }, [getSelectedTopic().name]);
 
   return <div ref={mountRef} className="fixed inset-0 pointer-events-none -z-10" />;
 }

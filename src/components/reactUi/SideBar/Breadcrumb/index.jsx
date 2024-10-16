@@ -1,10 +1,9 @@
 import React from "react";
 import useStoreApp from "../../hooks/useStoreApp";
-import { modelByTopic } from "../../../../utils";
 
 function Breadcrumb() {
-  const { getTopicHalloween } = useStoreApp();
-  const currentTopic = modelByTopic(getTopicHalloween);
+  const { getSelectedTopic } = useStoreApp();
+  const currentTopic = getSelectedTopic();
   const color = currentTopic.bgColor.secondary;
   return (
     <div className="flex items-center gap-2 uppercase">

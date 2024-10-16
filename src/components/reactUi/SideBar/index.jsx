@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { isSmMQ, SIDE_BAR_APP } from "../../../utils/constants";
 import { XCircleIcon } from "@heroicons/react/24/solid";
@@ -11,6 +11,12 @@ import Breadcrumb from "./Breadcrumb";
 
 const Sidebar = () => {
   const width = useMediaQuery();
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleToggle = (index) => {
+    setActiveIndex(index);
+  };
   const {
     openActionMedia,
     setOpenActionMedia,
@@ -52,6 +58,8 @@ const Sidebar = () => {
     initResize();
   }, []);
 
+  console.log({ activeIndex });
+
   return (
     <>
       <div
@@ -76,6 +84,7 @@ const Sidebar = () => {
         )}
         onClick={(e) => e.stopPropagation()}
       >
+        <img src="/public/containerSideBar.png" className="opacity-80 w-full absolute -z-10" alt="fondo del sideBar" />
         <aside className="p-5 h-full">
           <div>
             <XCircleIcon
@@ -89,9 +98,11 @@ const Sidebar = () => {
               </li>
               {actions.map((act, index) => (
                 <DropDownActions
+                  isActive={activeIndex === index}
                   name={act.name}
-                  handleAction={act.handleAction}
-                  options={act.options}
+                  handleAction={() => {
+                    handleToggle(index);
+                  }}
                   key={index}
                 />
               ))}

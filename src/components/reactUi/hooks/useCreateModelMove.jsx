@@ -24,15 +24,11 @@ const useCreateModelMove = (topic) => {
     const canvas = canvasRef.current;
     const { current: instance } = threeJSInstance;
 
-console.log('UPDATE', width, height)
-
-    // Establecer el tamaño del canvas
     canvas.width = width;
     canvas.height = height;
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
 
-    // Inicialización de escena, cámara y renderer
     instance.scene = new THREE.Scene();
     instance.camera = new THREE.PerspectiveCamera(
       35,
@@ -45,12 +41,14 @@ console.log('UPDATE', width, height)
       antialias: true,
       alpha: true,
     });
-    instance.renderer.setSize(width, height); // Establecer el tamaño del renderer
+    instance.renderer.setSize(width, height);
     instance.renderer.setPixelRatio(window.devicePixelRatio);
 
     // Iluminación
-    const pointLight = new THREE.PointLight(0xffffff, 7);
+    const pointLight = new THREE.PointLight(0xffffff, 5);
     pointLight.position.set(0, 0.2, 2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2); // Luz suave, ajusta la intensidad a tus necesidades
+instance.scene.add(ambientLight);
     instance.scene.add(pointLight);
 
     // Modelo base
@@ -61,12 +59,12 @@ console.log('UPDATE', width, height)
     const loadModel = (path) => {
       instance.loader.load(path, (gltf) => {
         gltf.scene.scale.set(scale, scale, scale);
-        instance.base.clear(); // Limpiar cualquier modelo anterior
+        instance.base.clear();
         instance.base.add(gltf.scene);
       });
     };
 
-    loadModel(modelPath); // Cargar el modelo al iniciar
+    loadModel(modelPath);
 
     // Manejo de mouse y toque
     const isTouchDevice = () =>
