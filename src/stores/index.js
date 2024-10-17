@@ -7,6 +7,8 @@ export const topicHalloweenStore = atom(MODEL_TOPIC.skeleton);
 
 export const isMouseFollowEnabledStore = atom(true);
 
+export const isLoadingImageUploadStore = atom(false);
+
 export const initTopicConfigStore = map({
     isOpen: false,
     text: "Miduhallowcloud",
@@ -14,4 +16,10 @@ export const initTopicConfigStore = map({
     backgroundCurtain: "bg-red-500",
     durationCloseAnimation: 2000
   });
-  
+
+export const currentImageUploadStore = map({
+   url: "",
+   id: null,
+   crop: {},
+   name: ""
+});

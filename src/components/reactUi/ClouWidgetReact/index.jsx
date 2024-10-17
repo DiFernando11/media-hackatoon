@@ -76,9 +76,9 @@ const ClouWidgetReact = () => {
 
   return (
     <div>
-      {image && (
+      {true && (
         <div>
-          <p className="text-3xl font-bold underline">Tu imagen</p>
+          {/* <p className="text-3xl font-bold underline">Tu imagen</p>
           <div className="flex gap-5">
             <button onClick={handleClick}>CAMBIAR ZOMBIES</button>
           </div>
@@ -92,7 +92,7 @@ const ClouWidgetReact = () => {
             <button onClick={() => handleDownloadImage("webp")}>
               Descargar Imagen WEBP
             </button>
-          </div>
+          </div> */}
           <>
             {!imageEdit ? (
               <ImageCompare

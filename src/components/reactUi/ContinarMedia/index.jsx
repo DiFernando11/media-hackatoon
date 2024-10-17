@@ -6,7 +6,7 @@ const ContainerMedia = () => {
   return (
     <button
       id="upload-button"
-      className="block w-full p-8 h-full text-white"
+      className="block w-full h-full text-white"
     >
     </button>
   );

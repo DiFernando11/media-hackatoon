@@ -84,7 +84,7 @@ const Sidebar = () => {
         )}
         onClick={(e) => e.stopPropagation()}
       >
-        <img src="/public/containerSideBar.png" className="opacity-80 w-full absolute -z-10" alt="fondo del sideBar" />
+        <img src="/public/containerSideBar.png" className="opacity-80 top-0 left-0 h-full w-full absolute -z-10" alt="fondo del sideBar" />
         <aside className="p-5 h-full">
           <div>
             <XCircleIcon

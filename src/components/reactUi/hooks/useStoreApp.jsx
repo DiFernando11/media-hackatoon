@@ -4,6 +4,8 @@ import {
   topicHalloweenStore,
   isMouseFollowEnabledStore,
   initTopicConfigStore,
+  currentImageUploadStore,
+  isLoadingImageUploadStore,
 } from "../../../stores";
 import { bgColorWitch } from "../../../utils/constants";
 import { modelByTopic } from "../../../utils";
@@ -13,6 +15,8 @@ function useStoreApp() {
   const openActionMedia = useStore(openActionStore);
   const getTopicHalloween = useStore(topicHalloweenStore);
   const getModeMoveModel = useStore(isMouseFollowEnabledStore);
+  const getCurrentImageUpload = useStore(currentImageUploadStore);
+  const getLoadingImageUpload = useStore(isLoadingImageUploadStore);
 
   const setOpenActionMedia = (isOpen) => {
     openActionStore.set(isOpen);
@@ -51,6 +55,22 @@ function useStoreApp() {
     initTopicConfigStore.setKey("backgroundCurtain", bgColorWitch);
   };
 
+  const setCurrentImageUpload = ({
+    id = null,
+    url = "",
+    name = "",
+    crop = {},
+  }) => {
+    currentImageUploadStore.setKey("url", url);
+    currentImageUploadStore.setKey("id", id);
+    currentImageUploadStore.setKey("crop", crop);
+    currentImageUploadStore.setKey("name", name);
+  };
+
+  const setisLoadingImageUpload = (loading) => {
+    isLoadingImageUploadStore.set(loading);
+  };
+
   return {
     openActionMedia,
     getSelectedTopic,
@@ -65,6 +85,10 @@ function useStoreApp() {
     setDurationAnimation,
     setBackgroundCurtain,
     setDurationAnimationClose,
+    getCurrentImageUpload,
+    setCurrentImageUpload,
+    getLoadingImageUpload,
+    setisLoadingImageUpload
   };
 }
 
