@@ -170,6 +170,11 @@ const key_spider = {
         },
       };
 
+      const key_shine = {
+        '0%': { left: '-75%' },
+        '100%': { left: '125%' },
+      }
+
 export const keyframes = {
     key_spider,
     key_pumpkin,
@@ -179,7 +184,8 @@ export const keyframes = {
     key_zombie,
     key_skeleton,
     key_werewolf,
-    key_vampire
+    key_vampire,
+    key_shine
 }
 export const animation = {
     'title-spider': 'key_spider 4s infinite',
@@ -191,4 +197,5 @@ export const animation = {
     'title-skeleton': 'key_skeleton 4s infinite',
     'title-werewolf': 'key_werewolf 4s infinite',
     'title-vampire': 'key_vampire 4s infinite',
+    "shine": 'key_shine 1s ease forwards',
 }

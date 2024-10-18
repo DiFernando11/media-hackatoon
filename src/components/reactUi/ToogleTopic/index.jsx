@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useStoreApp from "../hooks/useStoreApp";
 import { MODEL_TOPIC } from "../../../utils/constants";
 import ToggleAction from "../ToogleAction";
 import HalloweenToggle from "../HalloweenTopic";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const ToggleList = () => {
   const names = [
@@ -16,6 +17,8 @@ const ToggleList = () => {
     { value: MODEL_TOPIC.pumpkin, text: "Calabaza" },
     { value: MODEL_TOPIC.spider, text: "Araña" },
   ];
+  const { setCurrentTopicByLS, getCurrentOlnyNameTopicByLS } =
+    useLocalStorage();
   const {
     setTopicHalloween,
     setOpenInitTopic,
@@ -23,12 +26,22 @@ const ToggleList = () => {
     setDurationAnimationClose,
   } = useStoreApp();
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
 
-  const handleToggle = (value, index) => {
-    setActiveIndex(index);
-    // setTimeout(() => setTopicHalloween(value), 0);
-    setTimeout(() => setTopicHalloween(value), 400);
+  useEffect(() => {
+    const lsTopic = getCurrentOlnyNameTopicByLS();
+    const currentModel = lsTopic || MODEL_TOPIC.skeleton;
+    console.log({ currentModel });
+    setActiveIndex(currentModel);
+    setTopicHalloween(currentModel);
+  }, []);
+
+  const handleToggle = (value) => {
+    setActiveIndex(value);
+    setTimeout(() => {
+      setTopicHalloween(value);
+      setCurrentTopicByLS(value);
+    }, 400);
     setOpenInitTopic(true);
     setDurationAnimation("duration-[400ms]");
     setDurationAnimationClose(500);
@@ -39,10 +52,10 @@ const ToggleList = () => {
       {names.map((topic, index) => (
         <ToggleAction
           key={index}
-          isActive={activeIndex === index}
+          isActive={activeIndex === topic.value}
           topic={topic.value}
           text={topic.text}
-          onToggle={() => handleToggle(topic.value, index)}
+          onToggle={() => handleToggle(topic.value)}
         />
       ))}
       {/* <HalloweenToggle/> */}

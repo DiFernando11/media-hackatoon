@@ -1,4 +1,4 @@
-import { bgColorGhost, bgColorMummy, bgColorPumpkin, bgColorSkeleton, bgColorSpider, bgColorVampire, bgColorWerewolf, bgColorWitch, bgColorZombie, MODEL_TOPIC } from "./constants";
+import {  MODEL_TOPIC } from "./constants";
 
 export const hasTouchSupport = () => {
     return (navigator.maxTouchPoints > 0 || 'ontouchstart' in window);
@@ -20,6 +20,7 @@ export const modelByTopic = (topic) => {
                 primary: '#1c1c1c',
                 secondary: "#b0b0b0"
             },
+            replaceBackground: "Add skulls to the background"
         },
         [MODEL_TOPIC.zombies]: {
             name: "Zombie",
@@ -35,6 +36,7 @@ export const modelByTopic = (topic) => {
                 primary: "#2f2f2f",
                 secondary: "#a5d6a7"
             },
+            replaceBackground: "Add zombies to the background"
         },
         [MODEL_TOPIC.ghost]: {
             name: "Fantasma",
@@ -50,6 +52,7 @@ export const modelByTopic = (topic) => {
                 primary: "#1c1c1c",
                 secondary: "#9b59b6"
             },
+             replaceBackground: "Add ghosts to the background"
         },
         [MODEL_TOPIC.vampire]: {
             name: "Vampiro",
@@ -65,6 +68,7 @@ export const modelByTopic = (topic) => {
                 primary: "#333333",
                 secondary: "#8b0000"
             },
+            replaceBackground: "Add vampires to the background"
         },
         [MODEL_TOPIC.witch]: {
             name: "Bruja",
@@ -80,6 +84,7 @@ export const modelByTopic = (topic) => {
                 primary: "#333333",
                 secondary: "#f2e68e"
             },
+            replaceBackground: "Add witchs to the background"
         },
         [MODEL_TOPIC.werewolf]: {
             name: "Lobo",
@@ -95,6 +100,7 @@ export const modelByTopic = (topic) => {
                 primary: "#3b3b3b",
                 secondary: "#9e6f4d"
             },
+            replaceBackground: "Add werewolfs to the background"
         },
         [MODEL_TOPIC.mummy]: {
             name: "Momia",
@@ -110,6 +116,7 @@ export const modelByTopic = (topic) => {
                 primary: "#444444",
                 secondary: "#e6d1c4"
             },
+            replaceBackground: "Add mummys to the background"
         },
         [MODEL_TOPIC.pumpkin]: {
             name: "Calabaza",
@@ -125,6 +132,7 @@ export const modelByTopic = (topic) => {
                 primary: "#333333",
                 secondary: "#ff8c00"
             },
+              replaceBackground: "Add pumpkins to the background"
         },
         [MODEL_TOPIC.spider]: {
             name: "Araña",
@@ -140,6 +148,7 @@ export const modelByTopic = (topic) => {
                 primary: "#333333",
                 secondary: "#1c1c1c"
             },
+            replaceBackground: "Add spiders to the background"
         }
     }
     return configTopic[topic] || configTopic.skeleton

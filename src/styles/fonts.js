@@ -10,3 +10,16 @@ export const fontFamily = {
     zombie: ['Halloween zombie', 'sans-serif'],
     general: ["Halloween general", 'sans-serif']
 }
+
+export const fontSize = {
+    spider: 'clamp(2rem, 10em, 3.5rem)',
+    werewolf: '25px',
+    mummy: '22px',
+    pumpkin: '18px',
+    skeleton: '16px',
+    ghost: '14px',
+    vampire: '17px',
+    witch: '23px',
+    zombie: '20px',
+    general: '15px'
+}

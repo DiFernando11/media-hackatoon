@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useCallback } from "react";
 
-const useDownloadImage = () => {
+const useDownloadImage = (setLoadingDownload) => {
   const toDataURL = async (url) => {
     try {
-      // Usando Axios para obtener los datos de la imagen
       const response = await axios.get(url, { responseType: "blob" });
       const imageDataUrl = URL.createObjectURL(response.data);
       return imageDataUrl;
@@ -20,9 +19,10 @@ const useDownloadImage = () => {
     if (imageDataUrl) {
       const nameDefault = "my-image";
       a.href = imageDataUrl;
-      a.download = `${name ?? nameDefault}.${format}`; // Nombre del archivo a descargar
+      a.download = `${name ?? nameDefault}.${format}`;
       document.body.appendChild(a);
       a.click();
+      setLoadingDownload && setLoadingDownload(false);
       document.body.removeChild(a);
     } else {
       console.error("No se pudo descargar la imagen");

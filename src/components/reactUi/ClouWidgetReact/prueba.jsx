@@ -3,19 +3,20 @@ import { ImgComparisonSlider } from "@img-comparison-slider/react";
 import classNames from "classnames";
 import useStoreApp from "../hooks/useStoreApp";
 import useTransformImage from "../hooks/useTransformImage";
-import LoadingUpload from "./LoadingUpload";
+import useContainerSize from "../hooks/useContainerSize";
 
-function Prueba({ children }) {
+function Prueba({ children, heightContainer }) {
   const {
     getCurrentImageUpload,
     getLoadingImageUpload,
-    setisLoadingImageUpload,
+    setIsLoadingImageUpload,
+    getCurrentImageEdit,
   } = useStoreApp();
   const { handleUploadImage } = useTransformImage();
 
   const [value, setValue] = useState(100);
 
-  useEffect(() => {
+  const showImageEdit = () => {
     const interval = setInterval(() => {
       setValue((prevValue) => {
         if (prevValue > 0) {
@@ -26,24 +27,28 @@ function Prueba({ children }) {
       });
     }, 50);
     return () => clearInterval(interval);
+  };
+
+  useEffect(() => {
+    // upload image
+    const widget = document.getElementById("upload-widget");
+    if (widget) {
+      widget.addEventListener("clduploadwidget:success", ({ detail }) => {
+        handleUploadImage(detail);
+      });
+    }
   }, []);
 
   useEffect(() => {
     // workaround - agrego altura a la clase .second
     const slider = document.querySelector("img-comparison-slider");
+    console.log({ slider });
     if (slider) {
       const shadowRoot = slider.shadowRoot;
       const secondDiv = shadowRoot.querySelector(".second");
       if (secondDiv) secondDiv.style.height = "100%";
     }
-    // upload image
-    const widget = document.getElementById("upload-widget");
-    if (widget) {
-      widget.addEventListener("clduploadwidget:success", ({ detail }) =>
-        handleUploadImage(detail)
-      );
-    }
-  }, []);
+  }, [getCurrentImageUpload.id]);
 
   if (!getLoadingImageUpload && !getCurrentImageUpload.id)
     return <>{children}</>;
@@ -51,40 +56,58 @@ function Prueba({ children }) {
   return (
     <div
       className={classNames(
-        "w-full flex flex-col h-full items-center justify-center",
+        "relative w-full flex flex-col h-full items-center justify-center",
         {
           "bg-black": getLoadingImageUpload,
+          "opacity-50": getLoadingImageUpload && !getCurrentImageUpload.id,
         }
       )}
+      style={{
+        backgroundColor: "black",
+      }}
     >
       <div
         className={classNames(
-          "animate-spin rounded-full h-16 w-16 border-t-4",
+          "absolute z-50 animate-spin rounded-full h-16 w-16 border-t-4",
           "border-yellow-500 border-solid",
           { hidden: !getLoadingImageUpload }
         )}
       />
       <ImgComparisonSlider
         className={classNames("w-full h-full", {
-          "pointer-events-none": false,
-          hidden: getLoadingImageUpload
+          "pointer-events-none": !getCurrentImageEdit.id,
+          "opacity-20": getLoadingImageUpload,
         })}
-        value={100}
-        style={{ "--default-handle-width": "100px" }}
-        //    value={value}
+        value={value}
+        style={{
+          "--default-handle-width": getCurrentImageEdit.id ? "80px" : 0,
+          "--divider-width": getCurrentImageEdit?.id ? "1px" : 0,
+        }}
       >
         <img
           slot="first"
+          className="w-full bg-white"
           src={getCurrentImageUpload.url}
-          className="w-full h-full"
-          onLoad={() => setisLoadingImageUpload(false)}
+          onLoad={() => setIsLoadingImageUpload(false)}
+          style={{
+            height: `${heightContainer}px`,
+          }}
         />
-        {/* <img
-          slot="second"
-          src="https://img-comparison-slider.sneas.io/demo/images/after.webp"
-          className="w-full h-full"
-          height={"100%"}
-        /> */}
+
+        {getCurrentImageEdit.id && (
+          <img
+            slot="second"
+            src={getCurrentImageEdit.url}
+            className="w-full bg-white"
+            onLoad={() => {
+              setIsLoadingImageUpload(false);
+              showImageEdit();
+            }}
+            style={{
+              height: `${heightContainer}px`,
+            }}
+          />
+        )}
       </ImgComparisonSlider>
     </div>
   );

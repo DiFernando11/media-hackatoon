@@ -6,6 +6,7 @@ import {
   initTopicConfigStore,
   currentImageUploadStore,
   isLoadingImageUploadStore,
+  currentImageEditStore,
 } from "../../../stores";
 import { bgColorWitch } from "../../../utils/constants";
 import { modelByTopic } from "../../../utils";
@@ -17,6 +18,7 @@ function useStoreApp() {
   const getModeMoveModel = useStore(isMouseFollowEnabledStore);
   const getCurrentImageUpload = useStore(currentImageUploadStore);
   const getLoadingImageUpload = useStore(isLoadingImageUploadStore);
+  const getCurrentImageEdit = useStore(currentImageEditStore);
 
   const setOpenActionMedia = (isOpen) => {
     openActionStore.set(isOpen);
@@ -67,8 +69,14 @@ function useStoreApp() {
     currentImageUploadStore.setKey("name", name);
   };
 
-  const setisLoadingImageUpload = (loading) => {
+  const setIsLoadingImageUpload = (loading) => {
     isLoadingImageUploadStore.set(loading);
+  };
+
+  const setCurrentImageEdit = ({ url = "", id = null, body = null }) => {
+    currentImageEditStore.setKey("url", url);
+    currentImageEditStore.setKey("id", id);
+    currentImageEditStore.setKey("body", body);
   };
 
   return {
@@ -88,7 +96,9 @@ function useStoreApp() {
     getCurrentImageUpload,
     setCurrentImageUpload,
     getLoadingImageUpload,
-    setisLoadingImageUpload
+    setIsLoadingImageUpload,
+    getCurrentImageEdit,
+    setCurrentImageEdit,
   };
 }
 

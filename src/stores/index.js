@@ -15,11 +15,17 @@ export const initTopicConfigStore = map({
     durationAnimation: "duration-[2000ms]",
     backgroundCurtain: "bg-red-500",
     durationCloseAnimation: 2000
-  });
+});
 
 export const currentImageUploadStore = map({
    url: "",
    id: null,
    crop: {},
    name: ""
+});
+
+export const currentImageEditStore = map({
+  url: "",
+  id: null,
+  body: null
 });

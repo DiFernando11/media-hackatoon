@@ -1,6 +1,6 @@
 
 import { animation, keyframes } from './src/styles/animation';
-import { fontFamily } from './src/styles/fonts';
+import { fontFamily, fontSize } from './src/styles/fonts';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -13,7 +13,8 @@ export default {
 			animation,
 			keyframes,
 		},
-		fontFamily
+		fontFamily,
+		fontSize
 	},
 	plugins: [],
 }

@@ -11,7 +11,6 @@ function HeaderPresentation() {
     minFontSizeRem: 1,
   });
   const currentTopic = getSelectedTopic();
-  console.log({ currentTopic });
   return (
     <div
       className={classNames(
@@ -21,9 +20,7 @@ function HeaderPresentation() {
       )}
     >
       <div ref={containerRef}>
-        <h1
-          className={`${currentTopic.animationTitle} ${currentTopic.fontFamily} break-words`}
-        >
+        <h1 className={classNames(currentTopic.animationTitle, "font-zombie")}>
           Miduhallowcloud
         </h1>
       </div>

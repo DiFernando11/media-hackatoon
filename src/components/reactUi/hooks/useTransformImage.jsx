@@ -1,12 +1,20 @@
+import { useState } from "react";
 import { getCldImageUrl } from "astro-cloudinary/helpers";
 import useStoreApp from "./useStoreApp";
+import useDownloadImage from "../UseDownloadImage";
 
 function useTransformImage() {
+  const [loadingDownload, setLoadingDownload] = useState(false);
   const {
     setCurrentImageUpload,
     getCurrentImageUpload,
-    setisLoadingImageUpload,
+    setIsLoadingImageUpload,
+    setCurrentImageEdit,
+    getCurrentImageEdit,
   } = useStoreApp();
+
+  const handleDownload = useDownloadImage(setLoadingDownload);
+
   const handleUploadImage = (detail) => {
     const { info } = detail || {};
     const coordinates = info?.coordinates?.custom?.[0];
@@ -28,7 +36,7 @@ function useTransformImage() {
       src: publicId,
       ...cropImage,
     });
-    setisLoadingImageUpload(true);
+    setIsLoadingImageUpload(true);
     setCurrentImageUpload({
       url,
       id: publicId,
@@ -37,8 +45,42 @@ function useTransformImage() {
     });
   };
 
+  const handleGetCdlImage = ({ isUpdateImage = true, ...props }) => {
+    const idImageCurrent = getCurrentImageUpload?.id;
+    const crop = getCurrentImageUpload?.crop
+      ? { crop: getCurrentImageUpload?.crop }
+      : {};
+    const body = {
+      ...crop,
+      ...props,
+    };
+
+    const url = getCldImageUrl({
+      src: idImageCurrent,
+      ...body,
+    });
+    if (isUpdateImage) {
+      setCurrentImageEdit({ url, body, id: idImageCurrent });
+      setIsLoadingImageUpload(true);
+    }
+    return url;
+  };
+
+  const handleDownloadImageByFormat = (format) => {
+    setLoadingDownload(true);
+    const url = handleGetCdlImage({
+      isUpdateImage: false,
+      format,
+      ...getCurrentImageEdit?.body,
+    });
+    handleDownload(url, getCurrentImageUpload?.name, format);
+  };
+
   return {
     handleUploadImage,
+    handleGetCdlImage,
+    handleDownloadImageByFormat,
+    loadingDownload
   };
 }
 

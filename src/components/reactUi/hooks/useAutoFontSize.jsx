@@ -13,6 +13,10 @@ const useAutoFontSize = ({ text, minFontSizeRem = 0.5 }) => {
   const containerRef = useRef(null);
   const initialFontSizeRef = useRef(null);
 
+  // Definir límites de tamaño de fuente
+  const MIN_FONT_SIZE_PX = 24;
+  const MAX_FONT_SIZE_PX = 64;
+
   useEffect(() => {
     const adjustFontSize = () => {
       if (!containerRef.current) return;
@@ -38,38 +42,44 @@ const useAutoFontSize = ({ text, minFontSizeRem = 0.5 }) => {
       let fontSizeCurrent = initialFontSizeRef.current;
       const isMayorFontSize = pixelToRem(fontSizeCurrent) > minFontSizeRem;
 
-      // Reducir el tamaño de la fuente si el texto es más grande que el contenedor
       while (
         measureTextWidth(fontSizeCurrent) > containerWidth &&
+        fontSizeCurrent > MIN_FONT_SIZE_PX &&
         isMayorFontSize
       ) {
         fontSizeCurrent -= 1;
       }
 
-      // Aumentar el tamaño de la fuente si el texto es más pequeño que el contenedor
       while (
         measureTextWidth(fontSizeCurrent) < containerWidth &&
-        containerWidth - measureTextWidth(fontSizeCurrent) > 32
+        containerWidth - measureTextWidth(fontSizeCurrent) > 32 &&
+        fontSizeCurrent < MAX_FONT_SIZE_PX
       ) {
         fontSizeCurrent += 1;
       }
 
       if (childElement) {
         const fontSizeToRem = pixelToRem(fontSizeCurrent);
-        childElement.style.fontSize = `${
-          fontSizeToRem < minFontSizeRem ? minFontSizeRem : fontSizeToRem
-        }rem`;
+        const adjustedFontSizeRem =
+          fontSizeToRem < minFontSizeRem
+            ? minFontSizeRem
+            : pixelToRem(
+                Math.max(
+                  MIN_FONT_SIZE_PX,
+                  Math.min(MAX_FONT_SIZE_PX, fontSizeCurrent)
+                )
+              );
+
+        childElement.style.fontSize = `${adjustedFontSizeRem}rem`;
       }
     };
 
-    // Usamos ResizeObserver para detectar cambios de tamaño en el contenedor
     const observer = new ResizeObserver(() => adjustFontSize());
 
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
 
-    // Limpiamos el observer al desmontar el componente
     return () => {
       if (observer && containerRef.current) {
         observer.unobserve(containerRef.current);

@@ -4,51 +4,19 @@ import { isSmMQ, SIDE_BAR_APP } from "../../../utils/constants";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import useStoreApp from "../hooks/useStoreApp";
 import classNames from "classnames";
-import DropDownActions from "../DropDownActions";
 import { initResize } from "../../../utils/resizeSideBar";
 import ToggleList from "../ToogleTopic";
 import Breadcrumb from "./Breadcrumb";
+import RenuevaFondo from "./Actions/RenuevaFondo";
+import DescargarImagen from "./Actions/DescargarImagen";
 
 const Sidebar = () => {
   const width = useMediaQuery();
-
-  const [activeIndex, setActiveIndex] = useState(0);
-
+  const [activeIndex, setActiveIndex] = useState(null);
   const handleToggle = (index) => {
     setActiveIndex(index);
   };
-  const {
-    openActionMedia,
-    setOpenActionMedia,
-    setModeMoveModel,
-    getModeMoveModel,
-  } = useStoreApp();
-  const idiomas = ["Español", "Ingles"].map((lng, index) => (
-    <DropDownActions name={lng} key={index} />
-  ));
-
-  const actions = [
-    {
-      name: "Renueva tu fondo",
-    },
-    {
-      name: "Zombie",
-    },
-    {
-      name: "Intesection",
-      options: (
-        <div>
-          <button
-            id="toggle-rotation"
-            onClick={() => setModeMoveModel(!getModeMoveModel)}
-            className="text-white"
-          >
-            Toggle Mouse Rotation
-          </button>
-        </div>
-      ),
-    },
-  ];
+  const { openActionMedia, setOpenActionMedia } = useStoreApp();
 
   useEffect(() => {
     setOpenActionMedia(!isSmMQ(width));
@@ -57,8 +25,6 @@ const Sidebar = () => {
   useEffect(() => {
     initResize();
   }, []);
-
-  console.log({ activeIndex });
 
   return (
     <>
@@ -84,7 +50,11 @@ const Sidebar = () => {
         )}
         onClick={(e) => e.stopPropagation()}
       >
-        <img src="/public/containerSideBar.png" className="opacity-80 top-0 left-0 h-full w-full absolute -z-10" alt="fondo del sideBar" />
+        <img
+          src="/public/containerSideBar.png"
+          className="opacity-80 top-0 left-0 h-full w-full absolute -z-10"
+          alt="fondo del sideBar"
+        />
         <aside className="p-5 h-full">
           <div>
             <XCircleIcon
@@ -96,16 +66,8 @@ const Sidebar = () => {
               <li className="my-2">
                 <ToggleList />
               </li>
-              {actions.map((act, index) => (
-                <DropDownActions
-                  isActive={activeIndex === index}
-                  name={act.name}
-                  handleAction={() => {
-                    handleToggle(index);
-                  }}
-                  key={index}
-                />
-              ))}
+              <DescargarImagen />
+              <RenuevaFondo active={activeIndex} handleToggle={handleToggle} />
             </ul>
           </div>
         </aside>

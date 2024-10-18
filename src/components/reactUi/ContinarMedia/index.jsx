@@ -4,11 +4,7 @@ import useStoreApp from "../hooks/useStoreApp";
 
 const ContainerMedia = () => {
   return (
-    <button
-      id="upload-button"
-      className="block w-full h-full text-white"
-    >
-    </button>
+    <button id="upload-button" className="block w-full h-full text-white" />
   );
 };
 
