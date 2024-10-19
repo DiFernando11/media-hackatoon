@@ -24,6 +24,10 @@ const ToggleList = () => {
     setOpenInitTopic,
     setDurationAnimation,
     setDurationAnimationClose,
+    getCurrentImageEdit,
+    addImagesEditArray,
+    setCurrentImageEdit,
+    setSliderPosition
   } = useStoreApp();
 
   const [activeIndex, setActiveIndex] = useState(null);
@@ -41,6 +45,11 @@ const ToggleList = () => {
     setTimeout(() => {
       setTopicHalloween(value);
       setCurrentTopicByLS(value);
+      if (getCurrentImageEdit?.id) {
+        addImagesEditArray(getCurrentImageEdit);
+        setCurrentImageEdit({});
+        setSliderPosition(100);
+      }
     }, 400);
     setOpenInitTopic(true);
     setDurationAnimation("duration-[400ms]");

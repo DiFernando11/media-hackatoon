@@ -15,8 +15,7 @@ function useTransformImage() {
 
   const handleDownload = useDownloadImage(setLoadingDownload);
 
-  const handleUploadImage = (detail) => {
-    const { info } = detail || {};
+  const handleUploadImage = (info) => {
     const coordinates = info?.coordinates?.custom?.[0];
     const detailCropX = coordinates?.[0];
     const detailCropY = coordinates?.[1];
@@ -80,7 +79,7 @@ function useTransformImage() {
     handleUploadImage,
     handleGetCdlImage,
     handleDownloadImageByFormat,
-    loadingDownload
+    loadingDownload,
   };
 }
 

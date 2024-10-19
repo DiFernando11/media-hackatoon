@@ -1,14 +1,14 @@
 import React from "react";
 import useStoreApp from "../hooks/useStoreApp";
 import useCreateModelMove from "../hooks/useCreateModelMove";
-// import ClouWidgetReact from "../ClouWidgetReact";
-import Prueba from "../ClouWidgetReact/prueba";
+import CloudWidgetReact from "../CloudWidgetReact";
 import useContainerSize from "../hooks/useContainerSize";
 import UploadOtherImage from "./UploadOtherImage";
 
-function MainAction({ children }) {
-  const { getTopicHalloween } = useStoreApp();
+function MainAction() {
+  const { getTopicHalloween, getCurrentImageEdit } = useStoreApp();
   const { height, ref } = useContainerSize();
+  console.log({ height });
   const { canvasRef } = useCreateModelMove(getTopicHalloween);
   const { canvasRef: canvasRef2 } = useCreateModelMove(getTopicHalloween);
   return (
@@ -34,9 +34,9 @@ function MainAction({ children }) {
           transform translate-x-1/2 pointer-events-none sm:right-0 sm:block"
           ref={canvasRef2}
         />
-        <Prueba heightContainer={height}>{children}</Prueba>
+        <CloudWidgetReact heightContainer={height} />
       </div>
-      <UploadOtherImage>{children}</UploadOtherImage>
+      <UploadOtherImage />
     </main>
   );
 }

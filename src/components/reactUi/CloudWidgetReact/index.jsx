@@ -2,47 +2,24 @@ import React, { useEffect, useState } from "react";
 import { ImgComparisonSlider } from "@img-comparison-slider/react";
 import classNames from "classnames";
 import useStoreApp from "../hooks/useStoreApp";
-import useTransformImage from "../hooks/useTransformImage";
-import useContainerSize from "../hooks/useContainerSize";
+import ContainerMedia from "../ContainerMedia";
+import ImageCompare from "../CustomImageCompare";
 
-function Prueba({ children, heightContainer }) {
+function CloudWidgetReact({ heightContainer }) {
   const {
     getCurrentImageUpload,
     getLoadingImageUpload,
     setIsLoadingImageUpload,
     getCurrentImageEdit,
+    getSliderPosition,
+    setSliderPosition,
   } = useStoreApp();
-  const { handleUploadImage } = useTransformImage();
 
   const [value, setValue] = useState(100);
-
-  const showImageEdit = () => {
-    const interval = setInterval(() => {
-      setValue((prevValue) => {
-        if (prevValue > 0) {
-          return prevValue - 5;
-        }
-        clearInterval(interval);
-        return 0;
-      });
-    }, 50);
-    return () => clearInterval(interval);
-  };
-
-  useEffect(() => {
-    // upload image
-    const widget = document.getElementById("upload-widget");
-    if (widget) {
-      widget.addEventListener("clduploadwidget:success", ({ detail }) => {
-        handleUploadImage(detail);
-      });
-    }
-  }, []);
 
   useEffect(() => {
     // workaround - agrego altura a la clase .second
     const slider = document.querySelector("img-comparison-slider");
-    console.log({ slider });
     if (slider) {
       const shadowRoot = slider.shadowRoot;
       const secondDiv = shadowRoot.querySelector(".second");
@@ -51,19 +28,19 @@ function Prueba({ children, heightContainer }) {
   }, [getCurrentImageUpload.id]);
 
   if (!getLoadingImageUpload && !getCurrentImageUpload.id)
-    return <>{children}</>;
+    return <ContainerMedia />;
 
   return (
     <div
       className={classNames(
-        "relative w-full flex flex-col h-full items-center justify-center",
+        "relative w-full h-full flex flex-col items-center justify-center",
         {
           "bg-black": getLoadingImageUpload,
           "opacity-50": getLoadingImageUpload && !getCurrentImageUpload.id,
         }
       )}
       style={{
-        backgroundColor: "black",
+        backgroundColor: "transparent",
       }}
     >
       <div
@@ -73,12 +50,16 @@ function Prueba({ children, heightContainer }) {
           { hidden: !getLoadingImageUpload }
         )}
       />
-      <ImgComparisonSlider
+      <ImageCompare
+        image1={getCurrentImageUpload.url}
+        image2={getCurrentImageEdit.url}
+      />
+      {/* <ImgComparisonSlider
         className={classNames("w-full h-full", {
           "pointer-events-none": !getCurrentImageEdit.id,
           "opacity-20": getLoadingImageUpload,
         })}
-        value={value}
+        value={getSliderPosition}
         style={{
           "--default-handle-width": getCurrentImageEdit.id ? "80px" : 0,
           "--divider-width": getCurrentImageEdit?.id ? "1px" : 0,
@@ -90,10 +71,10 @@ function Prueba({ children, heightContainer }) {
           src={getCurrentImageUpload.url}
           onLoad={() => setIsLoadingImageUpload(false)}
           style={{
-            height: `${heightContainer}px`,
+            height: '100%',
+            // height: `${heightContainer}px`,
           }}
         />
-
         {getCurrentImageEdit.id && (
           <img
             slot="second"
@@ -101,16 +82,17 @@ function Prueba({ children, heightContainer }) {
             className="w-full bg-white"
             onLoad={() => {
               setIsLoadingImageUpload(false);
-              showImageEdit();
+              setSliderPosition(0);
             }}
             style={{
-              height: `${heightContainer}px`,
+              height: '100%',
+              // height: `${heightContainer}px`,
             }}
           />
         )}
-      </ImgComparisonSlider>
+      </ImgComparisonSlider> */}
     </div>
   );
 }
 
-export default Prueba;
+export default CloudWidgetReact;

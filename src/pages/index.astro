@@ -1,8 +1,8 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import ClouWidgetReact from "../components/reactUi/ClouWidgetReact";
-import ContainerMedia from "../components/reactUi/ContinarMedia";
+import ClouWidgetReact from "../components/reactUi/CloudWidgetReact";
+import ContainerMedia from "../components/reactUi/ContainerMedia";
 import { CldUploadWidget } from "astro-cloudinary";
 import HeaderPresentation from "../components/reactUi/HeaderPresentation";
 import LayoutApp from "../components/reactUi/LayoutApp";
@@ -18,7 +18,7 @@ import MainAction from "../components/reactUi/MainAction";
     <LayoutApp client:load>
       <HeaderPresentation client:only="react" />
       <MainAction client:load>
-        <CldUploadWidget
+        <!-- <CldUploadWidget
           class="w-full h-full"
           id="upload-widget"
           uploadPreset="upload-hackatoon-image"
@@ -37,10 +37,12 @@ import MainAction from "../components/reactUi/MainAction";
               },
             },
           }}
-        >
+        > -->
           <ContainerMedia client:load />
-        </CldUploadWidget>
+        <!-- </CldUploadWidget> -->
       </MainAction>
     </LayoutApp>
   </body>
 </html>
+
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" is:inline></script>

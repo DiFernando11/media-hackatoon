@@ -7,6 +7,8 @@ import {
   currentImageUploadStore,
   isLoadingImageUploadStore,
   currentImageEditStore,
+  imagesEditArrayStore,
+  sliderPositionStore,
 } from "../../../stores";
 import { bgColorWitch } from "../../../utils/constants";
 import { modelByTopic } from "../../../utils";
@@ -19,6 +21,8 @@ function useStoreApp() {
   const getCurrentImageUpload = useStore(currentImageUploadStore);
   const getLoadingImageUpload = useStore(isLoadingImageUploadStore);
   const getCurrentImageEdit = useStore(currentImageEditStore);
+  const getImagesEditArray = useStore(imagesEditArrayStore);
+  const getSliderPosition = useStore(sliderPositionStore);
 
   const setOpenActionMedia = (isOpen) => {
     openActionStore.set(isOpen);
@@ -79,6 +83,15 @@ function useStoreApp() {
     currentImageEditStore.setKey("body", body);
   };
 
+  const addImagesEditArray = (newItem) => {
+    const updatedArray = [...getImagesEditArray, newItem];
+    imagesEditArrayStore.set(updatedArray);
+  };
+
+  const setSliderPosition = (position) => {
+    sliderPositionStore.set(position);
+  };
+
   return {
     openActionMedia,
     getSelectedTopic,
@@ -99,6 +112,10 @@ function useStoreApp() {
     setIsLoadingImageUpload,
     getCurrentImageEdit,
     setCurrentImageEdit,
+    getImagesEditArray,
+    addImagesEditArray,
+    setSliderPosition,
+    getSliderPosition
   };
 }
 

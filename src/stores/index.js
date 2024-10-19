@@ -9,6 +9,10 @@ export const isMouseFollowEnabledStore = atom(true);
 
 export const isLoadingImageUploadStore = atom(false);
 
+export const imagesEditArrayStore = atom([]);
+
+export const sliderPositionStore = atom(100);
+
 export const initTopicConfigStore = map({
     isOpen: false,
     text: "Miduhallowcloud",
@@ -29,3 +33,4 @@ export const currentImageEditStore = map({
   id: null,
   body: null
 });
+

@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { debounce } from "../../../utils/debounce";
+import useStoreApp from "./useStoreApp";
 
 const useContainerSize = (debounceDelay = 100) => {
   const [height, setHeight] = useState(0);
   const containerRef = useRef(null);
+  const { getCurrentImageUpload, getCurrentImageEdit } = useStoreApp();
 
   const updateHeight = debounce(() => {
     if (containerRef.current) {
@@ -14,17 +16,15 @@ const useContainerSize = (debounceDelay = 100) => {
 
   useEffect(() => {
     if (containerRef.current) {
-      updateHeight(); // Llamar a la función inicialmente
+      updateHeight();
     }
 
-    // Escuchar el evento resize de la ventana
     window.addEventListener("resize", updateHeight);
 
     return () => {
-      // Limpiar el event listener cuando el componente se desmonte
       window.removeEventListener("resize", updateHeight);
     };
-  }, []);
+  }, [getCurrentImageUpload]);
 
   return { ref: containerRef, height };
 };
