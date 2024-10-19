@@ -21,7 +21,6 @@ function DescargarImagen() {
   };
 
   const removeButton = (format) => loadingDownload && currentFormat === format;
-  console.log({ removeButton})
 
   if (!getCurrentImageEdit.id || getLoadingImageUpload) return null;
   return (

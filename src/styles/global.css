@@ -193,6 +193,28 @@ hr {
  -webkit-backdrop-filter: blur( 0.5px );
  border-radius: 4px;
 }
+.borderScroll::-webkit-scrollbar {
+    height: 8px; /* Adjust the height of the scrollbar */
+  }
+/* Personaliza el scrollbar para que no ocupe espacio */
+.scrollbar-hidden::-webkit-scrollbar {
+	height: 8px; /* Altura del scrollbar */
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.5); /* Color del thumb */
+	border-radius: 4px; /* Bordes redondeados */
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar-track {
+	background: transparent; /* Fondo del track */
+  }
+  
+  .scrollbar-hidden {
+	scrollbar-width: thin; /* Firefox */
+	scrollbar-color: rgba(0, 0, 0, 0.5) transparent; /* Firefox */
+	line-height: 0; /* Esto puede ayudar a eliminar el espacio extra */
+  }
 
 .imgLoad {
 	max-width: 100%;

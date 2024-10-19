@@ -1,23 +1,22 @@
 import React from "react";
 import useStoreApp from "../../hooks/useStoreApp";
 import ContainerMedia from "../../ContainerMedia";
+import { PlusIcon } from "@heroicons/react/24/solid";
+import GaleryImage from "../../GaleryImage";
 
 function UploadOtherImage() {
   const { getCurrentImageUpload, getLoadingImageUpload, getImagesEditArray } =
     useStoreApp();
-  // if (!getCurrentImageUpload.id) return null;
+
+  if (!getCurrentImageUpload.id) return null;
   return (
-    <div className="flex items-center gap-3 max-w-[580px] p-1 mt-2 border w-full h-16">
-      <div className="h-full w-16 bg-blue-500">
-        <ContainerMedia />
+    <div className="bg-containerMedia flex items-center gap-3 max-w-[580px] p-1 mt-2 w-full h-14">
+      <div className="bg-containerMedia border h-14 w-16 bg-blue-500">
+        <ContainerMedia>
+          <PlusIcon className="size-6" />
+        </ContainerMedia>
       </div>
-      {getImagesEditArray.map((image) => {
-        return (
-          <div className="h-14 w-16 bg-blue-500" key={image.id}>
-            <img src={image.url} alt="" className="h-14 w-16" />
-          </div>
-        );
-      })}
+      <GaleryImage />
     </div>
   );
 }

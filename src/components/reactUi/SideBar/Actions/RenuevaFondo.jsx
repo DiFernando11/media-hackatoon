@@ -5,14 +5,17 @@ import useStoreApp from "../../hooks/useStoreApp";
 
 function RenuevaFondo({ active, handleToggle }) {
   const { handleGetCdlImage } = useTransformImage();
-  const { getSelectedTopic, getCurrentImageEdit, addImagesEditArray } =
-    useStoreApp();
-  console.log({ getSelectedTopic: getSelectedTopic() });
+  const {
+    getSelectedTopic,
+    getCurrentImageEdit,
+    addImagesEditArray,
+    setIsLoadingImageUpload,
+    setCurrentImageEdit,
+  } = useStoreApp();
+
   const [promptsActives, setPromptsActives] = useState({});
 
-  console.log({ promptsActives });
   const handleAction = () => {
-    console.log("Hizo la renovacion");
     handleToggle(name);
     const currentTopic = getSelectedTopic();
     const existedTopic = promptsActives[currentTopic.name] || undefined;
@@ -30,15 +33,25 @@ function RenuevaFondo({ active, handleToggle }) {
       replaceBackground:
         currentTopic.replaceBackground[`prompt-${currentPromt}`],
     };
-    console.log({
-      body,
-      replaceBackground: currentTopic.replaceBackground,
-      prompt: currentTopic.replaceBackground[`prompt-${currentPromt}`],
-    });
     if (getCurrentImageEdit?.id) {
       addImagesEditArray(getCurrentImageEdit);
     }
-    handleGetCdlImage(body);
+    // handleGetCdlImage(body);
+
+    // borrar
+    setIsLoadingImageUpload(true);
+
+    setCurrentImageEdit({
+      id: "edit image",
+      url: null,
+    });
+
+    setTimeout(() => {
+      setCurrentImageEdit({
+        id: "edit image",
+        url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729343060/difer-images/mjl1cujbtnwqztuudvxo.avif",
+      });
+    }, 2000);
   };
   const name = "renueva-fondo";
   return (

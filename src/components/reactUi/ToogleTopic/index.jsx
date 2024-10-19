@@ -35,7 +35,6 @@ const ToggleList = () => {
   useEffect(() => {
     const lsTopic = getCurrentOlnyNameTopicByLS();
     const currentModel = lsTopic || MODEL_TOPIC.skeleton;
-    console.log({ currentModel });
     setActiveIndex(currentModel);
     setTopicHalloween(currentModel);
   }, []);

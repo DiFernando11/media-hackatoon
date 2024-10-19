@@ -1,24 +1,121 @@
-// ImageCompare.js
 import React, { useState, useRef, useEffect } from "react";
+import useStoreApp from "../hooks/useStoreApp";
 
-const ImageCompare = ({ image1, image2 }) => {
-  console.log({ image1, image2 });
+const ImageCompare = ({
+  image1,
+  image2,
+  setIsLoadingImage
+}) => {
+  const { getSelectedTopic } = useStoreApp();
+  const [imageRevealFraq, setImageRevealFraq] = useState(1); // Inicia en 1 (completamente a la derecha)
+  const [isManualSliding, setIsManualSliding] = useState(false); // Para detectar si se está moviendo manualmente
+  const imageContainer = useRef(undefined);
+
+  const currentTopic = getSelectedTopic();
+
+  const slide = (xPosition) => {
+    setIsManualSliding(true);
+    const containerBoundingRect =
+      imageContainer.current.getBoundingClientRect();
+    setImageRevealFraq(() => {
+      if (xPosition < containerBoundingRect.left) return 0;
+      if (xPosition > containerBoundingRect.right) return 1;
+      return (
+        (xPosition - containerBoundingRect.left) / containerBoundingRect.width
+      );
+    });
+  };
+
+  const handleMouseDown = () => {
+    window.onmousemove = handleMouseMove;
+    window.onmouseup = handleMouseUp;
+  };
+
+  const handleMouseMove = (e) => {
+    slide(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    window.onmousemove = undefined;
+    window.onmouseup = undefined;
+    setIsManualSliding(false); // Vuelve al modo automático después de soltar el mouse
+  };
+
+  const handleTouchMove = (e) => {
+    slide(e.touches.item(0).clientX);
+  };
+
+  // Establece la transición solo cuando la segunda imagen haya cargado
+  const handleSecondImageLoad = () => {
+    setIsLoadingImage(false);
+
+    setImageRevealFraq(0);
+  };
+
   return (
-    <>
-      {image2?.length > 0 ? (
-        <img className="w-full h-full" alt="daisy" src={image1} />
-      ) : (
-        <div className="diff aspect-[16/9] h-full w-full bg-red-500">
-          <div className="diff-item-1">
-            <img alt="daisy" src={image1} />
+    <div
+      ref={imageContainer}
+      className="w-full absolute top-0 h-full flex justify-center items-center select-none"
+    >
+      <img
+        src={image1}
+        alt="Imagen 1"
+        className="absolute top-0 inset-0 w-full h-full pointer-events-none"
+        style={{
+          clipPath: `polygon(0 0 , ${imageRevealFraq * 100}% 0 , ${
+            imageRevealFraq * 100
+          }% 100%, 0 100%)`,
+          height: "100%",
+          transition: isManualSliding ? "none" : "clip-path 2s ease-in-out",
+        }}
+        onLoad={() => {
+          setIsLoadingImage(false);
+          setImagenUploadCargada(true);
+        }}
+      />
+      {image2 && (
+        <>
+          <img
+            style={{ height: "100%" }}
+            src={image2}
+            alt="Imagen 2"
+            className="w-full h-full pointer-events-none"
+            onLoad={handleSecondImageLoad}
+          />
+          <div
+            style={{
+              left: `${imageRevealFraq * 100}%`,
+              transition: isManualSliding ? "none" : "left 2s ease-in-out",
+            }}
+            className="absolute inset-y-0"
+          >
+            <div className="relative h-full">
+              <div
+                className="absolute inset-y-0 w-[0.1px] -ml-px"
+                style={{
+                  backgroundColor: currentTopic.bgColor.secondary,
+                }}
+              />
+              <div
+                style={{
+                  touchAction: "none",
+                  backgroundColor: currentTopic.bgColor.secondary,
+                }}
+                onMouseDown={handleMouseDown}
+                onTouchMove={handleTouchMove}
+                className="flex border items-center cursor-pointer justify-center w-8 h-8 -ml-4 -mt-6 rounded-full bg-white absolute top-1/2 shadow-xl"
+              >
+                <img
+                  style={{ touchAction: "none" }}
+                  src={currentTopic.bgImage}
+                  className="w-6 h-6 pointer-events-none"
+                />
+              </div>
+            </div>
           </div>
-          <div className="diff-item-2">
-            <img alt="daisy" src={image2} />
-          </div>
-          <div className="diff-resizer"></div>
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
 

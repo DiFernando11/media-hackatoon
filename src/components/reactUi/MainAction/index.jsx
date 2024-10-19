@@ -2,21 +2,15 @@ import React from "react";
 import useStoreApp from "../hooks/useStoreApp";
 import useCreateModelMove from "../hooks/useCreateModelMove";
 import CloudWidgetReact from "../CloudWidgetReact";
-import useContainerSize from "../hooks/useContainerSize";
 import UploadOtherImage from "./UploadOtherImage";
 
 function MainAction() {
-  const { getTopicHalloween, getCurrentImageEdit } = useStoreApp();
-  const { height, ref } = useContainerSize();
-  console.log({ height });
+  const { getTopicHalloween } = useStoreApp();
   const { canvasRef } = useCreateModelMove(getTopicHalloween);
   const { canvasRef: canvasRef2 } = useCreateModelMove(getTopicHalloween);
   return (
     <main className="flex-grow flex flex-col justify-center items-center h-full w-full">
-      <div
-        ref={ref}
-        className="w-full h-full max-h-[480px] max-w-[580px] relative bg-containerMedia"
-      >
+      <div className="w-full h-full max-h-[480px] max-w-[580px] relative bg-containerMedia">
         <img
           className="absolute w-full h-full top-0 left-0 opacity-40 -z-10"
           src="/public/containerMedia.avif"
@@ -34,7 +28,7 @@ function MainAction() {
           transform translate-x-1/2 pointer-events-none sm:right-0 sm:block"
           ref={canvasRef2}
         />
-        <CloudWidgetReact heightContainer={height} />
+        <CloudWidgetReact />
       </div>
       <UploadOtherImage />
     </main>
