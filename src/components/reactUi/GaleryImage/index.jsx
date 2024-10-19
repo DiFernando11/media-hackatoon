@@ -2,35 +2,25 @@ import React, { useRef } from "react";
 import useStoreApp from "../hooks/useStoreApp";
 
 const GaleryImage = () => {
-  const { setCurrentImageUpload } = useStoreApp();
-  const images = [
-    {
-      id: 1,
-      url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729343102/difer-images/fyd4zlzmvd5kdkcdlxhs.webp",
-      publicId: "difer-images",
-    },
-    {
-      id: 2,
-      url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729343102/difer-images/fyd4zlzmvd5kdkcdlxhs.webp",
-      publicId: "difer-images",
-    },
-    {
-      id: 3,
-      url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729343102/difer-images/fyd4zlzmvd5kdkcdlxhs.webp",
-      publicId: "difer-images",
-    },
-    {
-      id: 4,
-      url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729343102/difer-images/fyd4zlzmvd5kdkcdlxhs.webp",
-      publicId: "difer-images",
-    },
-  ];
+  const {
+    setCurrentImageUpload,
+    getCurrentImageUpload,
+    setLastCurrentImageUpload,
+    getImagesEditArray,
+    getLastCurrentImageUpload,
+  } = useStoreApp();
+
   const scrollRef = useRef(null);
   let isDown = false;
   let startX;
   let scrollLeft;
 
   const handleSelectedImage = (image) => {
+    setLastCurrentImageUpload(
+      getLastCurrentImageUpload?.id
+        ? getLastCurrentImageUpload
+        : getCurrentImageUpload
+    );
     setCurrentImageUpload({
       ...image,
       isGalery: true,
@@ -75,7 +65,7 @@ const GaleryImage = () => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 1; // Ajustable
+    const walk = (x - startX) * 1;
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
@@ -91,13 +81,13 @@ const GaleryImage = () => {
       onTouchMove={touchMoveHandler}
     >
       <div className="flex gap-2 h-14 justify-center items-center">
-        {images.map((image, index) => (
+        {getImagesEditArray.map((image) => (
           <div
-            className="h-12 w-16 bg-blue-500"
+            className="h-12 w-16 bg-blue-500 relative animate-zoom-in"
             key={image.id}
-            onClick={(image) => handleSelectedImage(image)}
+            onClick={() => handleSelectedImage(image)}
           >
-            <img src={image.url} alt="" className="h-12 w-16" />
+            <img src={image.url} alt={image.name} className="h-12 w-16" />
           </div>
         ))}
       </div>

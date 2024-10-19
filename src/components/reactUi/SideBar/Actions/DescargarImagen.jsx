@@ -7,7 +7,8 @@ import useStoreApp from "../../hooks/useStoreApp";
 function DescargarImagen() {
   const [currentFormat, setCurrentFormat] = useState(null);
   const { handleDownloadImageByFormat, loadingDownload } = useTransformImage();
-  const { getCurrentImageEdit, getLoadingImageUpload } = useStoreApp();
+  const { getCurrentImageEdit, getLoadingImageUpload, getCurrentImageUpload } =
+    useStoreApp();
 
   const formats = {
     jpg: "jpg",
@@ -22,7 +23,11 @@ function DescargarImagen() {
 
   const removeButton = (format) => loadingDownload && currentFormat === format;
 
-  if (!getCurrentImageEdit.id || getLoadingImageUpload) return null;
+  if (
+    (!getCurrentImageEdit.id || getLoadingImageUpload) &&
+    !getCurrentImageUpload.isGalery
+  )
+    return null;
   return (
     <DropDownAction name={"Descargar imagen"}>
       <ButtonAction

@@ -15,6 +15,7 @@ import MainAction from "../components/reactUi/MainAction";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body class="flex h-screen">
+    <div id="modal-root"></div>
     <LayoutApp client:load>
       <HeaderPresentation client:only="react" />
       <MainAction client:load>
@@ -38,11 +39,12 @@ import MainAction from "../components/reactUi/MainAction";
             },
           }}
         > -->
-          <ContainerMedia client:load />
+        <ContainerMedia client:load />
         <!-- </CldUploadWidget> -->
       </MainAction>
     </LayoutApp>
   </body>
 </html>
 
-<script src="https://widget.cloudinary.com/v2.0/global/all.js" is:inline></script>
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" is:inline
+></script>

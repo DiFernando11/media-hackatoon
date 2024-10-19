@@ -1,3 +1,34 @@
+const key_slide_in_left = {
+  '0%': {
+    opacity: '0',
+    transform: 'translateX(-100%)',
+  },
+  '100%': {
+    opacity: '1',
+    transform: 'translateX(0)',
+  },
+}
+const key_zoom_in = {
+  '0%': {
+    opacity: '0',
+    transform: 'scale(0.5)',
+   },
+   '100%': {
+    opacity: '1',
+    transform: 'scale(1)',
+   },
+}
+
+const key_destroy = {
+    '0%': {
+      opacity: '1',
+      transform: 'scale(1)',
+    },
+    '100%': {
+      opacity: '0',
+      transform: 'scale(0)',
+    },
+}
 const key_spider = {
     '0%, 6%, 12%': {
       'text-shadow': 'none',
@@ -185,7 +216,10 @@ export const keyframes = {
     key_skeleton,
     key_werewolf,
     key_vampire,
-    key_shine
+    key_shine,
+    key_slide_in_left,
+    key_zoom_in,
+    key_destroy
 }
 export const animation = {
     'title-spider': 'key_spider 4s infinite',
@@ -198,4 +232,7 @@ export const animation = {
     'title-werewolf': 'key_werewolf 4s infinite',
     'title-vampire': 'key_vampire 4s infinite',
     "shine": 'key_shine 1s ease forwards',
+    'slide-in-left': 'key_slide_in_left 0.5s ease-out forwards',
+    'zoom-in': 'key_zoom_in 0.5s ease-out forwards',
+    'destroy': 'destroy 0.5s ease-out forwards',
 }

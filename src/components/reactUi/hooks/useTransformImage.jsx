@@ -2,6 +2,7 @@ import { useState } from "react";
 import { getCldImageUrl } from "astro-cloudinary/helpers";
 import useStoreApp from "./useStoreApp";
 import useDownloadImage from "../UseDownloadImage";
+import { v4 as uuidv4 } from "uuid";
 
 function useTransformImage() {
   const [loadingDownload, setLoadingDownload] = useState(false);
@@ -38,14 +39,15 @@ function useTransformImage() {
     setIsLoadingImageUpload(true);
     setCurrentImageUpload({
       url,
-      id: publicId,
+      id: uuidv4(),
+      publicId,
       crop,
       name: info?.original_filename,
     });
   };
 
   const handleGetCdlImage = ({ isUpdateImage = true, ...props }) => {
-    const idImageCurrent = getCurrentImageUpload?.id;
+    const publicId = getCurrentImageUpload?.publicId;
     const crop = getCurrentImageUpload?.crop
       ? { crop: getCurrentImageUpload?.crop }
       : {};
@@ -55,11 +57,11 @@ function useTransformImage() {
     };
 
     const url = getCldImageUrl({
-      src: idImageCurrent,
+      src: publicId,
       ...body,
     });
     if (isUpdateImage) {
-      setCurrentImageEdit({ url, body, id: idImageCurrent });
+      setCurrentImageEdit({ url, body, id: uuidv4(), publicId });
       setIsLoadingImageUpload(true);
     }
     return url;
@@ -67,12 +69,56 @@ function useTransformImage() {
 
   const handleDownloadImageByFormat = (format) => {
     setLoadingDownload(true);
-    const url = handleGetCdlImage({
-      isUpdateImage: false,
-      format,
-      ...getCurrentImageEdit?.body,
+    console.log(getCurrentImageEdit);
+    const body = getCurrentImageUpload.isGalery
+      ? getCurrentImageUpload?.body
+      : getCurrentImageEdit?.body;
+    // const url = handleGetCdlImage({
+    //   isUpdateImage: false,
+    //   format,
+    //   ...body,
+    // });
+    // handleDownload(url, getCurrentImageUpload?.name, format);
+    handleDownload(
+      getCurrentImageUpload.url,
+      getCurrentImageUpload?.name,
+      format
+    );
+  };
+
+  const handleOpenWidget = () => {
+    setCurrentImageUpload({
+      url: null,
+      id: "id ahora",
     });
-    handleDownload(url, getCurrentImageUpload?.name, format);
+    setIsLoadingImageUpload(true);
+    setTimeout(() => {
+      setCurrentImageUpload({
+        url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729362566/difer-images/wi24y5mhgk28t3wzzk35.webp",
+        id: uuidv4(),
+        publicId: "difer-images/wi24y5mhgk28t3wzzk35",
+      });
+    }, 2000);
+    // cloudinary.openUploadWidget(
+    //   {
+    //     cloudName: "drkv8ebxx",
+    //     uploadPreset: "upload-hackatoon-image",
+    //     sources: ["local", "url"],
+    //     multiple: false,
+    //   },
+    //   (error, result) => {
+    //     if (!error && result && result.event === "success") {
+    //       setSliderPosition(100);
+    //       handleUploadImage(result.info);
+    //       if (getCurrentImageEdit.id) {
+    //         addImagesEditArray(getCurrentImageEdit);
+    //         setCurrentImageEdit({});
+    //       }
+
+    //       console.log("Imagen subida exitosamente:", result.info);
+    //     }
+    //   }
+    // );
   };
 
   return {
@@ -80,6 +126,7 @@ function useTransformImage() {
     handleGetCdlImage,
     handleDownloadImageByFormat,
     loadingDownload,
+    handleOpenWidget
   };
 }
 

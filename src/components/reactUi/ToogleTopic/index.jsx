@@ -27,7 +27,7 @@ const ToggleList = () => {
     getCurrentImageEdit,
     addImagesEditArray,
     setCurrentImageEdit,
-    setSliderPosition
+    setSliderPosition,
   } = useStoreApp();
 
   const [activeIndex, setActiveIndex] = useState(null);
@@ -45,12 +45,13 @@ const ToggleList = () => {
       setTopicHalloween(value);
       setCurrentTopicByLS(value);
       if (getCurrentImageEdit?.id) {
+        console.log(getCurrentImageEdit, "LO QUE SE GUARDA ACTUAL");
         addImagesEditArray(getCurrentImageEdit);
         setCurrentImageEdit({});
-        setSliderPosition(100);
+        setSliderPosition(1);
       }
     }, 400);
-    setOpenInitTopic(true);
+    // setOpenInitTopic(true);
     setDurationAnimation("duration-[400ms]");
     setDurationAnimationClose(500);
   };

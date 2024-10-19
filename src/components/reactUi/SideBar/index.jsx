@@ -9,6 +9,9 @@ import ToggleList from "../ToogleTopic";
 import Breadcrumb from "./Breadcrumb";
 import RenuevaFondo from "./Actions/RenuevaFondo";
 import DescargarImagen from "./Actions/DescargarImagen";
+import DeleteAllGalery from "./Actions/DeleteAllGalery";
+import DeleteCurrentImageGalery from "./Actions/DeleteCurrentImageGalery";
+import UploadImage from "./Actions/UploadImage";
 
 const Sidebar = () => {
   const width = useMediaQuery();
@@ -16,7 +19,8 @@ const Sidebar = () => {
   const handleToggle = (index) => {
     setActiveIndex(index);
   };
-  const { openActionMedia, setOpenActionMedia } = useStoreApp();
+  const { openActionMedia, setOpenActionMedia, getCurrentImageUpload } =
+    useStoreApp();
 
   useEffect(() => {
     setOpenActionMedia(!isSmMQ(width));
@@ -66,8 +70,11 @@ const Sidebar = () => {
               <li className="my-2">
                 <ToggleList />
               </li>
+              <UploadImage />
               <DescargarImagen />
+              <DeleteCurrentImageGalery />
               <RenuevaFondo active={activeIndex} handleToggle={handleToggle} />
+              <DeleteAllGalery />
             </ul>
           </div>
         </aside>

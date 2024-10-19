@@ -10,8 +10,6 @@ function CloudWidgetReact() {
     getLoadingImageUpload,
     setIsLoadingImageUpload,
     getCurrentImageEdit,
-    getSliderPosition,
-    setSliderPosition,
   } = useStoreApp();
 
   if (!getLoadingImageUpload && !getCurrentImageUpload.id)

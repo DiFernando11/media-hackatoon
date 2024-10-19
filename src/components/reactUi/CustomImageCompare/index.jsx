@@ -1,13 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import useStoreApp from "../hooks/useStoreApp";
 
-const ImageCompare = ({
-  image1,
-  image2,
-  setIsLoadingImage
-}) => {
-  const { getSelectedTopic } = useStoreApp();
-  const [imageRevealFraq, setImageRevealFraq] = useState(1); // Inicia en 1 (completamente a la derecha)
+const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
+  const { getSelectedTopic, getSliderPosition, setSliderPosition } =
+    useStoreApp();
   const [isManualSliding, setIsManualSliding] = useState(false); // Para detectar si se está moviendo manualmente
   const imageContainer = useRef(undefined);
 
@@ -17,13 +13,14 @@ const ImageCompare = ({
     setIsManualSliding(true);
     const containerBoundingRect =
       imageContainer.current.getBoundingClientRect();
-    setImageRevealFraq(() => {
+    const handlePositionMove = () => {
       if (xPosition < containerBoundingRect.left) return 0;
       if (xPosition > containerBoundingRect.right) return 1;
       return (
         (xPosition - containerBoundingRect.left) / containerBoundingRect.width
       );
-    });
+    };
+    setSliderPosition(handlePositionMove());
   };
 
   const handleMouseDown = () => {
@@ -48,8 +45,7 @@ const ImageCompare = ({
   // Establece la transición solo cuando la segunda imagen haya cargado
   const handleSecondImageLoad = () => {
     setIsLoadingImage(false);
-
-    setImageRevealFraq(0);
+    setSliderPosition(0);
   };
 
   return (
@@ -62,15 +58,14 @@ const ImageCompare = ({
         alt="Imagen 1"
         className="absolute top-0 inset-0 w-full h-full pointer-events-none"
         style={{
-          clipPath: `polygon(0 0 , ${imageRevealFraq * 100}% 0 , ${
-            imageRevealFraq * 100
+          clipPath: `polygon(0 0 , ${getSliderPosition * 100}% 0 , ${
+            getSliderPosition * 100
           }% 100%, 0 100%)`,
           height: "100%",
-          transition: isManualSliding ? "none" : "clip-path 2s ease-in-out",
+          transition: isManualSliding ? "none" : "clip-path 1s ease-in-out",
         }}
         onLoad={() => {
           setIsLoadingImage(false);
-          setImagenUploadCargada(true);
         }}
       />
       {image2 && (
@@ -84,14 +79,14 @@ const ImageCompare = ({
           />
           <div
             style={{
-              left: `${imageRevealFraq * 100}%`,
-              transition: isManualSliding ? "none" : "left 2s ease-in-out",
+              left: `${getSliderPosition * 100}%`,
+              transition: isManualSliding ? "none" : "left 1s ease-in-out",
             }}
             className="absolute inset-y-0"
           >
             <div className="relative h-full">
               <div
-                className="absolute inset-y-0 w-[0.1px] -ml-px"
+                className="absolute inset-y-0 w-[0.1px]"
                 style={{
                   backgroundColor: currentTopic.bgColor.secondary,
                 }}
@@ -103,7 +98,7 @@ const ImageCompare = ({
                 }}
                 onMouseDown={handleMouseDown}
                 onTouchMove={handleTouchMove}
-                className="flex border items-center cursor-pointer justify-center w-8 h-8 -ml-4 -mt-6 rounded-full bg-white absolute top-1/2 shadow-xl"
+                className="flex border items-center cursor-pointer justify-center w-8 h-8 -ml-4 -mt-4 rounded-full bg-white absolute top-1/2 shadow-xl"
               >
                 <img
                   style={{ touchAction: "none" }}

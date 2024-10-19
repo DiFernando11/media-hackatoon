@@ -11,6 +11,8 @@ function RenuevaFondo({ active, handleToggle }) {
     addImagesEditArray,
     setIsLoadingImageUpload,
     setCurrentImageEdit,
+    getCurrentImageUpload,
+    setSliderPosition
   } = useStoreApp();
 
   const [promptsActives, setPromptsActives] = useState({});
@@ -38,27 +40,30 @@ function RenuevaFondo({ active, handleToggle }) {
     }
     // handleGetCdlImage(body);
 
-    // borrar
+    // // borrar
     setIsLoadingImageUpload(true);
 
     setCurrentImageEdit({
       id: "edit image",
       url: null,
     });
-
+    setSliderPosition(100);
     setTimeout(() => {
       setCurrentImageEdit({
         id: "edit image",
+        publicId: "difer-images/wi24y5mhgk28t3wzzk35",
         url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729343060/difer-images/mjl1cujbtnwqztuudvxo.avif",
+        body,
       });
     }, 2000);
   };
   const name = "renueva-fondo";
+  if (getCurrentImageUpload.isGalery || !getCurrentImageUpload.id) return null;
   return (
     <ButtonAction
-      isActive={active === name}
       name={"Renueva tu fondo"}
       handleAction={handleAction}
+      isClickPass
     />
   );
 }
