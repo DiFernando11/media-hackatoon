@@ -1,19 +1,12 @@
 import React, { useState } from "react";
-import useTransformImage from "../../hooks/useTransformImage";
-import ButtonAction from "../../ButtonAction";
-import useStoreApp from "../../hooks/useStoreApp";
+import useTransformImage from "../../../hooks/useTransformImage";
+import useStoreApp from "../../../hooks/useStoreApp";
+import ButtonAction from "../../../ButtonAction";
 
-function RenuevaFondo() {
+function ActionRenoveBackground() {
   const { handleGetCdlImage } = useTransformImage();
-  const {
-    getSelectedTopic,
-    getCurrentImageEdit,
-    addImagesEditArray,
-    setIsLoadingImageUpload,
-    setCurrentImageEdit,
-    getCurrentImageUpload,
-    setSliderPosition,
-  } = useStoreApp();
+  const { getSelectedTopic, getCurrentImageEdit, addImagesEditArray } =
+    useStoreApp();
 
   const [promptsActives, setPromptsActives] = useState({});
 
@@ -56,15 +49,22 @@ function RenuevaFondo() {
     //   });
     // }, 2000);
   };
-  const name = "renueva-fondo";
-  if (getCurrentImageUpload.isGalery || !getCurrentImageUpload.id) return null;
+
   return (
-    <ButtonAction
-      name={"Renueva tu fondo"}
-      handleAction={handleAction}
-      isClickPass
-    />
+    <>
+      <p className="font-general text-xs text-center text-white">
+        Personaliza tu fondo
+      </p>
+      <p className="text-[10px] text-white">
+        Genera un background con la tematica seleccionada
+      </p>
+      <ButtonAction
+        name={"Generar fondo"}
+        handleAction={handleAction}
+        isClickPass
+      />
+    </>
   );
 }
 
-export default RenuevaFondo;
+export default ActionRenoveBackground;

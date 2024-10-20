@@ -28,7 +28,7 @@ function ButtonAction({
     <li
       onClick={!isLoading || removeButton ? handleActiveAction : undefined}
       className={classNames(
-        "w-full font-general text-white border-t pt-1 mb-2 flex justify-between items-center px-1",
+        "w-full font-general text-white border-t pt-1 flex justify-between items-center px-1",
         { "cursor-pointer": !isLoading, "pointer-events-none": isLoading }
       )}
     >

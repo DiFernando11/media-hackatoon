@@ -9,6 +9,7 @@ export default {
 		extend: {
 			screens: {
 				'sm': '480px',
+				'md': '620px'
 			},
 			animation,
 			keyframes,

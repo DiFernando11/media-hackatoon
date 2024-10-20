@@ -228,3 +228,12 @@ backdrop-filter: blur(7.9px);
 	height: 100%;
 	object-fit: contain; /* o cover si deseas que la imagen se recorte para llenar */
   }
+
+  .componente-container {
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+  }
+  
+  .componente-container.fade-in {
+	opacity: 1;
+  }

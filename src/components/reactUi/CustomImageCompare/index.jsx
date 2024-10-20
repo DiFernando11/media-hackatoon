@@ -4,7 +4,7 @@ import useStoreApp from "../hooks/useStoreApp";
 const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
   const { getSelectedTopic, getSliderPosition, setSliderPosition } =
     useStoreApp();
-  const [isManualSliding, setIsManualSliding] = useState(false); // Para detectar si se está moviendo manualmente
+  const [isManualSliding, setIsManualSliding] = useState(false);
   const imageContainer = useRef(undefined);
 
   const currentTopic = getSelectedTopic();
@@ -56,7 +56,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
       <img
         src={image1}
         alt="Imagen 1"
-        className="absolute top-0 inset-0 w-full h-full pointer-events-none"
+        className="absolute bg-black top-0 inset-0 w-full h-full pointer-events-none"
         style={{
           clipPath: `polygon(0 0 , ${getSliderPosition * 100}% 0 , ${
             getSliderPosition * 100

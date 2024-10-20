@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import DropDownAction from "../../DropDownAction";
-import ButtonAction from "../../ButtonAction";
 import useTransformImage from "../../hooks/useTransformImage";
 import useStoreApp from "../../hooks/useStoreApp";
+import ButtonAction from "../../ButtonAction";
 
 function DescargarImagen() {
   const [currentFormat, setCurrentFormat] = useState(null);
@@ -28,28 +27,37 @@ function DescargarImagen() {
     !getCurrentImageUpload.isGalery
   )
     return null;
+
   return (
-    <DropDownAction name={"Descargar imagen"}>
-      <ButtonAction
-        name={". JPG"}
-        isLoading={loadingDownload}
-        handleAction={() => handleAction(formats.jpg)}
-        removeButton={removeButton(formats.jpg)}
-      />
-      <ButtonAction
-        name={". PNG"}
-        isLoading={loadingDownload}
-        handleAction={() => handleAction(formats.png)}
-        removeButton={removeButton(formats.png)}
-      />
-      <ButtonAction
-        name={". WEBP"}
-        isLoading={loadingDownload}
-        handleAction={() => handleAction(formats.webp)}
-        removeButton={removeButton(formats.webp)}
-      />
-    </DropDownAction>
+    <ButtonAction
+      name={"Descargar imagen"}
+      isClickPass
+      handleAction={() => setComponenteKey("download-component")}
+    />
   );
+
+  // return (
+  //   <DropDownAction name={"Descargar imagen"}>
+  //     <ButtonAction
+  //       name={". JPG"}
+  //       isLoading={loadingDownload}
+  //       handleAction={() => handleAction(formats.jpg)}
+  //       removeButton={removeButton(formats.jpg)}
+  //     />
+  //     <ButtonAction
+  //       name={". PNG"}
+  //       isLoading={loadingDownload}
+  //       handleAction={() => handleAction(formats.png)}
+  //       removeButton={removeButton(formats.png)}
+  //     />
+  //     <ButtonAction
+  //       name={". WEBP"}
+  //       isLoading={loadingDownload}
+  //       handleAction={() => handleAction(formats.webp)}
+  //       removeButton={removeButton(formats.webp)}
+  //     />
+  //   </DropDownAction>
+  // );
 }
 
 export default DescargarImagen;

@@ -16,7 +16,7 @@ function useTransformImage() {
 
   const handleDownload = useDownloadImage(setLoadingDownload);
 
-  const handleUploadImage = (info) => {
+  const handleGetImageUpload = (info) => {
     const coordinates = info?.coordinates?.custom?.[0];
     const detailCropX = coordinates?.[0];
     const detailCropY = coordinates?.[1];
@@ -44,6 +44,10 @@ function useTransformImage() {
       crop,
       name: info?.original_filename,
     });
+    if (getCurrentImageEdit.id) {
+      addImagesEditArray(getCurrentImageEdit);
+      setCurrentImageEdit({});
+    }
   };
 
   const handleGetCdlImage = ({ isUpdateImage = true, ...props }) => {
@@ -69,64 +73,66 @@ function useTransformImage() {
 
   const handleDownloadImageByFormat = (format) => {
     setLoadingDownload(true);
-    console.log(getCurrentImageEdit);
-    const body = getCurrentImageUpload.isGalery
-      ? getCurrentImageUpload?.body
-      : getCurrentImageEdit?.body;
-    // const url = handleGetCdlImage({
-    //   isUpdateImage: false,
-    //   format,
-    //   ...body,
-    // });
-    // handleDownload(url, getCurrentImageUpload?.name, format);
-    handleDownload(
-      getCurrentImageUpload.url,
-      getCurrentImageUpload?.name,
-      format
+    const currentDownload = getCurrentImageUpload.isGalery
+      ? getCurrentImageUpload
+      : getCurrentImageEdit;
+    handleDownload(currentDownload.url, currentDownload?.name, format);
+  };
+
+  const handleUploadImage = (handleSuccess) => {
+    cloudinary.openUploadWidget(
+      {
+        cloudName: "drkv8ebxx",
+        uploadPreset: "upload-hackatoon-image",
+        sources: ["local", "url"],
+        multiple: false,
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          handleSuccess(result.info);
+        }
+      }
     );
   };
 
   const handleOpenWidget = () => {
-    setCurrentImageUpload({
-      url: null,
-      id: "id ahora",
-    });
-    setIsLoadingImageUpload(true);
-    setTimeout(() => {
-      setCurrentImageUpload({
-        url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729362566/difer-images/wi24y5mhgk28t3wzzk35.webp",
-        id: uuidv4(),
-        publicId: "difer-images/wi24y5mhgk28t3wzzk35",
-      });
-    }, 2000);
-    // cloudinary.openUploadWidget(
-    //   {
-    //     cloudName: "drkv8ebxx",
-    //     uploadPreset: "upload-hackatoon-image",
-    //     sources: ["local", "url"],
-    //     multiple: false,
-    //   },
-    //   (error, result) => {
-    //     if (!error && result && result.event === "success") {
-    //       setSliderPosition(100);
-    //       handleUploadImage(result.info);
-    //       if (getCurrentImageEdit.id) {
-    //         addImagesEditArray(getCurrentImageEdit);
-    //         setCurrentImageEdit({});
-    //       }
-
-    //       console.log("Imagen subida exitosamente:", result.info);
-    //     }
-    //   }
-    // );
+    // setCurrentImageUpload({
+    //   url: null,
+    //   id: "id ahora",
+    // });
+    // setIsLoadingImageUpload(true);
+    // setTimeout(() => {
+    //   setCurrentImageUpload({
+    //     url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729362566/difer-images/wi24y5mhgk28t3wzzk35.webp",
+    //     id: uuidv4(),
+    //     publicId: "difer-images/wi24y5mhgk28t3wzzk35",
+    //   });
+    // }, 2000);
+    handleUploadImage(handleGetImageUpload);
   };
+
+  const handleSupositionImage = (underlay) => {
+    // console.log({ underlay });
+    const body = {
+      removeBackground: true,
+      background: "blueviolet",
+      // underlay,
+    };
+    handleGetCdlImage(body);
+  };
+
+  const handleCreateInvitation = () =>{
+    
+  }
 
   return {
     handleUploadImage,
+    handleGetImageUpload,
     handleGetCdlImage,
     handleDownloadImageByFormat,
     loadingDownload,
-    handleOpenWidget
+    handleOpenWidget,
+    handleSupositionImage,
   };
 }
 
