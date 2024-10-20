@@ -2,6 +2,9 @@
   "name": "media-hackaton",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": "20.17.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -34,6 +37,7 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "rollup": "^4.24.0",
     "two-up-element": "^1.0.1"
   }
 }
