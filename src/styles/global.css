@@ -117,60 +117,6 @@ hr {
 }
 
 @font-face {
-	font-family: 'Halloween Werewolf';
-	src: url('/fonts/werewolf.otf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Halloween Mummy';
-	src: url('/fonts/mummy.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Halloween skeleton';
-	src: url('/fonts/skeleton.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Halloween ghost';
-	src: url('/fonts/ghost.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Halloween spider';
-	src: url('/fonts/spider.otf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Halloween vampire';
-	src: url('/fonts/vampire.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Halloween pumpkin';
-	src: url('/fonts/pumpkin.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Halloween witch';
-	src: url('/fonts/witch.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
 	font-family: 'Halloween general';
 	src: url('/fonts/general.ttf') format('truetype');
 	font-weight: normal;
@@ -201,32 +147,32 @@ backdrop-filter: blur(7.9px);
 -webkit-backdrop-filter: blur(7.9px);
 }
 .borderScroll::-webkit-scrollbar {
-    height: 8px; /* Adjust the height of the scrollbar */
+    height: 8px;
   }
-/* Personaliza el scrollbar para que no ocupe espacio */
+
 .scrollbar-hidden::-webkit-scrollbar {
-	height: 8px; /* Altura del scrollbar */
+	height: 8px;
   }
   
   .scrollbar-hidden::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.5); /* Color del thumb */
-	border-radius: 4px; /* Bordes redondeados */
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 4px;
   }
   
   .scrollbar-hidden::-webkit-scrollbar-track {
-	background: transparent; /* Fondo del track */
+	background: transparent;
   }
   
   .scrollbar-hidden {
-	scrollbar-width: thin; /* Firefox */
-	scrollbar-color: rgba(0, 0, 0, 0.5) transparent; /* Firefox */
-	line-height: 0; /* Esto puede ayudar a eliminar el espacio extra */
+	scrollbar-width: thin;
+	scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+	line-height: 0;
   }
 
 .imgLoad {
 	max-width: 100%;
 	height: 100%;
-	object-fit: contain; /* o cover si deseas que la imagen se recorte para llenar */
+	object-fit: contain;
   }
 
   .componente-container {
