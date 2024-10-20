@@ -82,8 +82,8 @@ function useTransformImage() {
   const handleUploadImage = (handleSuccess) => {
     cloudinary.openUploadWidget(
       {
-        cloudName: "drkv8ebxx",
-        uploadPreset: "upload-hackatoon-image",
+        cloudName: import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME,
+        uploadPreset: import.meta.env.PUBLIC_UPLOAD_PRESET,
         sources: ["local", "url"],
         multiple: false,
       },
@@ -121,9 +121,7 @@ function useTransformImage() {
     handleGetCdlImage(body);
   };
 
-  const handleCreateInvitation = () =>{
-    
-  }
+  const handleCreateInvitation = () => {};
 
   return {
     handleUploadImage,
