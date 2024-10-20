@@ -49,7 +49,7 @@ const Sidebar = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <img
-          src="/public/containerSideBar.png"
+          src="/containerSideBar.png"
           className="opacity-80 top-0 left-0 h-full w-full absolute -z-10"
           alt="fondo del sideBar"
         />

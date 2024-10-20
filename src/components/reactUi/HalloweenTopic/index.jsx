@@ -17,7 +17,7 @@ const HalloweenToggle = ({ isActive, onToggle }) => {
               isActive ? "bg-red-500" : "bg-black"
             }`}
           >
-            <img className="w-7 h-7" src="/public/pumpkin.png" alt="Pumpkin" />
+            <img className="w-7 h-7" src="/pumpkin.png" alt="Pumpkin" />
           </span>
         </span>
         <span className={`arm-wrapper ${isActive ? "" : "scale-down"}`}>

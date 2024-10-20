@@ -8,14 +8,14 @@ export const modelByTopic = (topic) => {
     const configTopic = {
         [MODEL_TOPIC.skeleton]: {
             name: "Calavera",
-            modelPath: '/public/skullModel/scene.gltf',
+            modelPath: '/skullModel/scene.gltf',
             scale: 1.4,
             width: 150,
             height: 150,
             fontFamily: "font-skeleton",
             fontSize: "text-skeleton",
             animationTitle: "animate-title-skeleton",
-            bgImage: "/public/skeleton.png",
+            bgImage: "/skeleton.png",
             bgColor: {
                 primary: '#1c1c1c',
                 secondary: "#b0b0b0"
@@ -42,7 +42,7 @@ export const modelByTopic = (topic) => {
             fontFamily: "font-zombie",
             fontSize: "text-zombie",
             animationTitle: "animate-title-zombie",
-            bgImage: "/public/zombie.png",
+            bgImage: "/zombie.png",
             bgColor: {
                 primary: "#2f2f2f",
                 secondary: "#a5d6a7"
@@ -69,7 +69,7 @@ export const modelByTopic = (topic) => {
             fontFamily: "font-ghost",
             fontSize: "text-ghost",
             animationTitle: "animate-title-ghost",
-            bgImage: "/public/ghost.png",
+            bgImage: "/ghost.png",
             bgColor: {
                 primary: "#1c1c1c",
                 secondary: "#9b59b6"
@@ -96,7 +96,7 @@ export const modelByTopic = (topic) => {
             fontFamily: "font-vampire",
             fontSize: "text-vampire",
             animationTitle: "animate-title-vampire",
-            bgImage: "/public/vampire.webp",
+            bgImage: "/vampire.webp",
             bgColor: {
                 primary: "#333333",
                 secondary: "#8b0000"
@@ -112,7 +112,7 @@ export const modelByTopic = (topic) => {
             fontFamily: "font-witch",
             fontSize: "text-witch",
             animationTitle: "animate-title-witch",
-            bgImage: "/public/witch.png",
+            bgImage: "/witch.png",
             bgColor: {
                 primary: "#333333",
                 secondary: "#f2e68e"
@@ -128,7 +128,7 @@ export const modelByTopic = (topic) => {
             fontFamily: "font-werewolf",
             fontSize: "text-werewolf",
             animationTitle: "animate-title-werewolf",
-            bgImage: "/public/werewolf.png",
+            bgImage: "/werewolf.png",
             bgColor: {
                 primary: "#3b3b3b",
                 secondary: "#9e6f4d"
@@ -144,7 +144,7 @@ export const modelByTopic = (topic) => {
             fontFamily: "font-mummy",
             fontSize: "text-mummy",
             animationTitle: "animate-title-mummy",
-            bgImage: "/public/mummy.png",
+            bgImage: "/mummy.png",
             bgColor: {
                 primary: "#444444",
                 secondary: "#e6d1c4"
@@ -160,7 +160,7 @@ export const modelByTopic = (topic) => {
             fontFamily: "font-pumpkin",
             fontSize: "text-pumpkin",
             animationTitle: "animate-title-pumpkin",
-            bgImage: "/public/pumpkin.png",
+            bgImage: "/pumpkin.png",
             bgColor: {
                 primary: "#333333",
                 secondary: "#ff8c00"
@@ -176,7 +176,7 @@ export const modelByTopic = (topic) => {
             fontFamily: "font-spider",
             fontSize: "text-spider",
             animationTitle: "animate-title-spider",
-            bgImage: "/public/spider.png",
+            bgImage: "/spider.png",
             bgColor: {
                 primary: "#333333",
                 secondary: "#1c1c1c"

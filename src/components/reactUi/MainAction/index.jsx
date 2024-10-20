@@ -31,7 +31,7 @@ function MainAction() {
         )}
         <img
           className="absolute w-full h-full top-0 left-0 opacity-40 -z-10"
-          src="/public/containerMedia.avif"
+          src="/containerMedia.avif"
           alt="fondo para subir imagen"
         />
         <canvas
