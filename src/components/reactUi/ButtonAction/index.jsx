@@ -9,6 +9,7 @@ function ButtonAction({
   isLoading,
   removeButton,
   isClickPass,
+  isBorder = true,
 }) {
   const { getSelectedTopic } = useStoreApp();
   const bgColor = getSelectedTopic().bgColor.secondary;
@@ -28,11 +29,15 @@ function ButtonAction({
     <li
       onClick={!isLoading || removeButton ? handleActiveAction : undefined}
       className={classNames(
-        "w-full font-general text-white border-t pt-1 flex justify-between items-center px-1",
-        { "cursor-pointer": !isLoading, "pointer-events-none": isLoading }
+        "w-full font-general text-white pt-1 flex justify-between items-center px-1",
+        {
+          "cursor-pointer": !isLoading,
+          "pointer-events-none": isLoading,
+          "border-t": isBorder,
+        }
       )}
     >
-      <p>{name}</p>
+      <p className="-text-xs-1">{name}</p>
       {isLoading && removeButton && (
         <div
           className={classNames(

@@ -1,24 +1,20 @@
 import React from "react";
-import DownloadImage from "../Actions/DownloadImage";
 import UploadImage from "../Actions/UploadImage";
 import DeleteCurrentImageGalery from "../Actions/DeleteCurrentImageGalery";
 import DeleteAllGalery from "../Actions/DeleteAllGalery";
 import RenoveBackground from "../Actions/RenoveBackground";
+import AddBackroundImage from "../Actions/AddBackgroundImage";
+import CreateInvitation from "../Actions/CreateInvitation";
 
-function ButtonsAction({ componenteKey, setComponenteKey }) {
+function ButtonsAction({ setComponenteKey }) {
   return (
     <>
-      <DownloadImage
-        componenteKey={componenteKey}
-        setComponenteKey={setComponenteKey}
-      />
       <UploadImage />
       <DeleteCurrentImageGalery />
+      <AddBackroundImage setComponenteKey={setComponenteKey} />
+      <RenoveBackground setComponenteKey={setComponenteKey} />
+      <CreateInvitation setComponenteKey={setComponenteKey} />
       <DeleteAllGalery />
-      <RenoveBackground
-        componenteKey={componenteKey}
-        setComponenteKey={setComponenteKey}
-      />
     </>
   );
 }

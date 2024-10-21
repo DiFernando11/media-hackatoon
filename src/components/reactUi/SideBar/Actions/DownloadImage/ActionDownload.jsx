@@ -20,7 +20,7 @@ function ActionDownload() {
   const removeButton = (format) => loadingDownload && currentFormat === format;
   return (
     <>
-      <p className="font-general text-xs text-white">Descargar Imagen</p>
+      <p className="font-general -text-xs-1 text-white">Descargar Imagen</p>
       <ButtonAction
         name={". JPG"}
         isLoading={loadingDownload}

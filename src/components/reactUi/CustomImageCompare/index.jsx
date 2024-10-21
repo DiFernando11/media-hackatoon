@@ -2,8 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import useStoreApp from "../hooks/useStoreApp";
 
 const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
-  const { getSelectedTopic, getSliderPosition, setSliderPosition } =
-    useStoreApp();
+  const [attempts, setAttempts] = useState(0);
+  const {
+    getSelectedTopic,
+    getSliderPosition,
+    setSliderPosition,
+    setCurrentImageEdit,
+    getCurrentImageEdit,
+  } = useStoreApp();
   const [isManualSliding, setIsManualSliding] = useState(false);
   const imageContainer = useRef(undefined);
 
@@ -42,10 +48,29 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
     slide(e.touches.item(0).clientX);
   };
 
-  // Establece la transición solo cuando la segunda imagen haya cargado
   const handleSecondImageLoad = () => {
+    setAttempts(0);
     setIsLoadingImage(false);
     setSliderPosition(0);
+  };
+
+  const handleError = () => {
+    setAttempts((prev) => prev + 1);
+    if (attempts < 3) {
+      console.log("Intentando cargar nuevamente...");
+      const newUrl = `${getCurrentImageEdit.url}?t=${Date.now()}`;
+      setTimeout(() => {
+        setCurrentImageEdit({
+          ...getCurrentImageEdit,
+          url: newUrl,
+        });
+      }, 5000);
+    } else {
+      setAttempts(0);
+      setIsLoadingImage(false);
+      setCurrentImageEdit({});
+      console.log("Se alcanzó el número máximo de intentos");
+    }
   };
 
   return (
@@ -76,6 +101,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
             alt="Imagen 2"
             className="w-full h-full pointer-events-none"
             onLoad={handleSecondImageLoad}
+            onError={handleError}
           />
           <div
             style={{
@@ -101,6 +127,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
                 className="flex border items-center cursor-pointer justify-center w-8 h-8 -ml-4 -mt-4 rounded-full bg-white absolute top-1/2 shadow-xl"
               >
                 <img
+                  id="imagen-upload-current"
                   style={{ touchAction: "none" }}
                   src={currentTopic.bgImage}
                   className="w-6 h-6 pointer-events-none"

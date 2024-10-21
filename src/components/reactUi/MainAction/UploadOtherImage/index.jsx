@@ -9,10 +9,13 @@ function UploadOtherImage() {
     getCurrentImageUpload,
     setCurrentImageUpload,
     getLastCurrentImageUpload,
+    setSliderPosition
   } = useStoreApp();
 
-  const handleReturnEditImage = () =>
+  const handleReturnEditImage = () => {
     setCurrentImageUpload(getLastCurrentImageUpload);
+    setSliderPosition(1);
+  }
 
   if (!getCurrentImageUpload.id) return null;
   return (

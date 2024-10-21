@@ -2,15 +2,15 @@ import React from "react";
 import ButtonAction from "../../../ButtonAction";
 import useStoreApp from "../../../hooks/useStoreApp";
 
-function DownloadImage({ setComponenteKey }) {
+function DownloadImage({ setComponenteKey, componenteKey }) {
   const { getCurrentImageEdit, getLoadingImageUpload, getCurrentImageUpload } =
     useStoreApp();
 
-  if (
+  const isCurrentImageEdit =
     (!getCurrentImageEdit.id || getLoadingImageUpload) &&
-    !getCurrentImageUpload.isGalery
-  )
-    return null;
+    !getCurrentImageUpload.isGalery;
+
+  if (isCurrentImageEdit || componenteKey === "download-component") return null;
 
   return (
     <ButtonAction

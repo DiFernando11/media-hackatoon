@@ -10,7 +10,7 @@ const LayoutApp = ({ children }) => {
   const { setOpenActionMedia } = useStoreApp();
   return (
     <>
-      <CurtainChangeTopic />
+      {/* <CurtainChangeTopic /> */}
       <SmokeBackground />
       <div className="w-[200px] h-full flex py-5 px-5 sm:px-16 flex-col flex-grow">
         {children}

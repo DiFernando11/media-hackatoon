@@ -6,17 +6,21 @@ import { v4 as uuidv4 } from "uuid";
 
 function useTransformImage() {
   const [loadingDownload, setLoadingDownload] = useState(false);
+  const [saveDownloads, setSaveDownloads] = useState({});
   const {
     setCurrentImageUpload,
     getCurrentImageUpload,
     setIsLoadingImageUpload,
     setCurrentImageEdit,
     getCurrentImageEdit,
+    addImagesEditArray,
+    setSliderPosition,
   } = useStoreApp();
 
   const handleDownload = useDownloadImage(setLoadingDownload);
 
   const handleGetImageUpload = (info) => {
+    console.log("AQUI HIZE UPLOAD");
     const coordinates = info?.coordinates?.custom?.[0];
     const detailCropX = coordinates?.[0];
     const detailCropY = coordinates?.[1];
@@ -34,6 +38,8 @@ function useTransformImage() {
     const cropImage = info?.coordinates ? { crop } : {};
     const url = getCldImageUrl({
       src: publicId,
+      quality: 1,
+      format: "webp",
       ...cropImage,
     });
     setIsLoadingImageUpload(true);
@@ -44,6 +50,7 @@ function useTransformImage() {
       crop,
       name: info?.original_filename,
     });
+    setSliderPosition(1);
     if (getCurrentImageEdit.id) {
       addImagesEditArray(getCurrentImageEdit);
       setCurrentImageEdit({});
@@ -51,7 +58,9 @@ function useTransformImage() {
   };
 
   const handleGetCdlImage = ({ isUpdateImage = true, ...props }) => {
+    console.log({ isUpdateImage, ...props });
     const publicId = getCurrentImageUpload?.publicId;
+    const nameImage = getCurrentImageUpload?.name;
     const crop = getCurrentImageUpload?.crop
       ? { crop: getCurrentImageUpload?.crop }
       : {};
@@ -62,10 +71,21 @@ function useTransformImage() {
 
     const url = getCldImageUrl({
       src: publicId,
+      quality: 1,
+      format: "webp",
       ...body,
     });
     if (isUpdateImage) {
-      setCurrentImageEdit({ url, body, id: uuidv4(), publicId });
+      if (getCurrentImageEdit?.id) {
+        addImagesEditArray(getCurrentImageEdit);
+      }
+      setCurrentImageEdit({
+        url,
+        body,
+        id: uuidv4(),
+        publicId,
+        name: nameImage,
+      });
       setIsLoadingImageUpload(true);
     }
     return url;
@@ -76,7 +96,26 @@ function useTransformImage() {
     const currentDownload = getCurrentImageUpload.isGalery
       ? getCurrentImageUpload
       : getCurrentImageEdit;
-    handleDownload(currentDownload.url, currentDownload?.name, format);
+    let currentUrl = "";
+    const existedUrl = saveDownloads?.[currentDownload.id]?.[format];
+    if (!existedUrl) {
+      currentUrl = handleGetCdlImage({
+        isUpdateImage: false,
+        format,
+        ...currentDownload?.body,
+      });
+      setSaveDownloads({
+        ...saveDownloads,
+        [currentDownload.id]: {
+          ...saveDownloads?.[currentDownload.id],
+          [format]: currentUrl,
+        },
+      });
+    } else {
+      currentUrl = existedUrl;
+    }
+    console.log(currentUrl, getCurrentImageEdit);
+    handleDownload(currentUrl, currentDownload?.name, format);
   };
 
   const handleUploadImage = (handleSuccess) => {
@@ -96,32 +135,60 @@ function useTransformImage() {
   };
 
   const handleOpenWidget = () => {
-    // setCurrentImageUpload({
-    //   url: null,
-    //   id: "id ahora",
-    // });
-    // setIsLoadingImageUpload(true);
-    // setTimeout(() => {
-    //   setCurrentImageUpload({
-    //     url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729362566/difer-images/wi24y5mhgk28t3wzzk35.webp",
-    //     id: uuidv4(),
-    //     publicId: "difer-images/wi24y5mhgk28t3wzzk35",
-    //   });
-    // }, 2000);
     handleUploadImage(handleGetImageUpload);
   };
 
   const handleSupositionImage = (underlay) => {
-    // console.log({ underlay });
     const body = {
       removeBackground: true,
-      background: "blueviolet",
-      // underlay,
+      underlay,
     };
     handleGetCdlImage(body);
   };
 
-  const handleCreateInvitation = () => {};
+  const handleSetTextImage = () => {
+    handleGetCdlImage({
+      blur: "800",
+      overlays: [
+        // Título - Efecto escalofriante
+        {
+          position: { y: 30, x: 0, gravity: "north" }, // Posición en la parte superior
+          text: {
+            color: "orange", // Color típico de Halloween
+            fontFamily: "Creepster", // Fuente estilo espeluznante
+            fontSize: 80, // Tamaño grande para el título
+            fontWeight: "black",
+            text: "ENTER IF YOU DARE",
+            shadow: true, // Sombra para crear un efecto más dramático
+          },
+        },
+        // Subtítulo - Efecto fantasmal
+        {
+          position: { y: 0, x: 0, gravity: "center" }, // Centrado en el medio
+          text: {
+            color: "white", // Color fantasmal
+            fontFamily: "Pirata One", // Fuente con un toque misterioso
+            fontSize: 40, // Tamaño normal para el subtítulo
+            fontWeight: "normal",
+            text: "Halloween is near...",
+            opacity: 70, // Hacemos el texto un poco transparente para un efecto etéreo
+            shadow: { color: "black", offsetX: 5, offsetY: 5 }, // Sombra más pronunciada
+          },
+        },
+        // Footer - Efecto siniestro
+        {
+          position: { y: 20, x: 0, gravity: "south" }, // Posición en la parte inferior
+          text: {
+            color: "purple", // Color misterioso
+            fontFamily: "Creepster", // Fuente más destacada
+            fontSize: 80, // Tamaño normal para el footer
+            fontWeight: "bold",
+            text: "Trick or Treat!",
+          },
+        },
+      ],
+    });
+  };
 
   return {
     handleUploadImage,
@@ -131,6 +198,7 @@ function useTransformImage() {
     loadingDownload,
     handleOpenWidget,
     handleSupositionImage,
+    handleSetTextImage,
   };
 }
 

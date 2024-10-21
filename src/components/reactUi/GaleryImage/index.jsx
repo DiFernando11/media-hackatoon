@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import useStoreApp from "../hooks/useStoreApp";
+import classNames from "classnames";
 
 const GaleryImage = () => {
   const {
@@ -8,6 +9,10 @@ const GaleryImage = () => {
     setLastCurrentImageUpload,
     getImagesEditArray,
     getLastCurrentImageUpload,
+    setCurrentImageEdit,
+    getCurrentImageEdit,
+    addImagesEditArray,
+    setSliderPosition,
   } = useStoreApp();
 
   const scrollRef = useRef(null);
@@ -25,6 +30,11 @@ const GaleryImage = () => {
       ...image,
       isGalery: true,
     });
+    setSliderPosition(1);
+    if (getCurrentImageEdit.id) {
+      addImagesEditArray(getCurrentImageEdit);
+      setCurrentImageEdit({});
+    }
   };
 
   const mouseDownHandler = (e) => {
@@ -83,7 +93,12 @@ const GaleryImage = () => {
       <div className="flex gap-2 h-14 justify-center items-center">
         {getImagesEditArray.map((image) => (
           <div
-            className="h-12 w-16 bg-blue-500 relative animate-zoom-in"
+            className={classNames(
+              "h-12 w-16 bg-blue-500 relative animate-zoom-in",
+              {
+                'border-2': getCurrentImageUpload.id === image.id,
+              }
+            )}
             key={image.id}
             onClick={() => handleSelectedImage(image)}
           >

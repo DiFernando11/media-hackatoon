@@ -136,7 +136,6 @@ function useStoreApp() {
   };
   const deleteImagesEditArray = (id) => {
     const updatedArray = getImagesEditArray.filter((image) => image.id !== id);
-    console.log(getImagesEditArray, id)
     imagesEditArrayStore.set(updatedArray);
     return updatedArray;
   };

@@ -3,19 +3,24 @@ import useStoreApp from "../hooks/useStoreApp";
 import useCreateModelMove from "../hooks/useCreateModelMove";
 import CloudWidgetReact from "../CloudWidgetReact";
 import UploadOtherImage from "./UploadOtherImage";
-import Modal from "../Modal";
-import useLocalStorage from "../hooks/useLocalStorage";
-import ModalContinueEdit from "../Modal/ModalContinueEdit";
+import PresentationChangeTopic from "../PresentationChangeTopic";
+import { C } from "../../../../dist/_astro/three.module.CIpW9_cp";
 
 function MainAction() {
-  const { getTopicHalloween, getSelectedTopic, getCurrentImageUpload } =
-    useStoreApp();
+  const {
+    getTopicHalloween,
+    getSelectedTopic,
+    getCurrentImageUpload,
+    getCurrentImageEdit,
+  } = useStoreApp();
 
   const { canvasRef } = useCreateModelMove(getTopicHalloween);
   const { canvasRef: canvasRef2 } = useCreateModelMove(getTopicHalloween);
+
   return (
     <main className="flex-grow flex flex-col justify-center items-center h-full w-full">
       {/* <ModalContinueEdit /> */}
+      <PresentationChangeTopic />
       <div className="w-full h-full max-h-[480px] max-w-[580px] relative bg-containerMedia">
         {getCurrentImageUpload?.isGalery && (
           <div

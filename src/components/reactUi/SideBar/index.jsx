@@ -8,6 +8,7 @@ import { initResize } from "../../../utils/resizeSideBar";
 import ToggleList from "../ToogleTopic";
 import Breadcrumb from "./Breadcrumb";
 import RenderActionCondition from "../RenderActionCondition";
+import DownloadImage from "./Actions/DownloadImage";
 
 const Sidebar = () => {
   const width = useMediaQuery();
@@ -69,10 +70,16 @@ const Sidebar = () => {
                   onClick={() => setComponenteKey(null)}
                   className="cursor-pointer flex justify-center items-center gap-2"
                 >
-                  <span className="font-general text-white">Regresar</span>
+                  <span className="font-general -text-xs-1 text-white">
+                    Regresar
+                  </span>
                   <ArrowUturnLeftIcon className="text-white size-4" />
                 </div>
               )}
+              <DownloadImage
+                setComponenteKey={setComponenteKey}
+                componenteKey={componenteKey}
+              />
               <RenderActionCondition
                 componenteKey={componenteKey}
                 setComponenteKey={setComponenteKey}

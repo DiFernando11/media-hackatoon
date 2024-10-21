@@ -41,17 +41,15 @@ const ToggleList = () => {
 
   const handleToggle = (value) => {
     setActiveIndex(value);
-    setTimeout(() => {
-      setTopicHalloween(value);
-      setCurrentTopicByLS(value);
-      if (getCurrentImageEdit?.id) {
-        console.log(getCurrentImageEdit, "LO QUE SE GUARDA ACTUAL");
-        addImagesEditArray(getCurrentImageEdit);
-        setCurrentImageEdit({});
-        setSliderPosition(1);
-      }
-    }, 400);
-    // setOpenInitTopic(true);
+
+    setTopicHalloween(value);
+    setCurrentTopicByLS(value);
+    if (getCurrentImageEdit?.id) {
+      addImagesEditArray(getCurrentImageEdit);
+      setCurrentImageEdit({});
+      setSliderPosition(1);
+    }
+    setOpenInitTopic(true);
     setDurationAnimation("duration-[400ms]");
     setDurationAnimationClose(500);
   };

@@ -5,7 +5,7 @@ import classNames from "classnames";
 import useAutoFontSize from "../hooks/useAutoFontSize";
 
 function HeaderPresentation() {
-  const { setOpenActionMedia, getSelectedTopic } = useStoreApp();
+  const { getSelectedTopic } = useStoreApp();
   const containerRef = useAutoFontSize({
     text: "Miduhallowcloud",
     minFontSizeRem: 1,
