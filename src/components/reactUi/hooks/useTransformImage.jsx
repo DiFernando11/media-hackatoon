@@ -15,12 +15,12 @@ function useTransformImage() {
     getCurrentImageEdit,
     addImagesEditArray,
     setSliderPosition,
+    setIsLoadingAllPage,
   } = useStoreApp();
 
   const handleDownload = useDownloadImage(setLoadingDownload);
 
   const handleGetImageUpload = (info) => {
-    console.log("AQUI HIZE UPLOAD");
     const coordinates = info?.coordinates?.custom?.[0];
     const detailCropX = coordinates?.[0];
     const detailCropY = coordinates?.[1];
@@ -58,7 +58,7 @@ function useTransformImage() {
   };
 
   const handleGetCdlImage = ({ isUpdateImage = true, ...props }) => {
-    console.log({ isUpdateImage, ...props });
+    setIsLoadingAllPage(true);
     const publicId = getCurrentImageUpload?.publicId;
     const nameImage = getCurrentImageUpload?.name;
     const crop = getCurrentImageUpload?.crop
@@ -114,19 +114,30 @@ function useTransformImage() {
     } else {
       currentUrl = existedUrl;
     }
-    console.log(currentUrl, getCurrentImageEdit);
     handleDownload(currentUrl, currentDownload?.name, format);
   };
 
   const handleUploadImage = (handleSuccess) => {
+    setIsLoadingAllPage(true);
     cloudinary.openUploadWidget(
       {
         cloudName: import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME,
         uploadPreset: import.meta.env.PUBLIC_UPLOAD_PRESET,
         sources: ["local", "url"],
         multiple: false,
+        cropping: true,
+        croppingAspectRatio: 1.0,
+        croppingShowDimensions: true,
+        text: {
+          es: {
+            local: {
+              dd_title_single: "Selecciona una nueva imagen",
+            },
+          },
+        },
       },
       (error, result) => {
+        setIsLoadingAllPage(false);
         if (!error && result && result.event === "success") {
           handleSuccess(result.info);
         }
@@ -146,47 +157,60 @@ function useTransformImage() {
     handleGetCdlImage(body);
   };
 
-  const handleSetTextImage = () => {
+  const handleSetTextImage = (textInputs, openSection) => {
+    const body = openSection?.body
+      ? [
+          {
+            position: { y: 0, x: 0, gravity: "center" },
+            text: {
+              color: textInputs.colorBody,
+              fontFamily: "Pirata One",
+              fontSize: textInputs.fontSizeBody,
+              fontWeight: "normal",
+              text: textInputs.textBody,
+              shadow: { color: "black", offsetX: 5, offsetY: 5 },
+            },
+          },
+        ]
+      : [];
+
+    const footer = openSection.footer
+      ? [
+          {
+            position: { y: 20, x: 0, gravity: "south" },
+            text: {
+              color: textInputs.colorFooter,
+              fontFamily: "Creepster",
+              fontSize: textInputs.fontSizeFooter,
+              fontWeight: "bold",
+              text: textInputs.textFooter,
+            },
+          },
+        ]
+      : [];
+
+    const overlays = [
+      // Header
+      {
+        position: { y: 30, x: 0, gravity: "north" },
+        text: {
+          color: textInputs.colorHeader,
+          fontFamily: "Creepster",
+          fontSize: textInputs.fontSizeHeader,
+          fontWeight: "black",
+          text: textInputs.textHeader,
+          shadow: true,
+        },
+      },
+      // body
+      ...body,
+      // Footer
+      ...footer,
+    ];
+    console.log(overlays);
     handleGetCdlImage({
       blur: "800",
-      overlays: [
-        // Título - Efecto escalofriante
-        {
-          position: { y: 30, x: 0, gravity: "north" }, // Posición en la parte superior
-          text: {
-            color: "orange", // Color típico de Halloween
-            fontFamily: "Creepster", // Fuente estilo espeluznante
-            fontSize: 80, // Tamaño grande para el título
-            fontWeight: "black",
-            text: "ENTER IF YOU DARE",
-            shadow: true, // Sombra para crear un efecto más dramático
-          },
-        },
-        // Subtítulo - Efecto fantasmal
-        {
-          position: { y: 0, x: 0, gravity: "center" }, // Centrado en el medio
-          text: {
-            color: "white", // Color fantasmal
-            fontFamily: "Pirata One", // Fuente con un toque misterioso
-            fontSize: 40, // Tamaño normal para el subtítulo
-            fontWeight: "normal",
-            text: "Halloween is near...",
-            opacity: 70, // Hacemos el texto un poco transparente para un efecto etéreo
-            shadow: { color: "black", offsetX: 5, offsetY: 5 }, // Sombra más pronunciada
-          },
-        },
-        // Footer - Efecto siniestro
-        {
-          position: { y: 20, x: 0, gravity: "south" }, // Posición en la parte inferior
-          text: {
-            color: "purple", // Color misterioso
-            fontFamily: "Creepster", // Fuente más destacada
-            fontSize: 80, // Tamaño normal para el footer
-            fontWeight: "bold",
-            text: "Trick or Treat!",
-          },
-        },
-      ],
+      overlays,
     });
   };
 

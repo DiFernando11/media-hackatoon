@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import useStoreApp from "../hooks/useStoreApp";
 
 function ButtonAction({
+  id,
   name,
   isActive,
   handleAction,
@@ -26,7 +27,8 @@ function ButtonAction({
   };
 
   return (
-    <li
+    <button
+      id={id}
       onClick={!isLoading || removeButton ? handleActiveAction : undefined}
       className={classNames(
         "w-full font-general text-white pt-1 flex justify-between items-center px-1",
@@ -48,7 +50,7 @@ function ButtonAction({
       )}
       {!isLoading && !removeButton && (
         <span
-          className={classNames("w-5 h-5 rounded-full border", {
+          className={classNames("w-5 h-5 min-h-5 min-w-5 rounded-full border", {
             "bg-black": !activeButton,
           })}
           style={{
@@ -59,7 +61,7 @@ function ButtonAction({
           }}
         />
       )}
-    </li>
+    </button>
   );
 }
 

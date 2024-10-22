@@ -13,13 +13,9 @@ export const imagesEditArrayStore = atom([]);
 
 export const sliderPositionStore = atom(1);
 
-export const initTopicConfigStore = map({
-    isOpen: false,
-    text: "Miduhallowcloud",
-    durationAnimation: "duration-[2000ms]",
-    backgroundCurtain: "bg-red-500",
-    durationCloseAnimation: 2000
-});
+export const isLoadingAllPageStore = atom(false);
+
+export const initTopicConfigStore = atom(false);
 
 export const currentImageUploadStore = map({
    url: "",

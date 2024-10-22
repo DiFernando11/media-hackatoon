@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useStoreApp from "../hooks/useStoreApp";
-import { MODEL_TOPIC } from "../../../utils/constants";
+import { isMdMQ, MODEL_TOPIC } from "../../../utils/constants";
 import ToggleAction from "../ToogleAction";
 import HalloweenToggle from "../HalloweenTopic";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -22,12 +22,11 @@ const ToggleList = () => {
   const {
     setTopicHalloween,
     setOpenInitTopic,
-    setDurationAnimation,
-    setDurationAnimationClose,
     getCurrentImageEdit,
     addImagesEditArray,
     setCurrentImageEdit,
     setSliderPosition,
+    setOpenActionMedia
   } = useStoreApp();
 
   const [activeIndex, setActiveIndex] = useState(null);
@@ -41,7 +40,8 @@ const ToggleList = () => {
 
   const handleToggle = (value) => {
     setActiveIndex(value);
-
+    const screenWidth = window.innerWidth;
+    setOpenActionMedia(!isMdMQ(screenWidth));
     setTopicHalloween(value);
     setCurrentTopicByLS(value);
     if (getCurrentImageEdit?.id) {
@@ -50,8 +50,6 @@ const ToggleList = () => {
       setSliderPosition(1);
     }
     setOpenInitTopic(true);
-    setDurationAnimation("duration-[400ms]");
-    setDurationAnimationClose(500);
   };
 
   return (

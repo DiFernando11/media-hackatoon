@@ -14,7 +14,7 @@ function HeaderPresentation() {
   return (
     <div
       className={classNames(
-        "relative mb-5",
+        "relative mb-16 sm:mb-5",
         "flex flex-col justify-center",
         "text-center"
       )}

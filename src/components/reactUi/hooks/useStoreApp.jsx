@@ -10,8 +10,8 @@ import {
   imagesEditArrayStore,
   sliderPositionStore,
   lastCurrentImageUploadStore,
+  isLoadingAllPageStore,
 } from "../../../stores";
-import { bgColorWitch } from "../../../utils/constants";
 import { modelByTopic } from "../../../utils";
 import useLocalStorage from "./useLocalStorage";
 
@@ -27,6 +27,7 @@ function useStoreApp() {
   const getImagesEditArray = useStore(imagesEditArrayStore);
   const getSliderPosition = useStore(sliderPositionStore);
   const getLastCurrentImageUpload = useStore(lastCurrentImageUploadStore);
+  const getIsLoadingAllPage = useStore(isLoadingAllPageStore);
 
   const setOpenActionMedia = (isOpen) => {
     openActionStore.set(isOpen);
@@ -46,23 +47,7 @@ function useStoreApp() {
   };
 
   const setOpenInitTopic = (isOpen) => {
-    initTopicConfigStore.setKey("isOpen", isOpen);
-  };
-
-  const setTextInitTopic = (text) => {
-    initTopicConfigStore.setKey("text", text);
-  };
-
-  const setDurationAnimation = (duration) => {
-    initTopicConfigStore.setKey("durationAnimation", duration);
-  };
-
-  const setDurationAnimationClose = (duration) => {
-    initTopicConfigStore.setKey("durationCloseAnimation", duration);
-  };
-
-  const setBackgroundCurtain = (bg) => {
-    initTopicConfigStore.setKey("backgroundCurtain", bgColorWitch);
+    initTopicConfigStore.set(isOpen);
   };
 
   const setCurrentImageUpload = ({
@@ -148,6 +133,10 @@ function useStoreApp() {
     sliderPositionStore.set(position);
   };
 
+  const setIsLoadingAllPage = (loading) => {
+    isLoadingAllPageStore.set(loading);
+  };
+
   return {
     openActionMedia,
     getSelectedTopic,
@@ -158,10 +147,6 @@ function useStoreApp() {
     setModeMoveModel,
     getInitTopicConfig,
     setOpenInitTopic,
-    setTextInitTopic,
-    setDurationAnimation,
-    setBackgroundCurtain,
-    setDurationAnimationClose,
     getCurrentImageUpload,
     setCurrentImageUpload,
     getLoadingImageUpload,
@@ -175,7 +160,9 @@ function useStoreApp() {
     getLastCurrentImageUpload,
     setLastCurrentImageUpload,
     deleteImagesEditArray,
-    deleteAllImagesEditArray
+    deleteAllImagesEditArray,
+    getIsLoadingAllPage,
+    setIsLoadingAllPage,
   };
 }
 

@@ -9,6 +9,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
     setSliderPosition,
     setCurrentImageEdit,
     getCurrentImageEdit,
+    setIsLoadingAllPage,
   } = useStoreApp();
   const [isManualSliding, setIsManualSliding] = useState(false);
   const imageContainer = useRef(undefined);
@@ -41,7 +42,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
   const handleMouseUp = () => {
     window.onmousemove = undefined;
     window.onmouseup = undefined;
-    setIsManualSliding(false); // Vuelve al modo automático después de soltar el mouse
+    setIsManualSliding(false);
   };
 
   const handleTouchMove = (e) => {
@@ -49,6 +50,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
   };
 
   const handleSecondImageLoad = () => {
+    setIsLoadingAllPage(false);
     setAttempts(0);
     setIsLoadingImage(false);
     setSliderPosition(0);
@@ -67,6 +69,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
       }, 5000);
     } else {
       setAttempts(0);
+      setIsLoadingAllPage(false);
       setIsLoadingImage(false);
       setCurrentImageEdit({});
       console.log("Se alcanzó el número máximo de intentos");
@@ -90,6 +93,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
           transition: isManualSliding ? "none" : "clip-path 1s ease-in-out",
         }}
         onLoad={() => {
+          setIsLoadingAllPage(false);
           setIsLoadingImage(false);
         }}
       />

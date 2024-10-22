@@ -3,7 +3,6 @@ import useTransformImage from "../hooks/useTransformImage";
 
 const ContainerMedia = ({ children }) => {
   const { handleOpenWidget } = useTransformImage();
-
   return (
     <button
       onClick={handleOpenWidget}

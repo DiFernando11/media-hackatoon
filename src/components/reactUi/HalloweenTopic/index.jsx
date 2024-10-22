@@ -3,12 +3,12 @@ import "./HalloweenToggle.css"; // Asegúrate de incluir tus estilos aquí
 
 const HalloweenToggle = ({ isActive, onToggle }) => {
   return (
-    <div className="toggle">
+    <div >
       <input
         type="checkbox"
         id="btn"
-        checked={isActive} // Está chequeado solo si está activo
-        onChange={onToggle} // Llama a la función que viene del padre
+        checked={isActive}
+        onChange={onToggle}
       />
       <label htmlFor="btn">
         <span className="hidden thumb">

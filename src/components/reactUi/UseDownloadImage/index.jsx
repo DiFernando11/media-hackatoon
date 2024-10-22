@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useCallback } from "react";
+import useStoreApp from "../hooks/useStoreApp";
 
 const useDownloadImage = (setLoadingDownload) => {
+  const { setIsLoadingAllPage } = useStoreApp();
   const toDataURL = async (url) => {
     try {
       const response = await axios.get(url, { responseType: "blob" });
@@ -25,7 +27,9 @@ const useDownloadImage = (setLoadingDownload) => {
       a.click();
       setLoadingDownload && setLoadingDownload(false);
       document.body.removeChild(a);
+      setIsLoadingAllPage(false);
     } else {
+      setIsLoadingAllPage(false);
       console.error("No se pudo descargar la imagen");
     }
   }, []);

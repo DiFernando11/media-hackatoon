@@ -13,9 +13,11 @@ import DownloadImage from "./Actions/DownloadImage";
 const Sidebar = () => {
   const width = useMediaQuery();
   const [componenteKey, setComponenteKey] = useState(null);
+  const [activeButton, setActiveButton] = useState(false);
 
-  const { openActionMedia, setOpenActionMedia, getCurrentImageUpload } =
+  const { openActionMedia, setOpenActionMedia, getSelectedTopic } =
     useStoreApp();
+  const bgColor = getSelectedTopic().bgColor.secondary;
 
   useEffect(() => {
     setOpenActionMedia(!isMdMQ(width));
@@ -30,9 +32,9 @@ const Sidebar = () => {
       <div
         onClick={() => setOpenActionMedia(false)}
         className={classNames(
-          "fixed block md:hidden inset-0 cursor-pointer z-10 transition-opacity duration-500 ease-in-out",
+          "fixed bg-black block md:hidden inset-0 cursor-pointer z-10 transition-opacity duration-500 ease-in-out",
           {
-            "opacity-50 pointer-events-auto": openActionMedia,
+            "opacity-95 pointer-events-auto": openActionMedia,
             "opacity-0 pointer-events-none": !openActionMedia,
           }
         )}
@@ -40,7 +42,7 @@ const Sidebar = () => {
       <div
         id={SIDE_BAR_APP}
         className={classNames(
-          "bg-sidebar h-full z-20 max-w-[500px] min-w-[220px] sm:min-w-[300px] max-wi w-[80%] md:w-[30%]",
+          "bg-sidebar h-full z-20 max-w-[500px] min-w-[220px] sm:min-w-[300px] w-[80%] md:w-[30%]",
           "fixed top-0 right-0 transform transition-transform duration-1000 ease-in-out md:static",
           {
             "translate-x-0": openActionMedia,
@@ -54,11 +56,11 @@ const Sidebar = () => {
           className="opacity-80 top-0 left-0 h-full w-full absolute -z-10"
           alt="fondo del sideBar"
         />
-        <aside className="px-3 py-5 h-full">
+        <aside className="px-3 py-5 h-full overflow-y-auto">
           <div>
             <XCircleIcon
               onClick={() => setOpenActionMedia(false)}
-              className="absolute top-2 right-2 cursor-pointer block md:hidden ml-auto size-6 text-blue-500"
+              className="absolute top-2 right-2 cursor-pointer block md:hidden ml-auto size-6 text-white"
             />
             <ul className="flex flex-col gap-3">
               <Breadcrumb />
@@ -84,11 +86,31 @@ const Sidebar = () => {
                 componenteKey={componenteKey}
                 setComponenteKey={setComponenteKey}
               />
-
-              {/* <DeleteCurrentImageGalery />
-              <RenuevaFondo active={activeIndex} handleToggle={handleToggle} />
-              <SupositionImage />
-              <DeleteAllGalery /> */}
+              <button
+                onClick={() => setActiveButton(!activeButton)}
+                className="w-full font-general text-white pt-1 flex justify-between items-center px-1 border-t"
+                id="toggle-rotation"
+              >
+                <p className="-text-xs-1">
+                  {!activeButton
+                    ? "¡Rota tu modelo 3D!"
+                    : "!Deja que tu modelo siga el cursor!"}
+                </p>
+                <span
+                  className={classNames(
+                    "w-5 h-5 min-h-5 min-w-5 rounded-full border",
+                    {
+                      "bg-black": !activeButton,
+                    }
+                  )}
+                  style={{
+                    transition: "background-color 0.5s ease",
+                    border: activeButton ? "2px solid" : "1px solid",
+                    borderColor: activeButton ? "white" : bgColor,
+                    backgroundColor: activeButton ? bgColor : "black",
+                  }}
+                />
+              </button>
             </ul>
           </div>
         </aside>

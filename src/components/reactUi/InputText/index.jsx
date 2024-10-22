@@ -13,7 +13,7 @@ function InputText({
       {label && (
         <label
           htmlFor="small-textarea"
-          className="font-general-md -text-xs-1 leading-5 mt-4 text-white"
+          className="font-general-md -text-xs-1 leading-5 text-white"
         >
           {label}
         </label>

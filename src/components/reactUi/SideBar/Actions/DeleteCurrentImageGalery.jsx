@@ -11,9 +11,11 @@ function DeleteCurrentImageGalery() {
     getImagesEditArray,
   } = useStoreApp();
   const handleDeleteImageGalery = (id) => {
-    const currentsImage = deleteImagesEditArray(id);
+    deleteImagesEditArray(id);
     setCurrentImageUpload(
-      currentsImage.length === 0 ? getLastCurrentImageUpload : currentsImage[0]
+      getLastCurrentImageUpload.id
+        ? getLastCurrentImageUpload
+        : getCurrentImageUpload
     );
   };
   if (!getCurrentImageUpload.isGalery) return null;

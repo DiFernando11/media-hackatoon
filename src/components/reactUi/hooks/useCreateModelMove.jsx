@@ -4,7 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { modelByTopic } from "../../../utils";
 
 const useCreateModelMove = (topic) => {
-  const { modelPath, scale,  width, height} = modelByTopic(topic);
+  const { modelPath, scale, width, height } = modelByTopic(topic);
   const canvasRef = useRef(null);
   const threeJSInstance = useRef({
     scene: null,
@@ -48,7 +48,7 @@ const useCreateModelMove = (topic) => {
     const pointLight = new THREE.PointLight(0xffffff, 5);
     pointLight.position.set(0, 0.2, 2);
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.2); // Luz suave, ajusta la intensidad a tus necesidades
-instance.scene.add(ambientLight);
+    instance.scene.add(ambientLight);
     instance.scene.add(pointLight);
 
     // Modelo base

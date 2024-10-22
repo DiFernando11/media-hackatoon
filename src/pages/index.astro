@@ -19,28 +19,9 @@ import MainAction from "../components/reactUi/MainAction";
     <LayoutApp client:load>
       <HeaderPresentation client:only="react" />
       <MainAction client:load>
-        <!-- <CldUploadWidget
-          class="w-full h-full"
-          id="upload-widget"
-          uploadPreset="upload-hackatoon-image"
-          options={{
-            cropping: true,
-            croppingAspectRatio: 1.0,
-            croppingShowDimensions: true,
-            sources: ["local"],
-            multiple: false,
-            language: "es",
-            text: {
-              es: {
-                local: {
-                  dd_title_single: "Arrastra un nueva imagen",
-                },
-              },
-            },
-          }}
-        > -->
-        <ContainerMedia client:load />
-        <!-- </CldUploadWidget> -->
+        <ContainerMedia client:load>
+          <></>
+        </ContainerMedia>
       </MainAction>
     </LayoutApp>
   </body>

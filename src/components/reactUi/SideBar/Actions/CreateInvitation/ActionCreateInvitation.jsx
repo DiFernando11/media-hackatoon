@@ -1,26 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonAction from "../../../ButtonAction";
 import useTransformImage from "../../../hooks/useTransformImage";
 import useStoreApp from "../../../hooks/useStoreApp";
 import InputText from "../../../InputText";
 import NumberInput from "../../../NumberInput";
 import InputColor from "../../../InputColor";
+import { PlusIcon } from "@heroicons/react/24/solid";
+import AddBody from "./AddBody";
+import AddTittle from "./AddTittle";
+import AddFooter from "./AddFooter";
 
 function ActionCreateInvitation() {
   const { handleSetTextImage, handleUploadImage } = useTransformImage();
-  const [inputsValue, setInputsValue] = useState({
-    textHeader: "",
-    fontSizeHeader: "200",
-    textBody: "",
-    fontSizeBody: "50",
-    textFooter: "",
-    fontSizeFooter: "150",
-    colorHeader: "",
-    colorBody: "",
-    colorFooter: "",
-  });
-  console.log(inputsValue);
-
+  const { getSelectedTopic } = useStoreApp();
+  const currentTopic = getSelectedTopic();
+  const initialOpen = {
+    body: false,
+    footer: false,
+  };
+  const [openSection, setOpenSection] = useState(initialOpen);
+  const initialValue = {
+    textHeader: "Invitacion a mi fiesta de halloween",
+    fontSizeHeader: "80",
+    textBody: "Obligatorio traer disfraz",
+    fontSizeBody: "40",
+    textFooter: "Dia 31 de Octubre, no faltes",
+    fontSizeFooter: "80",
+    colorHeader: currentTopic.bgColor.secondary,
+    colorBody: currentTopic.bgColor.secondary,
+    colorFooter: currentTopic.bgColor.secondary,
+  };
+  const [inputsValue, setInputsValue] = useState(initialValue);
   const [errors, setErrors] = useState({
     textHeader: "",
     fontSizeHeader: "",
@@ -30,8 +40,13 @@ function ActionCreateInvitation() {
     fontSizeFooter: "",
   });
 
-  const { getSelectedTopic } = useStoreApp();
-  const currentTopic = getSelectedTopic();
+  const handleAddSection = (section) => {
+    const switchOpen = !openSection[section];
+    setOpenSection({
+      ...openSection,
+      [section]: switchOpen,
+    });
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,13 +56,21 @@ function ActionCreateInvitation() {
     }));
 
     let errorMessage = "";
-    if (name === "textHeader" && value.length > 40) {
-      errorMessage = "El título no puede tener más de 40 caracteres.";
-    } else if (name === "textBody" && value.length > 60) {
-      errorMessage = "El cuerpo no puede tener más de 60 caracteres.";
-    } else if (name === "textFooter" && value.length > 40) {
+    if (name === "textHeader" && (value.length > 40 || value.length < 8)) {
       errorMessage =
-        "La información adicional no puede tener más de 40 caracteres.";
+        "El título no puede tener menos de 8 ni más de 40 caracteres.";
+    } else if (
+      name === "textBody" &&
+      (value.length > 120 || value.length < 8)
+    ) {
+      errorMessage =
+        "El cuerpo no puede tener menos de 8 ni más de 120 caracteres.";
+    } else if (
+      name === "textFooter" &&
+      (value.length > 60 || value.length < 8)
+    ) {
+      errorMessage =
+        "La información adicional no puede tener menos de 8 ni más de 60 caracteres.";
     }
 
     if (
@@ -56,8 +79,9 @@ function ActionCreateInvitation() {
       name === "fontSizeFooter"
     ) {
       const fontSizeValue = Number(value);
-      if (fontSizeValue > 500) {
-        errorMessage = "El tamaño de la fuente no puede ser mayor de 500.";
+      if (fontSizeValue > 400 || fontSizeValue < 8) {
+        errorMessage =
+          "El tamaño de la fuente no puede ser menor de 8px ni mayor a 400px.";
       }
     }
 
@@ -67,8 +91,14 @@ function ActionCreateInvitation() {
     }));
   };
 
+  const hasErrors = Object.values(errors).some((error) => error !== "");
+
   const handleAction = () => {
-    handleSetTextImage();
+    if (!hasErrors) {
+      handleSetTextImage(inputsValue, openSection);
+      setInputsValue(initialValue);
+      setOpenSection(initialOpen);
+    }
   };
 
   return (
@@ -76,80 +106,39 @@ function ActionCreateInvitation() {
       <p className="text-white font-general-md -text-xs-1 leading-5">
         Invita a tus amigos a tu fiesta de halloween.
       </p>
-      <ButtonAction
-        handleAction={handleAction}
-        name={"Crear invitacion"}
-        isClickPass
-      />
-      <InputText
-        handleChange={handleChange}
-        inputValue={inputsValue.textHeader}
-        inputName="textHeader"
-        error={errors.textHeader}
-        label={"Escribe un titulo"}
-        placeholder={"Te invito a mi fiesta..."}
-      />
-      <p className="font-general-md -text-xs-1 leading-5 mt-4 text-white">
-        Personaliza tu texto
-      </p>
-      <div className="flex gap-3 justify-center items-center">
-        <NumberInput
-          inputName={"fontSizeHeader"}
-          inputValue={inputsValue.fontSizeHeader}
-          handleChange={handleChange}
-          error={errors.fontSizeHeader}
-          placeholder={"Define el tamaño..."}
+      <div>
+        <ButtonAction
+          handleAction={handleAction}
+          name={"Crear invitacion"}
+          isClickPass
         />
-        <InputColor
-          handleChange={handleChange}
-          inputValue={inputsValue.colorHeader}
-          inputName="colorHeader"
-        />
+        {hasErrors && (
+          <p className="text-red-500 font-general-md text-end">
+            Tienes errores en tu formulario
+          </p>
+        )}
       </div>
-      <InputText
+      <AddTittle
+        inputsValue={inputsValue}
+        errors={errors}
         handleChange={handleChange}
-        inputValue={inputsValue.textBody}
-        inputName="textBody"
-        error={errors.textBody}
-        label={"Cuentales tu asunto"}
-        placeholder={"Obligatorio traer disfraz..."}
       />
-      <div className="flex gap-3 justify-center items-center">
-        <NumberInput
-          inputName={"fontSizeBody"}
-          inputValue={inputsValue.fontSizeBody}
-          handleChange={handleChange}
-          error={errors.fontSizeBody}
-          placeholder={"Define el tamaño..."}
-        />
-        <InputColor
-          handleChange={handleChange}
-          inputValue={inputsValue.colorBody}
-          inputName="colorBody"
-        />
-      </div>
-      <InputText
+      <AddBody
+        openSection={openSection}
+        setIsOpen={handleAddSection}
+        inputsValue={inputsValue}
+        errors={errors}
+        setErrors={setErrors}
         handleChange={handleChange}
-        inputValue={inputsValue.textFooter}
-        inputName="textFooter"
-        label={"Dales mas informacion"}
-        error={errors.textFooter}
-        placeholder={"Dia: 31 de Octubre..."}
       />
-      <div className="flex gap-3 justify-center items-center">
-        <NumberInput
-          inputName={"fontSizeFooter"}
-          inputValue={inputsValue.fontSizeFooter}
-          handleChange={handleChange}
-          error={errors.fontSizeFooter}
-          placeholder={"Define el tamaño..."}
-        />
-        <InputColor
-          handleChange={handleChange}
-          inputValue={inputsValue.colorFooter}
-          inputName="colorFooter"
-        />
-      </div>
+      <AddFooter
+        openSection={openSection}
+        setIsOpen={handleAddSection}
+        inputsValue={inputsValue}
+        errors={errors}
+        setErrors={setErrors}
+        handleChange={handleChange}
+      />
     </>
   );
 }

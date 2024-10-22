@@ -1,50 +1,57 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useStoreApp from "../hooks/useStoreApp";
 import classNames from "classnames";
 
 const CurtainChangeTopic = () => {
-  const { getInitTopicConfig, setOpenInitTopic } = useStoreApp();
+  const { getSelectedTopic } = useStoreApp();
+  const [isOpen, setIsOpen] = useState(true);
+  const currentTopic = getSelectedTopic();
 
-  // Cierra la cortina automáticamente después de 2 segundos cuando está abierta
   useEffect(() => {
-    if (getInitTopicConfig.isOpen) {
-      const timer = setTimeout(
-        () => setOpenInitTopic(false),
-        getInitTopicConfig.durationCloseAnimation
-      ); // Cierra la cortina después de 2 segundos
-      return () => clearTimeout(timer);
-    }
-  }, [getInitTopicConfig.isOpen, setOpenInitTopic]);
+    const timer = setTimeout(() => setIsOpen(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div
       className={`fixed inset-0 z-[999] flex ${
-        getInitTopicConfig.isOpen ? "" : "pointer-events-none"
+        isOpen ? "" : "pointer-events-none"
       }`}
     >
       <div
         className={classNames(
           "absolute top-0 left-0 h-full w-1/2 transition-transform ease-in-out",
-          getInitTopicConfig.durationAnimation,
-          getInitTopicConfig.backgroundCurtain,
+          "duration-[2000ms]",
           {
-            "translate-x-0": getInitTopicConfig.isOpen,
-            "-translate-x-full": !getInitTopicConfig.isOpen,
+            "translate-x-0": isOpen,
+            "-translate-x-full": !isOpen,
           }
         )}
+        style={{
+          background: "linear-gradient(135deg, #2c2c2c, #4b0f0f)",
+        }}
       >
+        <div className="absolute top-10 justify-center flex items-center w-16 h-16 text-white bg-black rounded-full animate-rol_stop">
+          <img src="/cloudinary.jpg" className="w-16 h-16 rounded-full" />
+        </div>
         <div
-          className="absolute flex justify-center items-center right-0 top-1/2 transform -translate-y-1/2"
+          className="background-image-initial absolute flex justify-center items-center right-0 top-1/2 transform -translate-y-1/2"
           style={{
-            width: "200px",
-            height: "200px",
+            width: "250px",
+            height: "250px",
             borderRadius: "50%",
             backgroundColor: "red",
             clipPath: "inset(0 50% 0 0)",
-            marginRight: "-100px",
+            marginRight: "-125px",
+            boxShadow: "0 4px 15px rgba(0, 0, 0, 0.5)",
           }}
         >
-          <span className="-ml-[80px] text-white text-xl font-bold">
+          <span
+            className={classNames(
+              currentTopic.animationTitle,
+              "-ml-[96px] font-general text-white text-[32px]  font-bold"
+            )}
+          >
             Miduhal
           </span>
         </div>
@@ -52,26 +59,42 @@ const CurtainChangeTopic = () => {
 
       <div
         className={classNames(
-          "absolute top-0 right-0 h-full w-1/2 bg-black transition-transform  ease-in-out",
-          getInitTopicConfig.durationAnimation,
+          "absolute top-0 right-0 h-full w-1/2 transition-transform  ease-in-out",
+          "duration-[2000ms]",
           {
-            "translate-x-0": getInitTopicConfig.isOpen,
-            "translate-x-full": !getInitTopicConfig.isOpen,
+            "translate-x-0": isOpen,
+            "translate-x-full": !isOpen,
           }
         )}
+        style={{
+          background: "linear-gradient(135deg, #2c2c2c, #4b0f0f)",
+        }}
       >
         <div
-          className="absolute flex justify-center items-center left-0 top-1/2 transform -translate-y-1/2"
           style={{
-            width: "200px",
-            height: "200px",
+            left: "100%",
+          }}
+          className="absolute top-10 justify-center flex items-center w-16 h-16 text-white bg-black rounded-full animate-rol_reverse"
+        >
+          <img src="/midudev.jfif" className="w-16 h-16 rounded-full" />
+        </div>
+        <div
+          className="background-image-initial absolute flex justify-center items-center left-0 top-1/2 transform -translate-y-1/2"
+          style={{
+            width: "250px",
+            height: "250px",
             borderRadius: "50%",
-            backgroundColor: "red",
             clipPath: "inset(0 0 0 50%)",
-            marginLeft: "-100px",
+            marginLeft: "-126px",
+            boxShadow: "0 4px 15px rgba(0, 0, 0, 0.5)",
           }}
         >
-          <span className="-mr-[86px] text-white text-xl font-bold">
+          <span
+            className={classNames(
+              currentTopic.animationTitle,
+              "-mr-[116px] font-general text-white text-[32px] font-bold"
+            )}
+          >
             lowcloud
           </span>
         </div>

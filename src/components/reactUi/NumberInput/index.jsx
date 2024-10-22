@@ -30,7 +30,6 @@ function NumberInput({
         />
         <span className="text-white">PX</span>
       </div>
-      {error && <p className="text-red-500 font-general-md">{error}</p>}
     </>
   );
 }

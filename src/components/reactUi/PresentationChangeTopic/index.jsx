@@ -12,18 +12,20 @@ const PresentationChangeTopic = () => {
   };
 
   useEffect(() => {
-    if (getInitTopicConfig.isOpen) {
+    if (getInitTopicConfig) {
       const timer = setTimeout(() => {
         closeLoader();
       }, 1000);
       return () => clearTimeout(timer);
     }
-  }, [getInitTopicConfig.isOpen]);
+  }, [getInitTopicConfig]);
 
   return (
     <div
       className={`fixed inset-0 flex items-center justify-center z-50 bg-black ${
-        getInitTopicConfig.isOpen ? "opacity-100" : "opacity-0 pointer-events-none transition-opacity duration-500"
+        getInitTopicConfig
+          ? "opacity-100"
+          : "opacity-0 pointer-events-none transition-opacity duration-500"
       }`}
     >
       <h1

@@ -5,10 +5,10 @@ const ToggleAction = ({ isActive, onToggle, topic, text }) => {
   const currentTopic = modelByTopic(topic);
 
   return (
-    <div className="flex flex-col items-center text-[8px]">
+    <div className="flex flex-col items-center text-[16px] font-general-md">
       <span className="text-white text-start">{text}</span>
       <div
-        className={`relative w-12 h-7 border rounded-full cursor-pointer transition-all duration-1000`}
+        className={`relative w-16 h-8 border rounded-full cursor-pointer transition-all duration-1000`}
         onClick={onToggle}
         style={{
           borderColor: isActive ? "white" : currentTopic.bgColor.secondary,
@@ -17,12 +17,12 @@ const ToggleAction = ({ isActive, onToggle, topic, text }) => {
         }}
       >
         <div
-          className={`border absolute top-0.5 left-1 w-6 h-6 rounded-full flex justify-center items-center`}
+          className={`border absolute top-0 left-1 w-8 h-8 rounded-full flex justify-center items-center`}
           style={{
             backgroundColor: isActive
               ? currentTopic.bgColor.secondary
               : currentTopic.bgColor.secondary,
-            transform: isActive ? "translateX(20px)" : "translateX(-3.5px)",
+            transform: isActive ? "translateX(28px)" : "translateX(-3.5px)",
             transition:
               "transform 0.5s ease-in-out, background-color 0.3s ease",
           }}

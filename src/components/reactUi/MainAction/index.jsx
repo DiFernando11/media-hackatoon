@@ -4,14 +4,16 @@ import useCreateModelMove from "../hooks/useCreateModelMove";
 import CloudWidgetReact from "../CloudWidgetReact";
 import UploadOtherImage from "./UploadOtherImage";
 import PresentationChangeTopic from "../PresentationChangeTopic";
-import { C } from "../../../../dist/_astro/three.module.CIpW9_cp";
+import LoadingBackground from "../LoadingBackground";
+import ModalContinueEdit from "../Modal/ModalContinueEdit";
+import CurtainChangeTopic from "../CurtainChangeTopic";
 
 function MainAction() {
   const {
     getTopicHalloween,
     getSelectedTopic,
     getCurrentImageUpload,
-    getCurrentImageEdit,
+    getIsLoadingAllPage,
   } = useStoreApp();
 
   const { canvasRef } = useCreateModelMove(getTopicHalloween);
@@ -19,8 +21,10 @@ function MainAction() {
 
   return (
     <main className="flex-grow flex flex-col justify-center items-center h-full w-full">
-      {/* <ModalContinueEdit /> */}
+      <ModalContinueEdit />
       <PresentationChangeTopic />
+      <CurtainChangeTopic />
+      <LoadingBackground isLoading={getIsLoadingAllPage} />
       <div className="w-full h-full max-h-[480px] max-w-[580px] relative bg-containerMedia">
         {getCurrentImageUpload?.isGalery && (
           <div
@@ -34,6 +38,11 @@ function MainAction() {
             </h2>
           </div>
         )}
+        <div className="w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 font-general-md">
+          <h2 className="text-white text-center mx-3 px-2 rounded-sm text-[28px]">
+            ¡No te detengas! Sube tu imagen para continuar la diversión.
+          </h2>
+        </div>
         <img
           className="absolute w-full h-full top-0 left-0 opacity-40 -z-10"
           src="/containerMedia.avif"
@@ -41,7 +50,7 @@ function MainAction() {
         />
         <canvas
           id="webgl"
-          className="w-32 z-20 h-32 absolute sm:left-0 -top-8 
+          className="w-32 z-20 h-32 absolute sm:left-0 -top-20 sm:-top-8 
           left-1/2 transform -translate-x-1/2 pointer-events-none"
           ref={canvasRef}
         />
