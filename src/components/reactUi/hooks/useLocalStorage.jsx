@@ -13,6 +13,9 @@ const useLocalStorage = () => {
   const setCurrentImageUploadByLs = (value) =>
     localStorage.setItem("currentImageUpload", JSON.stringify(value));
 
+  const setCurrentImageEditByLs = (value) =>
+    localStorage.setItem("currentImageEdit", JSON.stringify(value));
+
   const getCurrentOlnyNameTopicByLS = () =>
     localStorage.getItem("currentTopic");
 
@@ -21,7 +24,15 @@ const useLocalStorage = () => {
     if (current) return JSON.parse(current);
     return current;
   };
-  const deleteImageUploadByLs = () => localStorage.removeItem('currentImageUpload');
+  const getCurrentImageEditByLs = () => {
+    const current = localStorage.getItem("currentImageEdit");
+    if (current) return JSON.parse(current);
+    return current;
+  };
+  const deleteImageUploadByLs = () =>
+    localStorage.removeItem("currentImageUpload");
+  const deleteImageEditByLs = () =>
+    localStorage.removeItem("currentImageEdit");
 
   return {
     setCurrentTopicByLS,
@@ -29,7 +40,10 @@ const useLocalStorage = () => {
     getCurrentOlnyNameTopicByLS,
     setCurrentImageUploadByLs,
     getCurrentImageUploadByLs,
-    deleteImageUploadByLs
+    deleteImageUploadByLs,
+    setCurrentImageEditByLs,
+    deleteImageEditByLs,
+    getCurrentImageEditByLs
   };
 };
 

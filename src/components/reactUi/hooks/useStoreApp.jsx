@@ -17,7 +17,8 @@ import { modelByTopic } from "../../../utils";
 import useLocalStorage from "./useLocalStorage";
 
 function useStoreApp() {
-  const { setCurrentImageUploadByLs } = useLocalStorage();
+  const { setCurrentImageUploadByLs, setCurrentImageEditByLs } =
+    useLocalStorage();
   const getInitTopicConfig = useStore(initTopicConfigStore);
   const openActionMedia = useStore(openActionStore);
   const getTopicHalloween = useStore(topicHalloweenStore);
@@ -113,6 +114,15 @@ function useStoreApp() {
     name = "",
     crop = {},
   }) => {
+    const currentData = {
+      id,
+      url,
+      name,
+      crop,
+      body,
+      publicId,
+    };
+    setCurrentImageEditByLs(currentData);
     currentImageEditStore.setKey("url", url);
     currentImageEditStore.setKey("id", id);
     currentImageEditStore.setKey("body", body);

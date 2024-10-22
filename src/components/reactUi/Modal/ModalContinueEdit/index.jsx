@@ -5,25 +5,35 @@ import useStoreApp from "../../hooks/useStoreApp";
 import { useTranslation } from "react-i18next";
 
 function ModalContinueEdit() {
-  const { getCurrentImageUploadByLs, deleteImageUploadByLs } =
-    useLocalStorage();
+  const {
+    getCurrentImageUploadByLs,
+    deleteImageUploadByLs,
+    deleteImageEditByLs,
+    setCurrentImageEditByLs,
+    getCurrentImageEditByLs,
+  } = useLocalStorage();
   const { t } = useTranslation();
-  const { setCurrentImageUpload } = useStoreApp();
+  const { setCurrentImageUpload, setCurrentImageEdit } = useStoreApp();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleContinueEdit = () => {
     setIsModalOpen(false);
     setCurrentImageUpload(getCurrentImageUploadByLs());
+    setCurrentImageEdit(getCurrentImageEditByLs());
   };
 
   const handleEditNewImage = () => {
     setIsModalOpen(false);
     deleteImageUploadByLs();
+    deleteImageEditByLs();
   };
 
   useEffect(() => {
-    if (getCurrentImageUploadByLs()?.id) {
+    if (getCurrentImageUploadByLs()?.id && getCurrentImageEditByLs()?.id) {
+      console.log(getCurrentImageEditByLs()?.id, 'a ver')
       setIsModalOpen(true);
+    } else {
+      deleteImageUploadByLs();
     }
   }, []);
   return (
@@ -38,7 +48,7 @@ function ModalContinueEdit() {
           onClick={handleContinueEdit}
           className="bg-containerMedia text-white px-6 py-3 rounded-md shadow-lg hover:bg-orange-700"
         >
-          {t('continueEditingButton')}
+          {t("continueEditingButton")}
         </button>
         <button
           onClick={handleEditNewImage}
