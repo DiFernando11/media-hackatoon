@@ -17,5 +17,5 @@ export default {
 		fontFamily,
 		fontSize
 	},
-	plugins: [require('daisyui')],
+	plugins: [],
 }
