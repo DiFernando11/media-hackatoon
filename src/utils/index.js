@@ -44,18 +44,25 @@ export const modelByTopic = (topic) => {
       },
       imageDefaultBg: [
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729466458/difer-images/nxxnl1xgvoq5kcbbgaux.webp",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729466458/difer-images/nxxnl1xgvoq5kcbbgaux.webp",
           publicId: "difer-images/nxxnl1xgvoq5kcbbgaux",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729468097/difer-images/yiu7my2uzhe8vxhungiv.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729468097/difer-images/yiu7my2uzhe8vxhungiv.jpg",
           publicId: "difer-images/yiu7my2uzhe8vxhungiv",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729468193/difer-images/biqykarsvthsxjhqd4qy.webp",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729468193/difer-images/biqykarsvthsxjhqd4qy.webp",
           publicId: "difer-images/biqykarsvthsxjhqd4qy",
         },
       ],
+      replaceFace: {
+        "prompt-1": "a, decorative skull mask with flowers",
+        "prompt-2": "a spooky skull mask with glowing eyes",
+        "prompt-3": "a traditional Mexican Day of the Dead skull mask",
+        "prompt-4": "a pirate skull mask with an eye patch",
+        "prompt-5": "a crystal skull mask with intricate designs"
+    }    
     },
     [MODEL_TOPIC.zombies]: {
       name: "Zombie",
@@ -95,18 +102,25 @@ export const modelByTopic = (topic) => {
       },
       imageDefaultBg: [
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729472710/difer-images/p6orbdhduw8lx2fn2pe1.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729472710/difer-images/p6orbdhduw8lx2fn2pe1.jpg",
           publicId: "difer-images/p6orbdhduw8lx2fn2pe1",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729472727/difer-images/wa2phsap2jimcjq6riqo.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729472727/difer-images/wa2phsap2jimcjq6riqo.jpg",
           publicId: "difer-images/wa2phsap2jimcjq6riqo",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729472720/difer-images/bwpap9zupmbyqn0jzmez.webp",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729472720/difer-images/bwpap9zupmbyqn0jzmez.webp",
           publicId: "difer-images/bwpap9zupmbyqn0jzmez",
         },
       ],
+      replaceFace: {
+        "prompt-1": "a scary zombie mask with rotting flesh",
+        "prompt-2": "a zombie mask with glowing green eyes",
+        "prompt-3": "a zombie cheerleader mask with tattered clothes",
+        "prompt-4": "a zombie clown mask with a sinister grin",
+        "prompt-5": "a realistic zombie mask with exposed bones"
+    }    
     },
     [MODEL_TOPIC.ghost]: {
       name: "Fantasma",
@@ -146,18 +160,25 @@ export const modelByTopic = (topic) => {
       },
       imageDefaultBg: [
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729473373/difer-images/nrmiyaedss04rhdrbnjz.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729473373/difer-images/nrmiyaedss04rhdrbnjz.jpg",
           publicId: "difer-images/nrmiyaedss04rhdrbnjz",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729473362/difer-images/ncsmaxhsjtanbmaqh6o1.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729473362/difer-images/ncsmaxhsjtanbmaqh6o1.jpg",
           publicId: "difer-images/ncsmaxhsjtanbmaqh6o1",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729473355/difer-images/puxeclkq0ccra8df46jd.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729473355/difer-images/puxeclkq0ccra8df46jd.jpg",
           publicId: "difer-images/puxeclkq0ccra8df46jd",
         },
       ],
+      replaceFace: {
+        "prompt-1": "a spooky ghost mask with a flowing white sheet",
+        "prompt-2": "a ghost mask with hollow eyes and a creepy smile",
+        "prompt-3": "a translucent ghost mask with a glowing aura",
+        "prompt-4": "a vintage ghost mask resembling a classic horror character",
+        "prompt-5": "a friendly ghost mask with cartoonish features"
+    }    
     },
     [MODEL_TOPIC.vampire]: {
       name: "Vampiro",
@@ -197,18 +218,25 @@ export const modelByTopic = (topic) => {
       },
       imageDefaultBg: [
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729473855/difer-images/apweibqwtdrrzswcxbpw.avif",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729473855/difer-images/apweibqwtdrrzswcxbpw.avif",
           publicId: "difer-images/apweibqwtdrrzswcxbpw",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729473848/difer-images/cymbwwinisx0akhdjkt8.png",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729473848/difer-images/cymbwwinisx0akhdjkt8.png",
           publicId: "difer-images/cymbwwinisx0akhdjkt8",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729473841/difer-images/cvombfm55ytvimkn9oxz.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729473841/difer-images/cvombfm55ytvimkn9oxz.jpg",
           publicId: "difer-images/cvombfm55ytvimkn9oxz",
         },
       ],
+      replaceFace: {
+        "prompt-1": "a classic vampire mask with fangs and a cape",
+        "prompt-2": "a vampire mask with pale skin and glowing red eyes",
+        "prompt-3": "a vampire bride mask with elaborate makeup",
+        "prompt-4": "a spooky bat mask with large wings and sharp teeth",
+        "prompt-5": "a cartoonish bat mask with a funny expression"
+    }
     },
     [MODEL_TOPIC.witch]: {
       name: "Bruja",
@@ -248,18 +276,25 @@ export const modelByTopic = (topic) => {
       },
       imageDefaultBg: [
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729474176/difer-images/o6shau6svqv0c8gryzh1.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729474176/difer-images/o6shau6svqv0c8gryzh1.jpg",
           publicId: "difer-images/o6shau6svqv0c8gryzh1",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729474164/difer-images/nv8agnpd9lrkrrictl13.webp",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729474164/difer-images/nv8agnpd9lrkrrictl13.webp",
           publicId: "difer-images/nv8agnpd9lrkrrictl13",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729474154/difer-images/qmnxv5skfnxjr2wugv4r.webp",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729474154/difer-images/qmnxv5skfnxjr2wugv4r.webp",
           publicId: "difer-images/qmnxv5skfnxjr2wugv4r",
         },
       ],
+      replaceFace: {
+        "prompt-1": "a wicked witch mask with a crooked nose and warts",
+        "prompt-2": "a classic witch mask with a pointed hat and green skin",
+        "prompt-3": "a glamorous witch mask with sparkling eyes and a fancy dress",
+        "prompt-4": "a spooky witch mask with long wild hair",
+        "prompt-5": "a cartoonish witch mask with exaggerated features"
+    }
     },
     [MODEL_TOPIC.werewolf]: {
       name: "Lobo",
@@ -299,18 +334,25 @@ export const modelByTopic = (topic) => {
       },
       imageDefaultBg: [
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729474665/difer-images/cdwrqalbywmqmgydvx1i.avif",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729474665/difer-images/cdwrqalbywmqmgydvx1i.avif",
           publicId: "difer-images/cdwrqalbywmqmgydvx1i",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729474657/difer-images/u6iygvbafzbuj5nbgljj.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729474657/difer-images/u6iygvbafzbuj5nbgljj.jpg",
           publicId: "difer-images/u6iygvbafzbuj5nbgljj",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729474651/difer-images/lidh1tqlt4mtcy2lauxg.webp",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729474651/difer-images/lidh1tqlt4mtcy2lauxg.webp",
           publicId: "difer-images/lidh1tqlt4mtcy2lauxg",
         },
       ],
+      replaceFace: {
+        "prompt-1": "a ferocious werewolf mask with sharp teeth and fur",
+        "prompt-2": "a werewolf mask with glowing yellow eyes and a snarling expression",
+        "prompt-3": "a realistic werewolf mask with detailed facial features",
+        "prompt-4": "a cartoonish werewolf mask with exaggerated fangs and a goofy look",
+        "prompt-5": "a vintage werewolf mask resembling classic horror films"
+    }    
     },
     [MODEL_TOPIC.mummy]: {
       name: "Momia",
@@ -350,18 +392,25 @@ export const modelByTopic = (topic) => {
       },
       imageDefaultBg: [
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729474922/difer-images/n18a6znvtcx7zsapujz0.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729474922/difer-images/n18a6znvtcx7zsapujz0.jpg",
           publicId: "difer-images/n18a6znvtcx7zsapujz0",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729474916/difer-images/eqkhrpx1isghre5ld5wb.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729474916/difer-images/eqkhrpx1isghre5ld5wb.jpg",
           publicId: "difer-images/eqkhrpx1isghre5ld5wb",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729474910/difer-images/tsmb2xryqyl2f8lm2ave.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729474910/difer-images/tsmb2xryqyl2f8lm2ave.jpg",
           publicId: "difer-images/tsmb2xryqyl2f8lm2ave",
         },
       ],
+      replaceFace: {
+        "prompt-1": "a classic mummy mask wrapped in bandages",
+        "prompt-2": "a spooky mummy mask with glowing eyes peeking through the wrappings",
+        "prompt-3": "a realistic mummy mask with weathered and torn bandages",
+        "prompt-4": "a cartoonish mummy mask with a silly expression",
+        "prompt-5": "a mummy mask adorned with ancient Egyptian symbols"
+    }
     },
     [MODEL_TOPIC.pumpkin]: {
       name: "Calabaza",
@@ -401,18 +450,25 @@ export const modelByTopic = (topic) => {
       },
       imageDefaultBg: [
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729475223/difer-images/mibjxclcweflgu9ywifw.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729475223/difer-images/mibjxclcweflgu9ywifw.jpg",
           publicId: "difer-images/mibjxclcweflgu9ywifw",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729475218/difer-images/pamvh5ecwvybyplvhfix.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729475218/difer-images/pamvh5ecwvybyplvhfix.jpg",
           publicId: "difer-images/pamvh5ecwvybyplvhfix",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729475212/difer-images/nsh99pbdgvgaenetxuje.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729475212/difer-images/nsh99pbdgvgaenetxuje.jpg",
           publicId: "difer-images/nsh99pbdgvgaenetxuje",
         },
       ],
+      replaceFace: {
+        "prompt-1": "a carved pumpkin mask with a mischievous grin",
+        "prompt-2": "a spooky jackolantern mask with glowing eyes",
+        "prompt-3": "a classic pumpkin mask with intricate leaf designs",
+        "prompt-4": "a cartoonish pumpkin mask with a friendly face",
+        "prompt-5": "a pumpkin mask with a witches hat and spooky decorations"
+    }
     },
     [MODEL_TOPIC.spider]: {
       name: "Araña",
@@ -423,7 +479,7 @@ export const modelByTopic = (topic) => {
       fontFamily: "font-spider",
       fontSize: "text-spider",
       animationTitle: "animate-title-spider",
-      bgImage: "/spider.png",
+      bgImage: "/spider.avif",
       bgColor: {
         primary: "#333333",
         secondary: "#1c1c1c",
@@ -452,18 +508,25 @@ export const modelByTopic = (topic) => {
       },
       imageDefaultBg: [
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729475560/difer-images/bjlnwolm0dmdplk20z8e.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729475560/difer-images/bjlnwolm0dmdplk20z8e.jpg",
           publicId: "difer-images/bjlnwolm0dmdplk20z8e",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729475554/difer-images/rthg7mkregigsypqg8qy.avif",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729475554/difer-images/rthg7mkregigsypqg8qy.avif",
           publicId: "difer-images/rthg7mkregigsypqg8qy",
         },
         {
-          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/v1729475544/difer-images/y5kiwlibirhjpbb34q0g.jpg",
+          url: "https://res.cloudinary.com/drkv8ebxx/image/upload/q_1//v1729475544/difer-images/y5kiwlibirhjpbb34q0g.jpg",
           publicId: "difer-images/y5kiwlibirhjpbb34q0g",
         },
       ],
+      replaceFace: {
+        "prompt-1": "a creepy spider mask with large realistic eyes",
+        "prompt-2": "a cartoonish spider mask with exaggerated features and a big smile",
+        "prompt-3": "a spooky spider mask with fangs and hairy texture",
+        "prompt-4": "a colorful spider mask with decorative patterns",
+        "prompt-5": "a Halloween spider mask with glowing eyes and long legs"
+    }
     },
   };
   return configTopic[topic] || configTopic.skeleton;

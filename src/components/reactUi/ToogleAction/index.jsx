@@ -27,7 +27,7 @@ const ToggleAction = ({ isActive, onToggle, topic, text }) => {
               "transform 0.5s ease-in-out, background-color 0.3s ease",
           }}
         >
-          <img src={currentTopic.bgImage} alt="pumpkin" />
+          <img src={currentTopic.bgImage} className="rounded-full" alt="pumpkin" />
         </div>
       </div>
     </div>

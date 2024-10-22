@@ -4,6 +4,7 @@ import ButtonsAction from "../SideBar/ButtonsAction";
 import ActionRenoveBackground from "../SideBar/Actions/RenoveBackground/ActionRenoveBackground";
 import ActionAddBackground from "../SideBar/Actions/AddBackgroundImage/ActionAddBackground";
 import ActionCreateInvitation from "../SideBar/Actions/CreateInvitation/ActionCreateInvitation";
+import ActionTransformeFace from "../SideBar/Actions/TransformFace/ActionTransformeFace";
 
 function RenderActionCondition({ componenteKey, setComponenteKey }) {
   const componentes = {
@@ -11,6 +12,7 @@ function RenderActionCondition({ componenteKey, setComponenteKey }) {
     "download-component": <ActionDownload />,
     "add-background-component": <ActionAddBackground />,
     "create-invitation-component": <ActionCreateInvitation />,
+    "transforme-face-component": <ActionTransformeFace />,
   };
   return (
     <>

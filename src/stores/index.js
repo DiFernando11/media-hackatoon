@@ -17,6 +17,8 @@ export const isLoadingAllPageStore = atom(false);
 
 export const initTopicConfigStore = atom(false);
 
+export const currentComponentKeyStore = atom(null);
+
 export const currentImageUploadStore = map({
    url: "",
    id: null,
@@ -30,7 +32,8 @@ export const currentImageEditStore = map({
   url: "",
   id: null,
   body: null,
-  publicId: null
+  publicId: null,
+  name: ""
 });
 
 

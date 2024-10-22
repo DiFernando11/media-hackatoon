@@ -1,20 +1,22 @@
 import React from "react";
 import ButtonAction from "../../../ButtonAction";
 import useStoreApp from "../../../hooks/useStoreApp";
+import { useTranslation } from "react-i18next";
 
-function DownloadImage({ setComponenteKey, componenteKey }) {
+function DownloadImage({ setComponenteKey }) {
   const { getCurrentImageEdit, getLoadingImageUpload, getCurrentImageUpload } =
     useStoreApp();
+  const { t } = useTranslation();
 
   const isCurrentImageEdit =
     (!getCurrentImageEdit.id || getLoadingImageUpload) &&
     !getCurrentImageUpload.isGalery;
 
-  if (isCurrentImageEdit || componenteKey === "download-component") return null;
+  if (isCurrentImageEdit) return null;
 
   return (
     <ButtonAction
-      name={"Descargar imagen"}
+      name={t("downloadImage")}
       isClickPass
       handleAction={() => setComponenteKey("download-component")}
     />

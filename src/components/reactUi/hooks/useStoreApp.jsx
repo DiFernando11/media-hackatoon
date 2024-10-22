@@ -11,6 +11,7 @@ import {
   sliderPositionStore,
   lastCurrentImageUploadStore,
   isLoadingAllPageStore,
+  currentComponentKeyStore,
 } from "../../../stores";
 import { modelByTopic } from "../../../utils";
 import useLocalStorage from "./useLocalStorage";
@@ -28,6 +29,7 @@ function useStoreApp() {
   const getSliderPosition = useStore(sliderPositionStore);
   const getLastCurrentImageUpload = useStore(lastCurrentImageUploadStore);
   const getIsLoadingAllPage = useStore(isLoadingAllPageStore);
+  const getCurrentComponentKey = useStore(currentComponentKeyStore);
 
   const setOpenActionMedia = (isOpen) => {
     openActionStore.set(isOpen);
@@ -108,11 +110,15 @@ function useStoreApp() {
     id = null,
     body = null,
     publicId = null,
+    name = "",
+    crop = {},
   }) => {
     currentImageEditStore.setKey("url", url);
     currentImageEditStore.setKey("id", id);
     currentImageEditStore.setKey("body", body);
     currentImageEditStore.setKey("publicId", publicId);
+    currentImageEditStore.setKey("name", name);
+    currentImageEditStore.setKey("crop", crop);
   };
 
   const addImagesEditArray = (newItem) => {
@@ -135,6 +141,10 @@ function useStoreApp() {
 
   const setIsLoadingAllPage = (loading) => {
     isLoadingAllPageStore.set(loading);
+  };
+
+  const setCurrentComponentKey = (current) => {
+    currentComponentKeyStore.set(current);
   };
 
   return {
@@ -163,6 +173,8 @@ function useStoreApp() {
     deleteAllImagesEditArray,
     getIsLoadingAllPage,
     setIsLoadingAllPage,
+    setCurrentComponentKey,
+    getCurrentComponentKey,
   };
 }
 

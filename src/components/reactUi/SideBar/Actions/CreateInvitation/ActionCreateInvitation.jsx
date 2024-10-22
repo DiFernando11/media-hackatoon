@@ -9,9 +9,11 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 import AddBody from "./AddBody";
 import AddTittle from "./AddTittle";
 import AddFooter from "./AddFooter";
+import { useTranslation } from "react-i18next";
 
 function ActionCreateInvitation() {
   const { handleSetTextImage, handleUploadImage } = useTransformImage();
+  const { t } = useTranslation();
   const { getSelectedTopic } = useStoreApp();
   const currentTopic = getSelectedTopic();
   const initialOpen = {
@@ -20,11 +22,11 @@ function ActionCreateInvitation() {
   };
   const [openSection, setOpenSection] = useState(initialOpen);
   const initialValue = {
-    textHeader: "Invitacion a mi fiesta de halloween",
+    textHeader: t("textHeaderCreated"),
     fontSizeHeader: "80",
-    textBody: "Obligatorio traer disfraz",
+    textBody: t("textBodyCreated"),
     fontSizeBody: "40",
-    textFooter: "Dia 31 de Octubre, no faltes",
+    textFooter: t("textFooterCreated"),
     fontSizeFooter: "80",
     colorHeader: currentTopic.bgColor.secondary,
     colorBody: currentTopic.bgColor.secondary,
@@ -57,20 +59,17 @@ function ActionCreateInvitation() {
 
     let errorMessage = "";
     if (name === "textHeader" && (value.length > 40 || value.length < 8)) {
-      errorMessage =
-        "El título no puede tener menos de 8 ni más de 40 caracteres.";
+      errorMessage = t("validTittle");
     } else if (
       name === "textBody" &&
       (value.length > 120 || value.length < 8)
     ) {
-      errorMessage =
-        "El cuerpo no puede tener menos de 8 ni más de 120 caracteres.";
+      errorMessage = t("bodyValid");
     } else if (
       name === "textFooter" &&
       (value.length > 60 || value.length < 8)
     ) {
-      errorMessage =
-        "La información adicional no puede tener menos de 8 ni más de 60 caracteres.";
+      errorMessage = t("validFooter");
     }
 
     if (
@@ -80,8 +79,7 @@ function ActionCreateInvitation() {
     ) {
       const fontSizeValue = Number(value);
       if (fontSizeValue > 400 || fontSizeValue < 8) {
-        errorMessage =
-          "El tamaño de la fuente no puede ser menor de 8px ni mayor a 400px.";
+        errorMessage = t("validFontSize");
       }
     }
 
@@ -104,17 +102,17 @@ function ActionCreateInvitation() {
   return (
     <>
       <p className="text-white font-general-md -text-xs-1 leading-5">
-        Invita a tus amigos a tu fiesta de halloween.
+        {t("invitedFriends")}
       </p>
       <div>
         <ButtonAction
           handleAction={handleAction}
-          name={"Crear invitacion"}
+          name={t("createInvitation")}
           isClickPass
         />
         {hasErrors && (
           <p className="text-red-500 font-general-md text-end">
-            Tienes errores en tu formulario
+            {t("errorsValid")}
           </p>
         )}
       </div>

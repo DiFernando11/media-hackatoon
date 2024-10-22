@@ -3,6 +3,7 @@ import InputText from "../../../InputText";
 import NumberInput from "../../../NumberInput";
 import InputColor from "../../../InputColor";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { useTranslation } from "react-i18next";
 
 function AddFooter({
   handleChange,
@@ -12,6 +13,7 @@ function AddFooter({
   setIsOpen,
   setErrors,
 }) {
+  const { t } = useTranslation();
   return (
     <div>
       {openSection.footer && (
@@ -20,9 +22,9 @@ function AddFooter({
             handleChange={handleChange}
             inputValue={inputsValue.textFooter}
             inputName="textFooter"
-            label={"Dales mas informacion"}
+            label={t("moreInfoFooter")}
             error={errors.textFooter}
-            placeholder={"Dia: 31 de Octubre..."}
+            placeholder={t('phFooter')}
           />
           <div className="flex gap-3 justify-center items-center">
             <NumberInput
@@ -30,7 +32,7 @@ function AddFooter({
               inputValue={inputsValue.fontSizeFooter}
               handleChange={handleChange}
               error={errors.fontSizeFooter}
-              placeholder={"Define el tamaño..."}
+              placeholder={t('numberPh')}
             />
             <InputColor
               handleChange={handleChange}
@@ -61,8 +63,8 @@ function AddFooter({
           )}
           <span className="text-white font-general-md text-end">
             {openSection.footer
-              ? "Eliminar asunto adicional"
-              : "Agregar asunto adicional"}
+              ? t('deletedFooter')
+              : t('addFooter')}
           </span>
         </div>
       )}

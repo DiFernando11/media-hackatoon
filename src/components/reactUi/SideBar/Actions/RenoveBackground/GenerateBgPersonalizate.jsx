@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import ButtonAction from "../../../ButtonAction";
 import useTransformImage from "../../../hooks/useTransformImage";
 import InputText from "../../../InputText";
+import { useTranslation } from "react-i18next";
 
 function GenerateBgPersonalizate() {
   const { handleGetCdlImage } = useTransformImage();
+  const { t } = useTranslation();
   const [inputValue, setInputValue] = useState("");
   const [isGenerate, setIsGenerate] = useState(false);
-  const textAlert =
-    "Actualmente, nuestra IA solo puede procesar texto en ingles.";
+  const textAlert = t("alertOnlyIngles");
 
   const handleAction = () => {
     const sanitizedInput = inputValue
@@ -25,18 +26,14 @@ function GenerateBgPersonalizate() {
   const handleChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-    setError(
-      value.length > 100
-        ? "Haz alcanzado el limite de caracteres posibles para enviar a nuestra IA."
-        : ""
-    );
+    setError(value.length > 100 ? t("validationMaxium") : "");
   };
 
   const [error, setError] = useState(textAlert);
   return (
     <div className="flex flex-col gap-1">
       <ButtonAction
-        name={"Generar fondo personalizado"}
+        name={t("generateCustomBg")}
         handleAction={() => setIsGenerate(true)}
         isClickPass
         removeButton={isGenerate}
@@ -44,13 +41,11 @@ function GenerateBgPersonalizate() {
       {isGenerate && (
         <>
           <InputText
-            label={
-              "Escribe el tipo de fondo que deseas y nuestra IA lo hara para ti."
-            }
+            label={t("writeTypeBg")}
             error={error}
             handleChange={handleChange}
             inputValue={inputValue}
-            placeholder={"Describe claramente lo que necesitas."}
+            placeholder={t('phWritBg')}
           />
           {!error && inputValue.length > 0 && (
             <ButtonAction

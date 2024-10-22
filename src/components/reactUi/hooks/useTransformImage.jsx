@@ -71,7 +71,7 @@ function useTransformImage() {
 
     const url = getCldImageUrl({
       src: publicId,
-      quality: 1,
+      quality: 100,
       format: "webp",
       ...body,
     });
@@ -207,10 +207,18 @@ function useTransformImage() {
       // Footer
       ...footer,
     ];
-    console.log(overlays);
     handleGetCdlImage({
       blur: "800",
       overlays,
+    });
+  };
+
+  const handleTransformFace = (mask) => {
+    handleGetCdlImage({
+      replace: {
+        to: mask,
+        from: "face",
+      },
     });
   };
 
@@ -223,6 +231,7 @@ function useTransformImage() {
     handleOpenWidget,
     handleSupositionImage,
     handleSetTextImage,
+    handleTransformFace,
   };
 }
 

@@ -1,20 +1,19 @@
 import React, { useState } from "react";
+import ButtonAction from "../../../ButtonAction";
 import useTransformImage from "../../../hooks/useTransformImage";
 import useStoreApp from "../../../hooks/useStoreApp";
-import ButtonAction from "../../../ButtonAction";
-import GenerateBgPersonalizate from "./GenerateBgPersonalizate";
 import { useTranslation } from "react-i18next";
 
-function ActionRenoveBackground() {
-  const { handleGetCdlImage } = useTransformImage();
-  const { t } = useTranslation()
+function ActionTransformeFace() {
+  const { handleTransformFace } = useTransformImage();
+  const { t } = useTranslation();
   const { getSelectedTopic } = useStoreApp();
   const currentTopic = getSelectedTopic();
   const [promptsActives, setPromptsActives] = useState({});
 
-  const handleAction = () => {
+  const handleReplaceFace = () => {
     const existedTopic = promptsActives[currentTopic.name] || undefined;
-    const cantPropmts = Object.keys(currentTopic.replaceBackground).length;
+    const cantPropmts = Object.keys(currentTopic.replaceFace).length;
 
     const countPropmt = cantPropmts === existedTopic ? 1 : existedTopic + 1;
     const currentPromt = existedTopic ? countPropmt : 1;
@@ -23,28 +22,21 @@ function ActionRenoveBackground() {
       ...promptsActives,
       [currentTopic.name]: existedTopic ? countPropmt : 1,
     });
-
-    const body = {
-      replaceBackground:
-        currentTopic.replaceBackground[`prompt-${currentPromt}`],
-    };
-
-    handleGetCdlImage(body);
+    handleTransformFace(currentTopic.replaceFace[`prompt-${currentPromt}`]);
   };
 
   return (
     <>
-      <p className="font-general-md -text-xs-1 leading-5 text-white">
-        Nuestra IA generara un fondo acorde a tu preferencia.
+      <p className="text-white font-general-md text-[18px]">
+        {t("replaceFaceDescr")}
       </p>
       <ButtonAction
-        name={t('generateBg')}
-        handleAction={handleAction}
+        name={t('createdMask')}
+        handleAction={handleReplaceFace}
         isClickPass
       />
-      <GenerateBgPersonalizate />
     </>
   );
 }
 
-export default ActionRenoveBackground;
+export default ActionTransformeFace;

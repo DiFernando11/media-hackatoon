@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import useStoreApp from "../hooks/useStoreApp";
 import { isMdMQ, MODEL_TOPIC } from "../../../utils/constants";
 import ToggleAction from "../ToogleAction";
-import HalloweenToggle from "../HalloweenTopic";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { useTranslation } from "react-i18next";
 
 const ToggleList = () => {
+  const { t } = useTranslation();
   const names = [
-    { value: MODEL_TOPIC.skeleton, text: "Calavera" },
-    { value: MODEL_TOPIC.zombies, text: "Zombie" },
-    { value: MODEL_TOPIC.ghost, text: "Fantasma" },
-    { value: MODEL_TOPIC.vampire, text: "Vampiro" },
-    { value: MODEL_TOPIC.witch, text: "Bruja" },
-    { value: MODEL_TOPIC.werewolf, text: "Lobo" },
-    { value: MODEL_TOPIC.mummy, text: "Momia" },
-    { value: MODEL_TOPIC.pumpkin, text: "Calabaza" },
-    { value: MODEL_TOPIC.spider, text: "Araña" },
+    { value: MODEL_TOPIC.skeleton, text: t("Calavera") },
+    { value: MODEL_TOPIC.zombies, text: t("Zombie") },
+    { value: MODEL_TOPIC.ghost, text: t("Fantasma") },
+    { value: MODEL_TOPIC.vampire, text: t("Vampiro") },
+    { value: MODEL_TOPIC.witch, text: t("Bruja") },
+    { value: MODEL_TOPIC.werewolf, text: t("Lobo") },
+    { value: MODEL_TOPIC.mummy, text: t("Momia") },
+    { value: MODEL_TOPIC.pumpkin, text: t("Calabaza") },
+    { value: MODEL_TOPIC.spider, text: t("Araña") },
   ];
   const { setCurrentTopicByLS, getCurrentOlnyNameTopicByLS } =
     useLocalStorage();
@@ -26,7 +27,8 @@ const ToggleList = () => {
     addImagesEditArray,
     setCurrentImageEdit,
     setSliderPosition,
-    setOpenActionMedia
+    setOpenActionMedia,
+    setCurrentComponentKey,
   } = useStoreApp();
 
   const [activeIndex, setActiveIndex] = useState(null);
@@ -44,6 +46,7 @@ const ToggleList = () => {
     setOpenActionMedia(!isMdMQ(screenWidth));
     setTopicHalloween(value);
     setCurrentTopicByLS(value);
+    setCurrentComponentKey(null);
     if (getCurrentImageEdit?.id) {
       addImagesEditArray(getCurrentImageEdit);
       setCurrentImageEdit({});
@@ -63,7 +66,6 @@ const ToggleList = () => {
           onToggle={() => handleToggle(topic.value)}
         />
       ))}
-      {/* <HalloweenToggle/> */}
     </div>
   );
 };

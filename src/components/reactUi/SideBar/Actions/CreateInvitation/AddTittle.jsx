@@ -2,8 +2,11 @@ import React from "react";
 import InputText from "../../../InputText";
 import NumberInput from "../../../NumberInput";
 import InputColor from "../../../InputColor";
+import { T } from "../../../../../../dist/_astro/three.module.CIpW9_cp";
+import { useTranslation } from "react-i18next";
 
 function AddTittle({ handleChange, inputsValue, errors }) {
+  const { t } = useTranslation();
   return (
     <div>
       <InputText
@@ -11,8 +14,8 @@ function AddTittle({ handleChange, inputsValue, errors }) {
         inputValue={inputsValue.textHeader}
         inputName="textHeader"
         error={errors.textHeader}
-        label={"Escribe un titulo"}
-        placeholder={"Te invito a mi fiesta..."}
+        label={t("labelTittle")}
+        placeholder={t("phTittle")}
       />
       <div className="flex gap-3 justify-center items-center">
         <NumberInput
@@ -20,7 +23,7 @@ function AddTittle({ handleChange, inputsValue, errors }) {
           inputValue={inputsValue.fontSizeHeader}
           handleChange={handleChange}
           error={errors.fontSizeHeader}
-          placeholder={"Define el tamaño..."}
+          placeholder={t('numberPh')}
         />
         <InputColor
           handleChange={handleChange}

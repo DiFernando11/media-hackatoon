@@ -8,15 +8,22 @@ import { initResize } from "../../../utils/resizeSideBar";
 import ToggleList from "../ToogleTopic";
 import Breadcrumb from "./Breadcrumb";
 import RenderActionCondition from "../RenderActionCondition";
-import DownloadImage from "./Actions/DownloadImage";
+import MusicPlayer from "./MusicPlayer";
+import { useTranslation } from "react-i18next";
 
 const Sidebar = () => {
   const width = useMediaQuery();
-  const [componenteKey, setComponenteKey] = useState(null);
+  const { t } = useTranslation();
   const [activeButton, setActiveButton] = useState(false);
 
-  const { openActionMedia, setOpenActionMedia, getSelectedTopic } =
-    useStoreApp();
+  const {
+    openActionMedia,
+    setOpenActionMedia,
+    setCurrentComponentKey,
+    getCurrentComponentKey,
+    getSelectedTopic
+  } = useStoreApp();
+
   const bgColor = getSelectedTopic().bgColor.secondary;
 
   useEffect(() => {
@@ -58,6 +65,7 @@ const Sidebar = () => {
         />
         <aside className="px-3 py-5 h-full overflow-y-auto">
           <div>
+            <MusicPlayer />
             <XCircleIcon
               onClick={() => setOpenActionMedia(false)}
               className="absolute top-2 right-2 cursor-pointer block md:hidden ml-auto size-6 text-white"
@@ -67,34 +75,28 @@ const Sidebar = () => {
               <li className="my-2">
                 <ToggleList />
               </li>
-              {componenteKey && (
+              {getCurrentComponentKey && (
                 <div
-                  onClick={() => setComponenteKey(null)}
+                  onClick={() => setCurrentComponentKey(null)}
                   className="cursor-pointer flex justify-center items-center gap-2"
                 >
                   <span className="font-general -text-xs-1 text-white">
-                    Regresar
+                    {t("back")}
                   </span>
                   <ArrowUturnLeftIcon className="text-white size-4" />
                 </div>
               )}
-              <DownloadImage
-                setComponenteKey={setComponenteKey}
-                componenteKey={componenteKey}
-              />
               <RenderActionCondition
-                componenteKey={componenteKey}
-                setComponenteKey={setComponenteKey}
+                componenteKey={getCurrentComponentKey}
+                setComponenteKey={setCurrentComponentKey}
               />
               <button
                 onClick={() => setActiveButton(!activeButton)}
                 className="w-full font-general text-white pt-1 flex justify-between items-center px-1 border-t"
                 id="toggle-rotation"
               >
-                <p className="-text-xs-1">
-                  {!activeButton
-                    ? "¡Rota tu modelo 3D!"
-                    : "!Deja que tu modelo siga el cursor!"}
+                <p className="-text-xs-1 text-start">
+                  {!activeButton ? t("rotateModel") : t("followCursor")}
                 </p>
                 <span
                   className={classNames(

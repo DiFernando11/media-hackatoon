@@ -1,8 +1,10 @@
 import React from "react";
 import useStoreApp from "../../hooks/useStoreApp";
+import { useTranslation } from "react-i18next";
 
 function Breadcrumb() {
   const { getSelectedTopic } = useStoreApp();
+  const { t } = useTranslation();
   const currentTopic = getSelectedTopic();
   const color = currentTopic.bgColor.secondary;
   return (
@@ -13,12 +15,10 @@ function Breadcrumb() {
           backgroundColor: color,
         }}
       >
-        <img className="w-6 h-6" src={currentTopic.bgImage} />
+        <img className="w-6 h-6 rounded-full" src={currentTopic.bgImage} />
       </div>
-      <h2
-        className="font-general text-white text-3xl"
-      >
-        {currentTopic.name}
+      <h2 className="font-general text-white text-3xl">
+        {t(currentTopic.name)}
       </h2>
     </div>
   );

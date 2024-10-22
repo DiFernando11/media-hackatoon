@@ -3,6 +3,7 @@ import React from "react";
 import InputText from "../../../InputText";
 import NumberInput from "../../../NumberInput";
 import InputColor from "../../../InputColor";
+import { useTranslation } from "react-i18next";
 
 function AddBody({
   openSection,
@@ -12,6 +13,7 @@ function AddBody({
   errors,
   setErrors,
 }) {
+  const { t } = useTranslation();
   return (
     <div>
       {openSection.body && (
@@ -21,8 +23,8 @@ function AddBody({
             inputValue={inputsValue.textBody}
             inputName="textBody"
             error={errors.textBody}
-            label={"Cuentales tu asunto"}
-            placeholder={"Obligatorio traer disfraz..."}
+            label={t("labelBody")}
+            placeholder={t("phBodyCreated")}
           />
           <div className="flex gap-3 justify-center items-center">
             <NumberInput
@@ -30,7 +32,7 @@ function AddBody({
               inputValue={inputsValue.fontSizeBody}
               handleChange={handleChange}
               error={errors.fontSizeBody}
-              placeholder={"Define el tamaño..."}
+              placeholder={t("numberPh")}
             />
             <InputColor
               handleChange={handleChange}
@@ -58,7 +60,7 @@ function AddBody({
           <PlusIcon className="size-3 text-white font-extrabold" />
         )}
         <span className="text-white font-general-md text-end">
-          {openSection.body ? "Eliminar cuerpo" : "Agregar cuerpo"}
+          {openSection.body ? t("deletedBody") : t("addBody")}
         </span>
       </div>
     </div>

@@ -31,7 +31,7 @@ function ButtonAction({
       id={id}
       onClick={!isLoading || removeButton ? handleActiveAction : undefined}
       className={classNames(
-        "w-full font-general text-white pt-1 flex justify-between items-center px-1",
+        "w-full font-general text-white text-start pt-1 flex justify-between items-center px-1",
         {
           "cursor-pointer": !isLoading,
           "pointer-events-none": isLoading,

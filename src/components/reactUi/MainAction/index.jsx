@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useStoreApp from "../hooks/useStoreApp";
 import useCreateModelMove from "../hooks/useCreateModelMove";
 import CloudWidgetReact from "../CloudWidgetReact";
@@ -7,6 +7,7 @@ import PresentationChangeTopic from "../PresentationChangeTopic";
 import LoadingBackground from "../LoadingBackground";
 import ModalContinueEdit from "../Modal/ModalContinueEdit";
 import CurtainChangeTopic from "../CurtainChangeTopic";
+import { useTranslation } from "react-i18next";
 
 function MainAction() {
   const {
@@ -15,6 +16,8 @@ function MainAction() {
     getCurrentImageUpload,
     getIsLoadingAllPage,
   } = useStoreApp();
+
+  const { t } = useTranslation();
 
   const { canvasRef } = useCreateModelMove(getTopicHalloween);
   const { canvasRef: canvasRef2 } = useCreateModelMove(getTopicHalloween);
@@ -34,14 +37,14 @@ function MainAction() {
             className="w-full border-b-2 bg-titleGalery absolute top-0 left-1/2  transform -translate-x-1/2 z-20 font-general"
           >
             <h2 className="text-white text-center px-2 rounded-sm">
-              Tu galeria
+              {t('titleGalery')}
             </h2>
           </div>
         )}
         {!getCurrentImageUpload?.id && (
           <div className="w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 font-general-md">
             <h2 className="text-white text-center mx-3 px-2 rounded-sm text-[28px]">
-              ¡No te detengas! Sube tu imagen para continuar la diversión.
+              {t("uploadContainerMedia")}
             </h2>
           </div>
         )}

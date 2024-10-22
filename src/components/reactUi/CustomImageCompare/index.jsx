@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import useStoreApp from "../hooks/useStoreApp";
+import ModalErrorTransforme from "../Modal/ModalErrorTransforme";
 
 const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
   const [attempts, setAttempts] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const {
     getSelectedTopic,
     getSliderPosition,
@@ -13,6 +15,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
   } = useStoreApp();
   const [isManualSliding, setIsManualSliding] = useState(false);
   const imageContainer = useRef(undefined);
+  const timeoutRef = useRef(null);
 
   const currentTopic = getSelectedTopic();
 
@@ -54,12 +57,13 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
     setAttempts(0);
     setIsLoadingImage(false);
     setSliderPosition(0);
+    clearTimeout(timeoutRef.current);
   };
 
   const handleError = () => {
+    clearTimeout(timeoutRef.current);
     setAttempts((prev) => prev + 1);
     if (attempts < 3) {
-      console.log("Intentando cargar nuevamente...");
       const newUrl = `${getCurrentImageEdit.url}?t=${Date.now()}`;
       setTimeout(() => {
         setCurrentImageEdit({
@@ -72,15 +76,29 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
       setIsLoadingAllPage(false);
       setIsLoadingImage(false);
       setCurrentImageEdit({});
-      console.log("Se alcanzó el número máximo de intentos");
+      setSliderPosition(1);
+      setIsOpen(true);
     }
   };
+
+  useEffect(() => {
+    if (getCurrentImageEdit.id) {
+      timeoutRef.current = setTimeout(() => {
+        setCurrentImageEdit({});
+        setSliderPosition(1);
+        setIsLoadingAllPage(false);
+        setIsLoadingImage(false);
+        setIsOpen(true);
+      }, 40000);
+    }
+  }, [getCurrentImageEdit.id]);
 
   return (
     <div
       ref={imageContainer}
       className="w-full absolute top-0 h-full flex justify-center items-center select-none"
     >
+      <ModalErrorTransforme setIsOpen={setIsOpen} isOpen={isOpen} />
       <img
         src={image1}
         alt="Imagen 1"
@@ -116,7 +134,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
           >
             <div className="relative h-full">
               <div
-                className="absolute inset-y-0 w-[0.1px]"
+                className="absolute inset-y-0 w-[1px]"
                 style={{
                   backgroundColor: currentTopic.bgColor.secondary,
                 }}
@@ -134,7 +152,7 @@ const ImageCompare = ({ image1, image2, setIsLoadingImage }) => {
                   id="imagen-upload-current"
                   style={{ touchAction: "none" }}
                   src={currentTopic.bgImage}
-                  className="w-6 h-6 pointer-events-none"
+                  className="w-6 h-6 pointer-events-none rounded-full"
                 />
               </div>
             </div>

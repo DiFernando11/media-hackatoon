@@ -11,7 +11,6 @@ const useDownloadImage = (setLoadingDownload) => {
       return imageDataUrl;
     } catch (error) {
       setLoadingDownload(false);
-      console.error("Error al obtener la imagen:", error);
       return null;
     }
   };
@@ -20,7 +19,6 @@ const useDownloadImage = (setLoadingDownload) => {
     const imageDataUrl = await toDataURL(imageUrl);
     if (imageDataUrl) {
       const nameDefault = "my-image";
-      console.log(`${name?.length > 0 ? name : nameDefault}.${format}`);
       a.href = imageDataUrl;
       a.download = `${name ?? nameDefault}.${format}`;
       document.body.appendChild(a);
@@ -30,7 +28,6 @@ const useDownloadImage = (setLoadingDownload) => {
       setIsLoadingAllPage(false);
     } else {
       setIsLoadingAllPage(false);
-      console.error("No se pudo descargar la imagen");
     }
   }, []);
 

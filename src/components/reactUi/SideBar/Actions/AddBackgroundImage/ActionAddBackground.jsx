@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import ButtonAction from "../../../ButtonAction";
 import useTransformImage from "../../../hooks/useTransformImage";
 import useStoreApp from "../../../hooks/useStoreApp";
+import { useTranslation } from "react-i18next";
 
 function ActionAddBackground() {
   const { handleSupositionImage, handleUploadImage } = useTransformImage();
+  const { t } = useTranslation();
   const [urlSelected, setUrlSelected] = useState(null);
   const { getSelectedTopic } = useStoreApp();
   const currentTopic = getSelectedTopic();
@@ -27,7 +29,7 @@ function ActionAddBackground() {
   return (
     <>
       <p className="text-white font-general-md -text-xs-1 leading-5">
-        Selecciona una imagen de fondo predeterminada.
+        {t("selectBgImage")}
       </p>
       <div className="grid grid-cols-3 gap-4 items-center">
         {currentTopic.imageDefaultBg?.map((img) => (
@@ -49,17 +51,17 @@ function ActionAddBackground() {
       {urlSelected && (
         <ButtonAction
           handleAction={handleActionEditBg}
-          name={"Editar fondo"}
+          name={t('editBg')}
           isClickPass
         />
       )}
       <div className="mt-4">
         <p className="text-white mb-2 font-general-md -text-xs-1 leading-5">
-          Selecciona tu propia imagen.
+          {t("selectYourImage")}
         </p>
         <ButtonAction
           handleAction={handleAction}
-          name={"Subir imagen de fondo"}
+          name={t('uploadBgImage')}
           isClickPass
         />
       </div>
