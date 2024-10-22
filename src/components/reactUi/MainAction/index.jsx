@@ -38,11 +38,13 @@ function MainAction() {
             </h2>
           </div>
         )}
-        <div className="w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 font-general-md">
-          <h2 className="text-white text-center mx-3 px-2 rounded-sm text-[28px]">
-            ¡No te detengas! Sube tu imagen para continuar la diversión.
-          </h2>
-        </div>
+        {!getCurrentImageUpload?.id && (
+          <div className="w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 font-general-md">
+            <h2 className="text-white text-center mx-3 px-2 rounded-sm text-[28px]">
+              ¡No te detengas! Sube tu imagen para continuar la diversión.
+            </h2>
+          </div>
+        )}
         <img
           className="absolute w-full h-full top-0 left-0 opacity-40 -z-10"
           src="/containerMedia.avif"
