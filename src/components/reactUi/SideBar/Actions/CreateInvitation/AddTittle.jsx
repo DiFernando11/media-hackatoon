@@ -2,7 +2,6 @@ import React from "react";
 import InputText from "../../../InputText";
 import NumberInput from "../../../NumberInput";
 import InputColor from "../../../InputColor";
-import { T } from "../../../../../../dist/_astro/three.module.CIpW9_cp";
 import { useTranslation } from "react-i18next";
 
 function AddTittle({ handleChange, inputsValue, errors }) {
